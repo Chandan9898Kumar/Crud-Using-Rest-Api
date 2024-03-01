@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "core-js": "^3.36.0",
     "enzyme": "^3.11.0",
@@ -53,6 +52,7 @@
     "@babel/preset-react": "^7.23.3",
     "@babel/runtime": "^7.23.9",
     "@sanity/eslint-config-studio": "^3.0.1",
+    "@testing-library/react": "^14.2.1",
     "ajv": "^7.2.4",
     "babel-cli": "^6.26.0",
     "babel-jest": "^29.7.0",
