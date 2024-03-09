@@ -1,0 +1,44 @@
+body {
+    box-sizing: border-box;
+}
+
+.container-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    box-shadow: none;
+    background-color: #ff8686;
+    flex-wrap: wrap;
+
+}
+
+.nav-link {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 50px;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+
+.log-out-button {
+    padding: 10px;
+}
+
+.isActive{
+    text-decoration: none;
+    color: grey;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-size: 18px;
+}
+
+.static{
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    font-size: 18px;
+
+}
