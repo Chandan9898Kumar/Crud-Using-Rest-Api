@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./Nav.css";
+import DarkModeToggleModified from '../DarkLightTheme/Mode'
 const NavLinks = () => {
   const navigate = useNavigate();
 
@@ -38,7 +39,7 @@ const NavLinks = () => {
         </div>
       </div>
       <div className="heading">
-        <div>Theme</div>
+        {<DarkModeToggleModified />}
         <div className="log-out-button">
           <button onClick={handleClick}>Login</button>
         </div>

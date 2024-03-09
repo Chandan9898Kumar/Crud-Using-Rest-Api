@@ -1,0 +1,58 @@
+body.light-mode {
+  background: #F7F7F7;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode {
+  background-color: #10171d;
+  color: #ffffff;
+
+  .navbar {
+    background-color: #1b2938;
+  }
+
+  .dark-mode-toggle>button {
+    color: #999;
+
+    &:last-child {
+      color: lightblue;
+    }
+  }
+}
+
+
+body.dark-mode .content code {
+  background-color: #1b2938;
+}
+
+body.dark-mode .content a {
+  color: #ee09;
+}
+
+body.dark-mode .content button {
+  color: #ee09;
+}
+
+.dark-mode-toggle {
+  display: flex;
+  float: inline-end;
+  margin-right: 30px;
+
+  &>button {
+    font-size: 1.3em;
+    background: none;
+    border: none;
+    color: #ffe600;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:last-child {
+      color: #666;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
