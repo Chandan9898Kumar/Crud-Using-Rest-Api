@@ -1,6 +1,24 @@
-body {
+.container {
     box-sizing: border-box;
-    display: block;
-    margin: 0;
-    top: 0;
+}
+
+.image-head {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    gap: 20px;
+    padding: 20px;
+}
+
+.text {
+    font-size: 1.875rem;
+    font-weight: 700;
+    font-family: sans-serif;
+
+}
+
+.sub-text {
+    font-family: sans-serif;
+    font-size: 18px;
+    color: #999999;
 }
