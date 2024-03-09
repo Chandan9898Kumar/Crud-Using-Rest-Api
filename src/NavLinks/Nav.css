@@ -1,7 +1,3 @@
-body {
-    box-sizing: border-box;
-}
-
 .container-link {
     display: flex;
     justify-content: space-between;
@@ -9,24 +5,50 @@ body {
     box-shadow: none;
     background-color: #ff8686;
     flex-wrap: wrap;
-
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .nav-link {
     display: inline-flex;
     justify-content: flex-start;
     align-items: baseline;
-    gap: 50px;
+    gap: 35px;
     padding: 10px;
     flex-wrap: wrap;
+    width: 80%;
 }
 
 
-.log-out-button {
+.heading {
     padding: 10px;
+    width: 15%;
+    display: flex;
+    justify-content:  space-between;;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-.isActive{
+.log-out-button > button {
+    width: 90px;
+    height: 28px;
+    font-size: 16px;
+    border: 1px solid white;
+    background: transparent;
+    border-radius: 10px;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.log-out-button > button:hover {
+    cursor: pointer;
+    border: 1px solid #82b188;
+    background: #82b188;
+}
+
+
+.isActive {
     text-decoration: none;
     color: grey;
     text-transform: uppercase;
@@ -34,7 +56,7 @@ body {
     font-size: 18px;
 }
 
-.static{
+.static {
     text-decoration: none;
     color: white;
     text-transform: uppercase;

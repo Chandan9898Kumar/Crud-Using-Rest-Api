@@ -1,8 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import './Nav.css'
+import "./Nav.css";
 const NavLinks = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/login");
+  };
   return (
     <div className="container-link">
       <div className="nav-link">
@@ -28,12 +33,15 @@ const NavLinks = () => {
         </div>
         <div>
           <NavLink to="/todo" caseSensitive className={({ isActive }) => (isActive ? "isActive" : "static")}>
-            ToDo-App
+            ToDo_App
           </NavLink>
         </div>
       </div>
-      <div className="log-out-button">
-        <button>Login</button>
+      <div className="heading">
+        <div>Theme</div>
+        <div className="log-out-button">
+          <button onClick={handleClick}>Login</button>
+        </div>
       </div>
     </div>
   );

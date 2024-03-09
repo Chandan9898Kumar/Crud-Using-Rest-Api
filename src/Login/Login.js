@@ -1,7 +1,7 @@
 import React from "react";
 
 const AccountLogin = () => {
-  return <div>Login</div>;
+  return <div style={{color:'black'}}>Login</div>;
 };
 
 export default AccountLogin;

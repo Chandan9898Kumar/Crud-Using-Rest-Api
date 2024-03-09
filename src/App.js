@@ -9,18 +9,18 @@ const Home = lazy(() => import("./HomePage/HomePage"));
 
 function App() {
   return (
-    <div className="App">
-      <Suspense fallback={<Loader />}>
-        <BrowserRouter>
-          <NavLinks />
+    <Suspense fallback={<Loader />}>
+      <BrowserRouter>
+        <NavLinks />
+        <div style={{ marginTop: "15px" }}>
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/login" element={<AccountLogin />} />
             <Route exact path="/Register" element={<AccountRegister />} />
           </Routes>
-        </BrowserRouter>
-      </Suspense>
-    </div>
+        </div>
+      </BrowserRouter>
+    </Suspense>
   );
 }
 
