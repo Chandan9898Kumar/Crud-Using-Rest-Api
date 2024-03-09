@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./home.css";
-import { HomeImage } from "../Assets/SvgImage";
+import { HomeIcon } from "../Assets/SvgImage";
 const Home = () => {
   return (
     <div className="container">
       <div className="image-head">
         <div>
-          <HomeImage width={40} height={40} />
+          <HomeIcon width={40} height={40} />
         </div>
         <div>
           <div className="text">Home Page</div>
