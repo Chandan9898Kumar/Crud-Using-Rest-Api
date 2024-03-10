@@ -25,7 +25,9 @@
 
 
 .item {
-    display: block;
+    display: flex;
+    justify-content: end;
+    align-items: baseline;
     width: 100%;
     box-sizing: border-box;
 }
@@ -39,7 +41,6 @@
     gap: 20px;
     width: 400px;
     background: #ffffff;
-    float: inline-end;
     min-width: 0px;
     overflow-wrap: break-word;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 3.5px 5.5px;
@@ -69,5 +70,14 @@
     padding: 0px 90px;
     font-size: 22px;
     letter-spacing: 1px;
+
+}
+
+.search {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin-left: 15px;
+    margin-top: 10px;
 
 }

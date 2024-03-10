@@ -28,9 +28,9 @@ TableImage.propTypes = {
 
 export const TableIcon = memo(TableImage);
 
-const SearchImage = ({ width = 28, height = 28 }) => {
+const SearchImage = ({ width = 28, height = 28, color }) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
+    <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} fill="currentColor" className="bi bi-search" viewBox="0 0 16 16" color={color}>
       <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
     </svg>
   );
@@ -39,5 +39,6 @@ const SearchImage = ({ width = 28, height = 28 }) => {
 SearchImage.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
+  color: PropTypes.string,
 };
 export const SearchIcon = memo(SearchImage);
