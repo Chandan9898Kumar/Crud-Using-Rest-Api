@@ -1,6 +1,28 @@
 @import url(https://fonts.googleapis.com/css?family=Exo:100,200,400);
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&family=Raleway:wght@400;500&display=swap");
 
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 10 10 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(229, 226, 226);
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #969393;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -10,6 +32,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .App {
