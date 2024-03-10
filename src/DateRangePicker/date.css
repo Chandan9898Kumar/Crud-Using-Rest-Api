@@ -1,4 +1,4 @@
-.date-container{
+.date-container {
     box-sizing: border-box;
 }
 
@@ -13,7 +13,7 @@
 .date-button {
     height: 30px;
     width: auto;
-    right: 22px;
+    right: 40px;
     position: relative;
     width: 150px;
     font-size: 20px;
@@ -21,13 +21,15 @@
     border: none;
     background: transparent;
     color: cornflowerblue;
+    border: 1px solid;
+    border-radius: 10px;
 }
 
 .date-button-container :hover {
     cursor: pointer;
 }
 
-.date-range{
+.date-range {
     position: relative;
     display: flex;
     justify-content: flex-end;

@@ -33,6 +33,7 @@
 }
 
 .sub-item {
+    position: relative;
     display: flex;
     justify-content: flex-start;
     align-items: baseline;
@@ -47,7 +48,7 @@
     border-radius: 15px;
     min-height: 83px;
     padding: 10px;
-    margin-right: 20px;
+    right: 50px;
 }
 
 .item-text {

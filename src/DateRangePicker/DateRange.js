@@ -15,7 +15,7 @@ const DateRange = () => {
     <div className="date-container">
       <div className="date-button-container">
         <button className="date-button" onClick={() => setIsDate(!isDate)}>
-          {!isDate ? "Select Date" : "Cancel Date"}
+          {!isDate ? "Select Date" : "Remove Date"}
         </button>
       </div>
       <div className="date-range">{isDate && <DateRangePicker ranges={[selectionRange]} onChange={""} />}</div>
