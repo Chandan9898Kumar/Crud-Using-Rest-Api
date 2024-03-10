@@ -34,7 +34,7 @@ const Home = () => {
           <SearchFiled type={"text"} value={searchedValue} callBackFun={searchItems} placeholder={"Search Item"} label={"Search"} />
         </Suspense>
       </div>
-      <div className="">
+      <div>
         <DateRangePicker />
       </div>
     </div>

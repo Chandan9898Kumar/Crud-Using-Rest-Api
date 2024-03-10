@@ -1,22 +1,22 @@
 body.light-mode {
-  background: #F7F7F7;
+  background: #f4f5fa;
   color: #333;
   transition: background-color 0.3s ease;
 }
 
 body.dark-mode {
-  background-color: #10171d;
+  background-color: #28243d;
   color: #ffffff;
 
   .navbar {
-    background-color: #1b2938;
+    background-color: #28243d;
   }
 
   .dark-mode-toggle>button {
     color: #999;
 
     &:last-child {
-      color: lightblue;
+      color: #ffffff;
     }
   }
 }
@@ -43,7 +43,7 @@ body.dark-mode .content button {
     font-size: 1.3em;
     background: none;
     border: none;
-    color: #ffe600;
+    color: #ffffff;
     cursor: pointer;
     transition: color 0.3s ease;
 
