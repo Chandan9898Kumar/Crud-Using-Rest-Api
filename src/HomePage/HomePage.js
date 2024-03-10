@@ -2,11 +2,11 @@ import React, { useState, useEffect, Suspense, lazy } from "react";
 import "./home.css";
 import { HomeIcon, TableIcon } from "../Assets/SvgImage";
 const SearchFiled = lazy(() => import("../Common/SearchComponent/SearchField"));
+const DateRangePicker = lazy(() => import("../DateRangePicker/DateRange"));
 const Home = () => {
   const [searchedValue, setSearchedValue] = useState("");
 
   const searchItems = (event) => {
-    console.log(event.target.value, "val");
     setSearchedValue(event.target.value);
   };
   return (
@@ -30,9 +30,12 @@ const Home = () => {
         </div>
       </div>
       <div className="search">
-        <Suspense fallback={'Loading ...'}>
-          <SearchFiled type={'text'} value={searchedValue} callBackFun={searchItems} placeholder={"Search Item"} label={"Search"} />
+        <Suspense fallback={"Loading ..."}>
+          <SearchFiled type={"text"} value={searchedValue} callBackFun={searchItems} placeholder={"Search Item"} label={"Search"} />
         </Suspense>
+      </div>
+      <div className="">
+        <DateRangePicker />
       </div>
     </div>
   );
