@@ -22,3 +22,52 @@
     font-size: 18px;
     color: #999999;
 }
+
+
+.item {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sub-item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 20px;
+    width: 400px;
+    background: #ffffff;
+    float: inline-end;
+    min-width: 0px;
+    overflow-wrap: break-word;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 3.5px 5.5px;
+    border-radius: 15px;
+    min-height: 83px;
+    padding: 10px;
+    margin-right: 20px;
+}
+
+.item-text {
+    color: rgb(160, 174, 192);
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: 700;
+    padding: 0px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.item-count {
+    color: #1f2733;
+    font-weight: 700;
+    padding: 0px 20px;
+    font-weight: 700;
+    padding: 0px 90px;
+    font-size: 22px;
+    letter-spacing: 1px;
+
+}
