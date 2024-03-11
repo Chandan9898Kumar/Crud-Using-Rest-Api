@@ -19,7 +19,7 @@
 
 .sub-text {
     font-family: sans-serif;
-    font-size: 18px;
+    font-size: 20px;
     color: #999999;
 }
 
@@ -78,7 +78,45 @@
     display: block;
     box-sizing: border-box;
     width: 100%;
-    margin-left: 15px;
     margin-top: 10px;
+}
 
+
+.select-item-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2px;
+    background: #ffffff;
+    box-sizing: border-box;
+    width: 450px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 3.5px 5.5px;
+    border-radius: 15px;
+    min-height: 50px;
+    padding: 10px;
+    position: relative;
+    left: 20px;
+    text-align: start;
+    overflow: scroll;
+    overflow-x: hidden;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 200px;
+}
+
+.select-item-container > div {
+    border: none;
+    width: inherit;
+    outline: none;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    position: relative;
+    text-align: center;
+}
+
+.select-item-container > div:hover {
+    cursor: pointer;
+    background: darkkhaki;
+    border-radius: 10px;
 }

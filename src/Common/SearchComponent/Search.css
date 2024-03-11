@@ -12,10 +12,12 @@
     border-radius: 15px;
     min-height: 50px;
     padding: 10px;
+    position: relative;
+    left: 20px;
 }
 
-.focus{
-    border:2px solid cornflowerblue;
+.focus {
+    border: 2px solid cornflowerblue;
 }
 
 .search-container input {
