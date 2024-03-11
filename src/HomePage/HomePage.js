@@ -60,7 +60,7 @@ const Home = () => {
         </div>
       )}
 
-      <div>
+      <div style={{ position: "relative", top: "20px" }}>
         <DateRangePicker />
       </div>
     </div>
@@ -74,7 +74,9 @@ export default Home;
 const RenderLists = ({ item, onClick }) => {
   return (
     <div className="select-item-container">
-      <div onClick={() => onClick(item.name)}>{item.name}</div>
+      <div className="sub-item-container" onClick={() => onClick(item.name)}>
+        {item.name}
+      </div>
     </div>
   );
 };
