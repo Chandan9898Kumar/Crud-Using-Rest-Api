@@ -1,7 +1,8 @@
-import React, { useState, useEffect, Suspense, lazy } from "react";
+import React, { useState, useEffect, Suspense, lazy, memo } from "react";
 import "./home.css";
 import { HomeIcon, TableIcon } from "../Assets/SvgImage";
 import { Api } from "../Apis/Api";
+import PropTypes from "prop-types";
 const SearchFiled = lazy(() => import("../Common/SearchComponent/SearchField"));
 const DateRangePicker = lazy(() => import("../DateRangePicker/DateRange"));
 const Home = () => {
@@ -51,13 +52,13 @@ const Home = () => {
         </Suspense>
       </div>
 
-      <div className="search">
-        <div className="select-item-container">
-          {[...Array(50)].fill(1).map((item) => {
-            return <div>data</div>;
+      {userData && userData.length > 0 && (
+        <div className="Render-List">
+          {userData.map((item) => {
+            return <AutoComplete key={item.id} item={item} onClick={setSearchedValue} />;
           })}
         </div>
-      </div>
+      )}
 
       <div>
         <DateRangePicker />
@@ -66,4 +67,21 @@ const Home = () => {
   );
 };
 
+// eslint-disable-next-line import/exports-last
 export default Home;
+
+// eslint-disable-next-line import/group-exports
+const RenderLists = ({ item, onClick }) => {
+  return (
+    <div className="select-item-container">
+      <div onClick={() => onClick(item.name)}>{item.name}</div>
+    </div>
+  );
+};
+
+RenderLists.propTypes = {
+  item: PropTypes.object,
+  onClick: PropTypes.func,
+};
+
+export const AutoComplete = memo(RenderLists);
