@@ -26,6 +26,9 @@ const Home = () => {
     setSearchedValue(event.target.value);
   };
 
+  //                                                                Search Items By 2 methods
+
+  //                                                                    1st :-
   const globalSearch = useCallback(() => {
     const filteredValues = searchedValue && userData.filter((item) => item?.name?.trim()?.toLowerCase().includes(searchedValue?.trim()?.toLowerCase()));
     return filteredValues && filteredValues.length > 0 ? filteredValues : userData;
@@ -38,6 +41,19 @@ const Home = () => {
   const searchedItemFromList = useMemo(() => {
     return globalSearch(); // It will memoize the values which is returned by globalSearch function
   }, [globalSearch]); // Here we passed globalSearch reference as a dependency.
+
+
+
+  //                                                                        2nd Method
+
+  // const globalSearch = () => {
+  //   return userData.filter((item) => item?.name?.trim()?.toLowerCase().includes(searchedValue?.trim()?.toLowerCase()));
+  // };
+
+  // const searchedItemFromList = searchedValue ? globalSearch() : userData;
+
+  // =====================================================================================================================================================
+
 
   return (
     <div className="container">
