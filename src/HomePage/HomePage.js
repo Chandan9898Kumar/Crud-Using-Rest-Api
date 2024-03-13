@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense, lazy, memo } from "react";
+import React, { useState, useEffect, Suspense, lazy, memo, useMemo, useCallback } from "react";
 import "./home.css";
 import { HomeIcon, TableIcon } from "../Assets/SvgImage";
 import { Api } from "../Apis/Api";
@@ -26,6 +26,15 @@ const Home = () => {
     setSearchedValue(event.target.value);
   };
 
+  const globalSearch = useCallback(() => {
+    const filteredValues = searchedValue && userData.filter((item) => item?.name?.trim()?.toLowerCase().includes(searchedValue?.trim()?.toLowerCase()));
+    return filteredValues && filteredValues.length > 0 ? filteredValues : userData;
+  }, [searchedValue, userData]);
+
+  const searchedItemFromList = useMemo(() => {
+    return globalSearch(); // It will memoize the values which is returned by globalSearch function
+  }, [globalSearch]); // Here we passed globalSearch reference as a dependency.
+
   return (
     <div className="container">
       <div className="image-head">
@@ -48,13 +57,13 @@ const Home = () => {
       </div>
       <div className="search">
         <Suspense fallback={"Loading ..."}>
-          <SearchFiled type={"text"} value={searchedValue} callBackFun={searchItems} placeholder={"Search Item"} label={"Search"} />
+          <SearchFiled type="text" value={searchedValue} callBackFun={searchItems} placeholder={"Search Item"} label={"Search"} />
         </Suspense>
       </div>
 
-      {userData && userData.length > 0 && (
+      {searchedItemFromList && searchedItemFromList.length > 0 && (
         <div className="Render-List">
-          {userData.map((item) => {
+          {searchedItemFromList.map((item) => {
             return <AutoComplete key={item.id} item={item} onClick={setSearchedValue} />;
           })}
         </div>

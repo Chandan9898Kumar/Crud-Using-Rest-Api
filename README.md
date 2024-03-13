@@ -39,3 +39,7 @@
 1. React Testing Library :  npm install --save-dev @testing-library/react
 2. Jest.
 3. Enzyme.
+
+
+### Re-Render : 
+`When a component that is already displayed is re-render again. Purpose is to keep the UI in sync with the states`
