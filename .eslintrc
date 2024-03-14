@@ -109,7 +109,7 @@
 
     "no-param-reassign": 1,
     "no-plusplus": [1, { "allowForLoopAfterthoughts": true }],
-    "import/group-exports": 1,
+    "import/group-exports": 0, // Help to detect when a file is having lots of export/imports
     "import/exports-last": 1,
     "eqeqeq": 1,
     "indent": [
