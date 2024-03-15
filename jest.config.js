@@ -11,6 +11,10 @@ module.exports = {
   },
   coverageReporters: ["json", "lcov", "text", "text-summary", "html", "cobertura"],
   collectCoverageFrom: ["<rootDir>/src/**/*.js"],
+  transform: {
+    "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
+    "^.+\\.csv": "<rootDir>/jest.csv-transformer.js",
+  },
   testTimeout: 300,
   globals: {
     globalVar: "a global variable",

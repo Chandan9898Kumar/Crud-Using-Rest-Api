@@ -5,6 +5,10 @@ import { Api } from "../Apis/Api";
 import PropTypes from "prop-types";
 const SearchFiled = lazy(() => import("../Common/SearchComponent/SearchField"));
 const DateRangePicker = lazy(() => import("../DateRangePicker/DateRange"));
+const DataTable = lazy(() => import("../Table/Table"));
+
+const tableHead = ["Repository Name", "Default Branch", "Language", "Fork", "Git URL", "Topics", "Score"];
+
 const Home = () => {
   const [searchedValue, setSearchedValue] = useState("");
   const [userData, setUserDate] = useState([]);
@@ -42,8 +46,6 @@ const Home = () => {
     return globalSearch(); // It will memoize the values which is returned by globalSearch function
   }, [globalSearch]); // Here we passed globalSearch reference as a dependency.
 
-
-
   //                                                                        2nd Method
 
   // const globalSearch = () => {
@@ -53,7 +55,6 @@ const Home = () => {
   // const searchedItemFromList = searchedValue ? globalSearch() : userData;
 
   // =====================================================================================================================================================
-
 
   return (
     <div className="container">
@@ -66,13 +67,14 @@ const Home = () => {
           <p className="sub-text">filtering out the data according to given date range.</p>
         </div>
       </div>
+
       <div className="item">
         <div className="sub-item">
           <div className="item-text">
             <TableIcon width={40} height={40} />
             Total Items
           </div>
-          <div className="item-count">200</div>
+          <div className="item-count">{searchedItemFromList?.length || 0}</div>
         </div>
       </div>
       <div className="search">
@@ -91,6 +93,11 @@ const Home = () => {
 
       <div style={{ position: "relative", top: "20px" }}>
         <DateRangePicker />
+      </div>
+      <div style={{ position: "relative", top: "80px", padding: "0px 40px" }}>
+        <Suspense fallback={"Loading ..."}>
+          <DataTable tableHead={tableHead} tableRows={searchedItemFromList} />
+        </Suspense>
       </div>
     </div>
   );

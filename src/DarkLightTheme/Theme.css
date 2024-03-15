@@ -1,0 +1,50 @@
+body.light-mode {
+  background: #f4f5fa;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode {
+  background-color: #28243d;
+  color: #ffffff;
+}
+body.dark-mode .navbar {
+  background-color: #28243d;
+}
+body.dark-mode .dark-mode-toggle > button {
+  color: #999;
+}
+body.dark-mode .dark-mode-toggle > button:last-child {
+  color: #ffffff;
+}
+
+body.dark-mode .content code {
+  background-color: #1b2938;
+}
+
+body.dark-mode .content a {
+  color: rgba(238, 238, 0, 0.6);
+}
+
+body.dark-mode .content button {
+  color: rgba(238, 238, 0, 0.6);
+}
+
+.dark-mode-toggle {
+  display: flex;
+  float: inline-end;
+}
+.dark-mode-toggle > button {
+  font-size: 1.3em;
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+.dark-mode-toggle > button:last-child {
+  color: #666;
+}
+.dark-mode-toggle > button:focus {
+  outline: none;
+}/*# sourceMappingURL=Theme.css.map */
