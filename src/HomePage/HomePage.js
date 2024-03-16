@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 const SearchFiled = lazy(() => import("../Common/SearchComponent/SearchField"));
 const DateRangePicker = lazy(() => import("../DateRangePicker/DateRange"));
 const DataTable = lazy(() => import("../Table/Table"));
-
 const Pagination = lazy(() => import("../Pagination/Pagination"));
 
 const tableHead = ["Repository Name", "Default Branch", "Language", "Fork", "Git URL", "Topics", "Score"];
@@ -15,6 +14,9 @@ const Home = () => {
   const [searchedValue, setSearchedValue] = useState("");
   const [userData, setUserDate] = useState([]);
   const [isError, setIsError] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const ITEM_PER_PAGE = 10;
 
   useEffect(() => {
     async function fetchData() {
@@ -58,6 +60,27 @@ const Home = () => {
 
   // =====================================================================================================================================================
 
+  // Pagination integrated based on search.Whatever data will come after search have pagination.
+  // For Ex : after search got 25 data, so autosuggestion bar will show 25 data and in table it will show 10 data per page.
+
+  const paginatedItems = (searchedItemFromList && searchedItemFromList.length > 0 && searchedItemFromList.slice(currentPage * ITEM_PER_PAGE - 10, currentPage * ITEM_PER_PAGE)) || [];
+
+  const increasePage = () => {
+    setCurrentPage((prev) => prev + 1);
+  };
+
+  const decreasePage = () => {
+    setCurrentPage((prev) => prev - 1);
+  };
+
+  const firstPage = () => {
+    setCurrentPage(1);
+  };
+
+  const lastPage = () => {
+    // setCurrentPage(1);
+  };
+
   return (
     <div className="container">
       <div className="image-head">
@@ -100,11 +123,19 @@ const Home = () => {
 
       <div style={{ position: "relative", top: "80px", padding: "0px 40px" }}>
         <Suspense fallback={"Loading ..."}>
-          <DataTable tableHead={tableHead} tableRows={searchedItemFromList} />
-          <Pagination />
+          <DataTable tableHead={tableHead} tableRows={paginatedItems} />
+          <Pagination
+            ITEM_PER_PAGE={ITEM_PER_PAGE}
+            totalItem={searchedItemFromList}
+            paginatedItems={paginatedItems}
+            currentPage={currentPage}
+            increasePage={increasePage}
+            decreasePage={decreasePage}
+            firstPage={firstPage}
+            lastPage={lastPage}
+          />
         </Suspense>
       </div>
-      
     </div>
   );
 };

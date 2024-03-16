@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { memo } from "react";
 import "./table.css";
 import LoadComponent from "../Common/LoadingComponent/LoadComponent";
 const DataTable = ({ tableHead, tableRows }) => {
