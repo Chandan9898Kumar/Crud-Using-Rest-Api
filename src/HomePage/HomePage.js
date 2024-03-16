@@ -17,7 +17,7 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const ITEM_PER_PAGE = 10;
-
+  
   useEffect(() => {
     async function fetchData() {
       try {
@@ -65,20 +65,20 @@ const Home = () => {
 
   const paginatedItems = (searchedItemFromList && searchedItemFromList.length > 0 && searchedItemFromList.slice(currentPage * ITEM_PER_PAGE - 10, currentPage * ITEM_PER_PAGE)) || [];
 
-  const increasePage = () => {
+  const onNextClick = () => {
     setCurrentPage((prev) => prev + 1);
   };
 
-  const decreasePage = () => {
+  const onPreviousClick = () => {
     setCurrentPage((prev) => prev - 1);
   };
 
-  const firstPage = () => {
-    setCurrentPage(1);
+  const nextLastPage = (TOTAL_PAGE) => {
+    setCurrentPage(TOTAL_PAGE);
   };
 
-  const lastPage = () => {
-    // setCurrentPage(1);
+  const previousLastPage = () => {
+    setCurrentPage(1);
   };
 
   return (
@@ -129,10 +129,10 @@ const Home = () => {
             totalItem={searchedItemFromList}
             paginatedItems={paginatedItems}
             currentPage={currentPage}
-            increasePage={increasePage}
-            decreasePage={decreasePage}
-            firstPage={firstPage}
-            lastPage={lastPage}
+            onNextClick={onNextClick}
+            onPreviousClick={onPreviousClick}
+            nextLastPage={nextLastPage}
+            previousLastPage={previousLastPage}
           />
         </Suspense>
       </div>

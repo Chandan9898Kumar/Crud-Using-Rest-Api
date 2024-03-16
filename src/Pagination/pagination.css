@@ -9,23 +9,21 @@
     border-top: 2px solid rgb(224, 224, 224);
 }
 
-.page-container>button {
+.page-container button {
     border: none;
     background: transparent;
     font-size: larger;
     font-weight: 600;
-    width: 35px;
-    height: 30px;
+    border-radius: 20px;
 }
 
-button :hover {
+.arrow-button-active :hover {
     cursor: pointer;
-    border-radius: 50px;
-    background: darkgrey;
-    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-    opacity: 0.5;
-    color: black;
+}
 
+.arrow-button-inactive :hover {
+    cursor: not-allowed;
+    ;
 }
 
 .page-heading {
