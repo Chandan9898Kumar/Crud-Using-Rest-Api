@@ -1,7 +1,10 @@
 import React, { memo } from "react";
 import "./table.css";
-import LoadComponent from "../Common/LoadingComponent/LoadComponent";
+import PropTypes from "prop-types";
+
+
 const DataTable = ({ tableHead, tableRows }) => {
+
   return (
     <table id="table">
       <thead>
@@ -13,24 +16,27 @@ const DataTable = ({ tableHead, tableRows }) => {
       </thead>
 
       <tbody>
-        <LoadComponent load={tableRows && tableRows.length === 0}>
-          {tableRows?.map((item) => {
-            return (
-              <tr key={item.id}>
-                <td>{item.name}</td>
-                <td>{item.default_branch}</td>
-                <td>{item.language}</td>
-                <td>{item.forks}</td>
-                <td>{item.git_url}</td>
-                <td>{"N / A"}</td>
-                <td>{item.score}</td>
-              </tr>
-            );
-          })}
-        </LoadComponent>
+        {tableRows?.map((item) => {
+          return (
+            <tr key={item.id}>
+              <td>{item.name}</td>
+              <td>{item.default_branch}</td>
+              <td>{item.language}</td>
+              <td>{item.forks}</td>
+              <td>{item.git_url}</td>
+              <td>{"N / A"}</td>
+              <td>{item.score}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
+};
+
+DataTable.propTypes = {
+  tableHead: PropTypes.array.isRequired,
+  tableRows: PropTypes.array.isRequired,
 };
 
 export default memo(DataTable);

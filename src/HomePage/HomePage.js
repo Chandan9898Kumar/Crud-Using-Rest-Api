@@ -3,6 +3,7 @@ import "./home.css";
 import { HomeIcon, TableIcon } from "../Assets/SvgImage";
 import { Api } from "../Apis/Api";
 import PropTypes from "prop-types";
+import LoadComponent from "../Common/LoadingComponent/LoadComponent";
 const SearchFiled = lazy(() => import("../Common/SearchComponent/SearchField"));
 const DateRangePicker = lazy(() => import("../DateRangePicker/DateRange"));
 const DataTable = lazy(() => import("../Table/Table"));
@@ -16,8 +17,9 @@ const Home = () => {
   const [isError, setIsError] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
+  const isLoading = userData && userData.length === 0;
   const ITEM_PER_PAGE = 10;
-  
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -73,11 +75,11 @@ const Home = () => {
     setCurrentPage((prev) => prev - 1);
   };
 
-  const nextLastPage = (TOTAL_PAGE) => {
+  const onNextLastClick = (TOTAL_PAGE) => {
     setCurrentPage(TOTAL_PAGE);
   };
 
-  const previousLastPage = () => {
+  const onPreviousLastClick = () => {
     setCurrentPage(1);
   };
 
@@ -121,9 +123,12 @@ const Home = () => {
         </Suspense>
       </div>
 
-      <div style={{ position: "relative", top: "80px", padding: "0px 40px" }}>
+      <div style={{ position: "relative", top: "30px", padding: "0px 40px" }}>
         <Suspense fallback={"Loading ..."}>
-          <DataTable tableHead={tableHead} tableRows={paginatedItems} />
+          <LoadComponent load={isLoading}>
+            <DataTable tableHead={tableHead} tableRows={paginatedItems} />
+          </LoadComponent>
+
           <Pagination
             ITEM_PER_PAGE={ITEM_PER_PAGE}
             totalItem={searchedItemFromList}
@@ -131,8 +136,8 @@ const Home = () => {
             currentPage={currentPage}
             onNextClick={onNextClick}
             onPreviousClick={onPreviousClick}
-            nextLastPage={nextLastPage}
-            previousLastPage={previousLastPage}
+            onNextLastClick={onNextLastClick}
+            onPreviousLastClick={onPreviousLastClick}
           />
         </Suspense>
       </div>
