@@ -79,21 +79,23 @@ const Home = () => {
           <div className="item-count">{searchedItemFromList?.length || 0}</div>
         </div>
       </div>
-      <div className="search">
-        <Suspense fallback={"Loading ..."}>
-          <SearchFiled type="text" value={searchedValue} callBackFun={searchItems} placeholder={"Search Item"} label={"Search"} />
-        </Suspense>
-        {searchedItemFromList && searchedItemFromList.length > 0 && (
-          <div className="Render-List">
-            {searchedItemFromList.map((item) => {
-              return <AutoComplete key={item.id} item={item} onClick={setSearchedValue} />;
-            })}
-          </div>
-        )}
-      </div>
 
-      <div style={{ position: "relative", top: "20px" }}>
-        <DateRangePicker />
+      <div className="search">
+        <div className="box">
+          <Suspense fallback={"Loading ..."}>
+            <SearchFiled type="text" value={searchedValue} callBackFun={searchItems} placeholder={"Search Item"} label={"Search"} />
+          </Suspense>
+          {searchedItemFromList && searchedItemFromList.length > 0 && (
+            <div className="Render-List">
+              {searchedItemFromList.map((item) => {
+                return <AutoComplete key={item.id} item={item} onClick={setSearchedValue} />;
+              })}
+            </div>
+          )}
+        </div>
+        <Suspense fallback={"Loading..."}>
+          <DateRangePicker />
+        </Suspense>
       </div>
 
       <div style={{ position: "relative", top: "80px", padding: "0px 40px" }}>
@@ -102,6 +104,7 @@ const Home = () => {
           <Pagination />
         </Suspense>
       </div>
+      
     </div>
   );
 };
