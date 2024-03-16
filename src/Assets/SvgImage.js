@@ -12,7 +12,6 @@ HomeImage.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number,
 };
-export const HomeIcon = memo(HomeImage);
 
 const TableImage = ({ width = 28, height = 28 }) => {
   return (
@@ -25,8 +24,6 @@ TableImage.propTypes = {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
 };
-
-export const TableIcon = memo(TableImage);
 
 const SearchImage = ({ width = 28, height = 28, color }) => {
   return (
@@ -41,10 +38,6 @@ SearchImage.propTypes = {
   height: PropTypes.number,
   color: PropTypes.string,
 };
-export const SearchIcon = memo(SearchImage);
-
-
-
 
 const DateRange = () => {
   return (
@@ -55,4 +48,45 @@ const DateRange = () => {
   );
 };
 
-export const DateIcon = memo(DateRange)
+const LeftArrow = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
+      <path fillRule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+    </svg>
+  );
+};
+
+const DoubleLeftArrow = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-double-left" viewBox="0 0 16 16">
+      <path fillRule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
+      <path fillRule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
+    </svg>
+  );
+};
+
+const RightArrow = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right" viewBox="0 0 16 16">
+      <path fillRule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+    </svg>
+  );
+};
+
+const DoubleRightArrow = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chevron-double-right" viewBox="0 0 16 16">
+      <path fillRule="evenodd" d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708" />
+      <path fillRule="evenodd" d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708" />
+    </svg>
+  );
+};
+
+export const HomeIcon = memo(HomeImage);
+export const TableIcon = memo(TableImage);
+export const SearchIcon = memo(SearchImage);
+export const DateIcon = memo(DateRange);
+export const LeftArrowIcon = memo(LeftArrow);
+export const DoubleLeftArrowIcon = memo(DoubleLeftArrow);
+export const RightArrowIcon = memo(RightArrow);
+export const DoubleRightArrowIcon = memo(DoubleRightArrow);

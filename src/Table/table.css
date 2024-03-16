@@ -14,11 +14,11 @@
 
 
 thead {
-    background-color: lightseagreen;
+    background-color: white;
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    color: white;
+    color: #28243d;
     border-right: 2px solid darkgrey;
 }
 
@@ -26,6 +26,7 @@ thead {
 
 #table tr:nth-child(even) {
     background-color: #ffffff;
+    color: black;
 }
 
 #table tr:hover {

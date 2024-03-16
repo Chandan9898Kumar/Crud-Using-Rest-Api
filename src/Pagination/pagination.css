@@ -1,0 +1,23 @@
+
+.page-container{
+    display: flex;justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    gap: 5px;
+    height: 40px;
+    background: white;
+    border-top: 2px solid rgb(224, 224, 224);
+}
+
+.page-container > button {
+    border: none;
+    background: transparent;
+    font-size: larger;
+    font-weight: 600;
+
+
+}
+
+ button :hover{
+    cursor: pointer;
+}

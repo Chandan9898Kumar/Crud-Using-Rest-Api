@@ -7,6 +7,8 @@ const SearchFiled = lazy(() => import("../Common/SearchComponent/SearchField"));
 const DateRangePicker = lazy(() => import("../DateRangePicker/DateRange"));
 const DataTable = lazy(() => import("../Table/Table"));
 
+const Pagination = lazy(() => import("../Pagination/Pagination"));
+
 const tableHead = ["Repository Name", "Default Branch", "Language", "Fork", "Git URL", "Topics", "Score"];
 
 const Home = () => {
@@ -81,22 +83,23 @@ const Home = () => {
         <Suspense fallback={"Loading ..."}>
           <SearchFiled type="text" value={searchedValue} callBackFun={searchItems} placeholder={"Search Item"} label={"Search"} />
         </Suspense>
+        {searchedItemFromList && searchedItemFromList.length > 0 && (
+          <div className="Render-List">
+            {searchedItemFromList.map((item) => {
+              return <AutoComplete key={item.id} item={item} onClick={setSearchedValue} />;
+            })}
+          </div>
+        )}
       </div>
-
-      {searchedItemFromList && searchedItemFromList.length > 0 && (
-        <div className="Render-List">
-          {searchedItemFromList.map((item) => {
-            return <AutoComplete key={item.id} item={item} onClick={setSearchedValue} />;
-          })}
-        </div>
-      )}
 
       <div style={{ position: "relative", top: "20px" }}>
         <DateRangePicker />
       </div>
+
       <div style={{ position: "relative", top: "80px", padding: "0px 40px" }}>
         <Suspense fallback={"Loading ..."}>
           <DataTable tableHead={tableHead} tableRows={searchedItemFromList} />
+          <Pagination />
         </Suspense>
       </div>
     </div>
