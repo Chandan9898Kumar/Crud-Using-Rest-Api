@@ -46,7 +46,7 @@
     box-sizing: border-box;
     z-index: 1;
     position: absolute;
-    width: 100px;
+    width: 150px;
     right: 15px;
 
 }
@@ -54,7 +54,6 @@
 .text-button>button {
     width: inherit;
     border: none;
-    border-bottom: 1px solid #ddd;
     font-size: larger;
     padding: 5px;
     background: white;
@@ -62,6 +61,7 @@
 
 .text-button button:hover {
     cursor: pointer;
+    background-color: #d4d4d4;
 }
 
 .isActive {
