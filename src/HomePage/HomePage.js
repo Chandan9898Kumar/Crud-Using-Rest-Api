@@ -15,8 +15,9 @@ const Home = () => {
   const [searchedValue, setSearchedValue] = useState("");
   const [userData, setUserDate] = useState([]);
   const [isError, setIsError] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
   const [currentPage, setCurrentPage] = useState(1);
-
   const isLoading = userData && userData.length === 0;
   const ITEM_PER_PAGE = 10;
 
@@ -34,6 +35,18 @@ const Home = () => {
 
   const searchItems = (event) => {
     setSearchedValue(event.target.value);
+    setCurrentPage(1);
+  };
+
+  const selectionRange = {
+    startDate: startDate,
+    endDate: endDate,
+    key: "selection",
+  };
+
+  const handleSelect = (date) => {
+    setStartDate(date.selection.startDate);
+    setEndDate(date.selection.endDate);
   };
 
   //                                                                Search Items By 2 methods
@@ -119,7 +132,7 @@ const Home = () => {
           )}
         </div>
         <Suspense fallback={"Loading..."}>
-          <DateRangePicker />
+          <DateRangePicker selectionRange={selectionRange} handleSelect={handleSelect} />
         </Suspense>
       </div>
 
