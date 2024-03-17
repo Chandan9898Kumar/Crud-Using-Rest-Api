@@ -1,7 +1,7 @@
 import React from "react";
 
 const AccountRegister = () => {
-  return <div>Login</div>;
+  return <div>Register</div>;
 };
 
 export default AccountRegister;

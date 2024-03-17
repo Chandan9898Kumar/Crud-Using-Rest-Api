@@ -16,7 +16,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/login" element={<AccountLogin />} />
-            <Route exact path="/Register" element={<AccountRegister />} />
+            <Route exact path="/register" element={<AccountRegister />} />
           </Routes>
         </BrowserRouter>
       </Suspense>

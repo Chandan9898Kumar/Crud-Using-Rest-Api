@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./Nav.css";
-import DarkModeToggleModified from '../DarkLightTheme/Mode'
+import DarkModeToggleModified from "../DarkLightTheme/Mode";
+import { SettingIcon } from "../Assets/SvgImage";
 const NavLinks = () => {
+  const [isClick, setIsClick] = useState(false);
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/login");
+    setIsClick(!isClick);
   };
   return (
     <div className="container-link">
@@ -38,10 +40,33 @@ const NavLinks = () => {
           </NavLink>
         </div>
       </div>
-      <div className="heading">
+
+      <div className="button-heading">
         {<DarkModeToggleModified />}
-        <div className="log-out-button">
-          <button onClick={handleClick}>Login</button>
+        <div className="setting-icon">
+          <button onClick={handleClick}>
+            <SettingIcon />
+          </button>
+          {isClick && (
+            <div className="text-button">
+              <button
+                onClick={() => {
+                  navigate("/login");
+                  setIsClick(!isClick);
+                }}
+              >
+                Login
+              </button>
+              <button
+                onClick={() => {
+                  setIsClick(!isClick);
+                  navigate("/register");
+                }}
+              >
+                Register
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
