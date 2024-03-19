@@ -9,8 +9,6 @@
 }
 
 
-
-
 .background {
     width: 430px;
     height: 520px;
@@ -60,7 +58,6 @@
 
 .form * {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    /* color: #ffffff; */
     letter-spacing: 0.5px;
     outline: none;
     border: none;
