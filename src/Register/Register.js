@@ -1,11 +1,19 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./register.css";
 import { Link } from "react-router-dom";
+
+import { isEmail } from "../RegEx";
 const AccountRegister = () => {
   const nameRef = useRef("");
-  const emailRef = useRef("");
+  const emailRef = useRef(" ");
   const passwordRef = useRef("");
   const confirmPasswordRef = useRef("");
+
+  const handleClick = () => {
+    const data = isEmail(emailRef.current.value);
+
+    console.log(emailRef.current.value, "emailRef", data);
+  };
 
   return (
     <div className="register-container">
@@ -76,8 +84,17 @@ const AccountRegister = () => {
           />
         </div>
 
+        <div className="Register-btn">
+          <button aria-label="register-button" onClick={handleClick}>
+            Register
+          </button>
+        </div>
+
         <div className="account-confirmation">
-          Have already an account ? <Link to="/login" style={{ textDecoration: "none", color: "rgb(51 65 85)" }}>Login</Link>
+          Have already an account ?{" "}
+          <Link to="/login" style={{ textDecoration: "none", color: "rgb(51 65 85)" }}>
+            Login
+          </Link>
         </div>
       </div>
     </div>

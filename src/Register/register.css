@@ -14,9 +14,9 @@
     opacity: 0.85;
     filter: alpha(opacity=85);
     width: 400px;
-    height: 550px;
+    height: 600px;
     position: absolute;
-    top: 40%;
+    top: 45%;
     left: 50%;
     right: 50%;
     padding: 50px 55px;
@@ -84,9 +84,41 @@ div.confirm-password {
 .account-confirmation {
     display: block;
     position: relative;
-    top: 50px;
+    top: 70px;
     text-align: center;
     font-size: 20px;
     font-weight: 500;
 
 }
+
+div.Register-btn{
+    width: 100%;
+    position: relative;
+    top: 45px;
+}
+
+.Register-btn button {
+    cursor: pointer;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 25px;
+    color: rgba(255, 255, 255, 0.65);
+    -webkit-align-self: flex-end;
+    -ms-flex-item-align: end;
+    align-self: flex-end;
+    font-size: 19px;
+    font-family: roboto;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+    width: 100%;
+    font-size: 25px;
+    font-weight: 500;
+    height: 45px;
+}
+
+.Register-btn button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    -webkit-transition: all .2s ease;
+    transition: all .2s ease;
+  }
