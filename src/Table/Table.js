@@ -2,9 +2,7 @@ import React, { memo } from "react";
 import "./table.css";
 import PropTypes from "prop-types";
 
-
 const DataTable = ({ tableHead, tableRows }) => {
-
   return (
     <table id="table">
       <thead>
@@ -24,7 +22,13 @@ const DataTable = ({ tableHead, tableRows }) => {
               <td>{item.language}</td>
               <td>{item.forks}</td>
               <td>{item.git_url}</td>
-              <td>{"N / A"}</td>
+              <td>
+                {item.topics.map((items) => (
+                  <span key={items}>
+                    {items},{"  "}
+                  </span>
+                ))}{" "}
+              </td>
               <td>{item.score}</td>
             </tr>
           );
