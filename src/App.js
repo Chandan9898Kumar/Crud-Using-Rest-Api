@@ -8,6 +8,7 @@ const AccountRegister = lazy(() => import("./Register/Register"));
 const Home = lazy(() => import("./HomePage/HomePage"));
 
 function App() {
+
   return (
     <div className="App">
       <Suspense fallback={<Loader />}>
@@ -22,6 +23,7 @@ function App() {
       </Suspense>
     </div>
   );
+  
 }
 
 export default App;
