@@ -12,7 +12,6 @@ const AccountRegister = () => {
   const handleClick = () => {
     const data = isEmail(emailRef.current.value);
 
-    console.log(emailRef.current.value, "emailRef", data);
   };
 
   return (
