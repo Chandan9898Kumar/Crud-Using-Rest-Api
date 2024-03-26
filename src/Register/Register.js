@@ -10,8 +10,7 @@ const AccountRegister = () => {
   const confirmPasswordRef = useRef("");
 
   const handleClick = () => {
-    const data = isEmail(emailRef.current.value);
-
+    const userEmail = isEmail(emailRef.current.value);
   };
 
   return (
