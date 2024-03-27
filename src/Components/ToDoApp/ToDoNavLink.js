@@ -5,30 +5,30 @@ import "./todo.css";
 const ToDoNavLinkSideContent = () => {
   const { id } = useParams();
   return (
-    <div className="side-bar-head-link">
-      <div className="side-bar-sub-head-link">
-        <div>
-          <NavLink to="/todo" caseSensitive className={({ isActive }) => (isActive ? "isActive" : "static")}>
-            All Project List
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to="/create-app" caseSensitive className={({ isActive }) => (isActive ? "isActive" : "static")}>
-            Create New Project
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to={`/edit/${id}`} caseSensitive className={({ isActive }) => (isActive ? "isActive" : "static")}>
-            Edit Project
-          </NavLink>
-        </div>
-        <div>
-          <NavLink to={`/show/${id}`} caseSensitive className={({ isActive }) => (isActive ? "isActive" : "static")}>
-            Show Project
-          </NavLink>
-        </div>
+    // <div className="side-bar-head-link">
+    <div className="side-bar-sub-head-link">
+      <div className="div-Width">
+        <NavLink to="/todo" caseSensitive className={({ isActive }) => (isActive ? "isActiveLink" : "staticLink")}>
+          All Project List
+        </NavLink>
+      </div>
+      <div className="div-Width">
+        <NavLink to="/create-app" caseSensitive className={({ isActive }) => (isActive ? "isActiveLink" : "staticLink")}>
+          Create New Project
+        </NavLink>
+      </div>
+      <div className="div-Width">
+        <NavLink to={`/edit/${id}`} caseSensitive className={({ isActive }) => (isActive ? "isActiveLink" : "staticLink")}>
+          Edit Project
+        </NavLink>
+      </div>
+      <div className="div-Width">
+        <NavLink to={`/show/${id}`} caseSensitive className={({ isActive }) => (isActive ? "isActiveLink" : "staticLink")}>
+          Show Project
+        </NavLink>
       </div>
     </div>
+    // </div>
   );
 };
 
