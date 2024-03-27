@@ -91,7 +91,7 @@ div.confirm-password {
 
 }
 
-div.Register-btn{
+div.Register-btn {
     width: 100%;
     position: relative;
     top: 45px;
@@ -121,4 +121,4 @@ div.Register-btn{
     color: #fff;
     -webkit-transition: all .2s ease;
     transition: all .2s ease;
-  }
+}
