@@ -30,10 +30,10 @@ const AccountLogin = () => {
         .then((response) => {
           localStorage.setItem("token", response.data.token);
           setValidationErrors("");
-          navigate("/");
+          navigate("/todo");
         })
         .catch((error) => {
-          if (error.response.data.message !== undefined) {
+          if (error?.response?.data?.message !== undefined) {
             setValidationErrors(error.response.data.message);
           }
         });

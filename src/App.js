@@ -9,9 +9,11 @@ const AccountRegister = lazy(() => import("./Register/Register"));
 const Home = lazy(() => import("./HomePage/HomePage"));
 const Service = lazy(() => import("./Components/Services/Service"));
 const Contact = lazy(() => import("./Components/Contacts/Contact"));
-
 const ProjectList = lazy(() => import("./Components/ToDoApp/ProjectList"));
-const CreateProject = lazy(()=>import('./Components/ToDoApp/CreateProject'))
+const CreateProject = lazy(() => import("./Components/ToDoApp/CreateProject"));
+const ShowProject = lazy(() => import("./Components/ToDoApp/ShowProject"));
+const EditProject = lazy(() => import("./Components/ToDoApp/EditProject"));
+
 function App() {
   return (
     <div className="App">
@@ -25,9 +27,51 @@ function App() {
             <Route exact path="/service" element={<Service />} />
             <Route exact path="/contact" element={<Contact />} />
 
-            <Route element={<ToDoMenuDrawer />}>
-              <Route exact path="/todo" element={<ProjectList />} />
-              <Route exact path="/create-app" element={<CreateProject />} />
+            {/* TO-DO APP Protected Route  */}
+            <Route
+              element={
+                <PrivateRoute>
+                  <ToDoMenuDrawer />{" "}
+                </PrivateRoute>
+              }
+            >
+              <Route
+                exact
+                path="/todo"
+                element={
+                  <PrivateRoute>
+                    <ProjectList />{" "}
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                exact
+                path="/create-app"
+                element={
+                  <ProjectList>
+                    {" "}
+                    <CreateProject />
+                  </ProjectList>
+                }
+              />
+              <Route
+                exact
+                path="/show/:id"
+                element={
+                  <PrivateRoute>
+                    <ShowProject />{" "}
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                exact
+                path="/edit/:id"
+                element={
+                  <PrivateRoute>
+                    <EditProject />{" "}
+                  </PrivateRoute>
+                }
+              />
             </Route>
           </Routes>
         </BrowserRouter>
@@ -37,3 +81,44 @@ function App() {
 }
 
 export default App;
+
+export const PrivateRoute = ({ children }) => {
+  const authorizedToken = localStorage.getItem("token");
+  if (!authorizedToken) {
+    return <Navigate to="/login" replace />;
+  }
+  return <React.Fragment>{authorizedToken && <div>{children}</div>}</React.Fragment>;
+};
+
+//                                                    Protected Route
+
+//    STEP 1.
+
+// import { Outlet, Navigate } from 'react-router-dom'
+
+// const PrivateRoutes = () => {
+//     let auth = {'token': false}
+//     return(
+//         auth.token ? <Outlet/> : <Navigate to="/login"/>
+//     )
+// }
+
+// export default PrivateRoutes
+
+//  STEP  2.
+
+// function App() {
+//   return (
+//     <div className="App">
+//         <Router>
+//           <Routes>
+//             <Route element={<PrivateRoutes />}>
+//                 <Route element={<Home/>} path="/" exact/>
+//                 <Route element={<Products/>} path="/products"/>
+//             </Route>
+//             <Route element={<Login/>} path="/login"/>
+//           </Routes>
+//       </Router>
+//     </div>
+//   );
+// }
