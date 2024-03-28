@@ -5,10 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
-axios.interceptors.request.use(function (config) {
-  config.headers["X-Binarybox-Api-Key"] = process.env.REACT_APP_API_KEY;
-  return config;
-});
+const config = {
+  headers: {
+    "X-Binarybox-Api-Key": process.env.REACT_APP_API_KEY,
+  },
+};
 
 const AccountLogin = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const AccountLogin = () => {
     setIsSubmitting(true);
     try {
       axios
-        .post("/api/login", payload)
+        .post("/api/login", payload, config)
         .then((response) => {
           localStorage.setItem("token", response.data.token);
           setValidationErrors("");
