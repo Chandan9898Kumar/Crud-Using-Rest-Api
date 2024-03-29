@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import "./login.css";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-
+import ComponentModal from "../Common/ModalComponent/Modal";
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 const config = {
@@ -12,6 +12,7 @@ const config = {
 };
 
 const AccountLogin = () => {
+  const [isOPen, setIsOpen] = useState(false);
   const navigate = useNavigate();
   const emailRef = useRef("");
   const passwordRef = useRef("");
@@ -19,6 +20,7 @@ const AccountLogin = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = () => {
+    setIsOpen(false);
     const payload = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
@@ -47,6 +49,16 @@ const AccountLogin = () => {
 
   return (
     <div className="login-container">
+      {isOPen && (
+        <ComponentModal
+          titleMessage={"Are You Sure You Want to Continue?"}
+          bodyMessage={"Please Check your details before moving ahead. "}
+          cancelText={"Cancel"}
+          continueText={"Proceed"}
+          handleCancel={setIsOpen}
+          handleProceed={handleSubmit}
+        />
+      )}
       <div className="background">
         <div className="shape"></div>
         <div className="shape"></div>
@@ -93,7 +105,7 @@ const AccountLogin = () => {
           />
         </div>
         <div className="login-btn">
-          <button disabled={isSubmitting} onClick={handleSubmit}>
+          <button disabled={isSubmitting} onClick={() => setIsOpen(true)}>
             Log In
           </button>
         </div>

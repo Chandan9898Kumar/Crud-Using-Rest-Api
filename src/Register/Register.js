@@ -3,7 +3,7 @@ import "./register.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { isEmail } from "../RegEx";
-
+import ComponentModal from "../Common/ModalComponent/Modal";
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 axios.interceptors.request.use(function (config) {
@@ -14,12 +14,14 @@ axios.interceptors.request.use(function (config) {
 const AccountRegister = () => {
   const navigate = useNavigate();
   const [validationErrors, setValidationErrors] = useState("");
+  const [isOPen, setIsOpen] = useState(false);
   const nameRef = useRef("");
   const emailRef = useRef(" ");
   const passwordRef = useRef("");
   const confirmPasswordRef = useRef("");
 
   const handleRegister = () => {
+    setIsOpen(false);
     const isEmailValid = isEmail(emailRef.current.value);
     const isPasswordMatched = passwordRef.current.value === confirmPasswordRef.current.value;
 
@@ -51,6 +53,16 @@ const AccountRegister = () => {
 
   return (
     <div className="register-container">
+      {isOPen && (
+        <ComponentModal
+          titleMessage={"Are You Sure You Want to Continue?"}
+          bodyMessage={"After Moving ahead you will be redirect to login page"}
+          cancelText={"Cancel"}
+          continueText={"Proceed"}
+          handleCancel={setIsOpen}
+          handleProceed={handleRegister}
+        />
+      )}
       <div className="register-form">
         <h3>Register</h3>
 
@@ -119,7 +131,7 @@ const AccountRegister = () => {
         </div>
 
         <div className="Register-btn">
-          <button aria-label="register-button" onClick={handleRegister}>
+          <button aria-label="register-button" onClick={() => setIsOpen(true)}>
             Register
           </button>
         </div>
