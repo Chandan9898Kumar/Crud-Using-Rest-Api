@@ -3,7 +3,7 @@ import "./register.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { isEmail } from "../RegEx";
-import ComponentModal from "../Common/ModalComponent/Modal";
+import ComponentModal from "../Common/DialogBox/DialogBox";
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 axios.interceptors.request.use(function (config) {

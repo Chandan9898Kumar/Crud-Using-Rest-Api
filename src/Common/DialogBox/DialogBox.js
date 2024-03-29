@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import "./modal.css";
+import "./dialog.css";
 import PropTypes from "prop-types";
 const ComponentModal = ({ titleMessage, bodyMessage, cancelText, continueText, handleCancel, handleProceed }) => {
   return (
