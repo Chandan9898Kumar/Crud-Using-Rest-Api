@@ -56,3 +56,13 @@ Solution :-
    a. `   Set NODE_OPTIONS="--max-old-space-size=8192"    `
    OR
    b `   $env:NODE_OPTIONS="--max-old-space-size=8192"   `
+
+
+
+
+### Best Practices React
+
+1. `prop-types`
+Using 'prop-types' to document and validate the types of props passed to a component helps prevent errors. Prop types help to ensure that the correct data types are being passed into your components, reducing the likelihood of runtime errors. Prop types serve as documentation for your components, making it clear what types of data each component expects and what the component does with that data. They can help to identify issues with your code by providing helpful error messages when an incorrect data type is passed to a component.
+
+Using prop types can help to facilitate collaboration between developers by making it clear what data is expected by each component and reducing confusion about how to use the component. Using prop types can improve the overall quality of your code by reducing the likelihood of runtime errors and making it more maintainable and readable.

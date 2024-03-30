@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, unmountComponentAtNode } from "@testing-library/react";
+import { render, screen, unmountComponentAtNode, fireEvent } from "@testing-library/react";
 import App from "./App";
 import { act } from "react-dom/test-utils";
 import "@testing-library/jest-dom/extend-expect";
@@ -25,3 +25,16 @@ describe("App component Testing", () => {
     expect(container).toBeDefined();
   });
 });
+
+
+
+
+// test('increment count on button click', () => {
+//   const { getByText, getByTestId } = render(<App />);
+
+//   expect(getByTestId('count')).toHaveTextContent('0');
+
+//   fireEvent.click(getByText('Click me'));
+
+//   expect(getByTestId('count')).toHaveTextContent('1');
+// });
