@@ -3,7 +3,9 @@ import "./dialog.css";
 import PropTypes from "prop-types";
 const ComponentModal = ({ titleMessage, bodyMessage, cancelText, continueText, handleCancel, handleProceed }) => {
   return (
-    <div className="modal-background">
+    <React.Fragment>
+      <div className="dialog-backdrop" onClick={() => handleCancel(false)} />
+
       <div className="modal-container">
         <div className="modal-close-btn">
           <button onClick={() => handleCancel(false)}>X</button>
@@ -20,7 +22,7 @@ const ComponentModal = ({ titleMessage, bodyMessage, cancelText, continueText, h
           <button onClick={handleProceed}>{continueText}</button>
         </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 
