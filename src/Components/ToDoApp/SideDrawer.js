@@ -16,7 +16,7 @@ export const ToDoSideDrawer = ({ children }) => {
   return (
     <div className="SideDrawerHead">
       {children}
-      <div>
+      <div className="outlet-component">
         <Outlet />
       </div>
     </div>

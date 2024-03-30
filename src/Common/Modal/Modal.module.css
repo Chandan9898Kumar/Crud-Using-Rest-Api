@@ -1,0 +1,95 @@
+.modal_backdrop {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.2);
+    top: 0;
+    left: 0;
+}
+
+.modal_wrapper {
+    padding: 10px;
+    margin: 10px auto;
+    position: fixed;
+    width: 100%;
+    max-width: 600px;
+    left: 50%;
+    top: 50%;
+    z-index: 11111;
+    box-shadow: 0px 2px 6px #000;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+}
+
+
+.modal_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.modal_title {
+    font-size: 28px;
+    font-weight: 700px;
+    color: black;
+}
+
+
+.modal_body {
+    display: block;
+    font-size: 25px;
+    color: #797f87;
+    font-weight: 600;
+}
+
+.modal_close {
+    text-align: center;
+    font-size: 1.8em;
+    cursor: pointer;
+    width: 30px;
+    border-radius: 50%;
+    line-height: 1.7em;
+    color: #050505;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*  Creating a CSS Module */
+/* If you are relatively new to CSS, you may or may not have encountered the significant problem that occurs as an application’s style expands— since CSS rules follow global scope,
+    two or more classes of the same name will collide. Handling multiple stylesheets and keeping track of naming conventions in CSS files can get burdensome,
+    and if you aren’t careful enough, you are bound to encounter some conflicts from identical class names.
+
+CSS Modules can solve these errors likely to appear, especially as your application grows. They ultimately allow us to use the same class name in multiple files without selector 
+and rule errors by scoping class names locally by default.
+
+A CSS Module is simply a .css file, where classes act similarly to local variables in Javascript. It is a tool that makes every class unique by including a hash in their name.
+
+Creating a CSS Module
+If you are using create-react-app, making CSS Module for a component is relatively easy. Follow the typical naming convention for a css file, but insert module before .css, 
+like so: [name].module.css
+
+ */
+
+
+
+/*                                                                      NOTE: 
+ 
+ With CSS Modules, you can create portable, reusable CSS files and no longer need to be concerned with selector name collisions or rules impacting another component’s styles.
+ 
+ 
+ 
+ 
+ */

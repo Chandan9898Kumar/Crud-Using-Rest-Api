@@ -34,9 +34,18 @@
 }
 
 
+.outlet-component {
+    width: 100vw;
+    height: 100vh;
+    border-left: 1px solid #e1e1e1;
+    padding: 10px 10px;
+    top: 10px;
+    position: relative
+}
+
 .isActiveLink {
     text-decoration: none;
-    color:cornflowerblue;
+    color: cornflowerblue;
     text-transform: uppercase;
     font-family: sans-serif;
     font-size: 20px;

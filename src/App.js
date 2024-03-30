@@ -48,10 +48,10 @@ function App() {
                 exact
                 path="/create-app"
                 element={
-                  <ProjectList>
+                  <PrivateRoute>
                     {" "}
                     <CreateProject />
-                  </ProjectList>
+                  </PrivateRoute>
                 }
               />
               <Route
@@ -87,7 +87,7 @@ export const PrivateRoute = ({ children }) => {
   if (!authorizedToken) {
     return <Navigate to="/login" replace />;
   }
-  return <React.Fragment>{authorizedToken && <div>{children}</div>}</React.Fragment>;
+  return <React.Fragment>{authorizedToken && children}</React.Fragment>;
 };
 
 //                                                    Protected Route
