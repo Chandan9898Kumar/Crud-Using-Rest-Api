@@ -1,3 +1,13 @@
+@keyframes slide {
+    from {
+      transform: translate(-50%, -100%);
+    }
+    to {
+      transform: translate(-50%, -50%);
+    }
+  }
+  
+
 .modal_backdrop {
     position: fixed;
     width: 100vw;
@@ -20,6 +30,12 @@
     transform: translate(-50%, -50%);
     background-color: #fff;
 }
+
+
+.modal_wrapper.modal_active {
+    animation-name: slide;
+    animation-duration: 1s;
+  }
 
 
 .modal_header {

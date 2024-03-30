@@ -9,7 +9,7 @@ const Modal = ({ children, show, onClose, title }) => {
         {/*  NOTE : Here i have given a self-closing div element, so that when user click on this div then this onClick event gets fired. It is outside og below Div element */}
         <div className={modalStyle.modal_backdrop} onClick={onClose} />
 
-        <div className={modalStyle.modal_wrapper}>
+        <div className={`${modalStyle.modal_wrapper} ${show ? modalStyle.modal_active : ""}`}>
           <div className={modalStyle.modal_header}>
             <div className={modalStyle.modal_title}>{title}</div>
             <div onClick={onClose} className={modalStyle.modal_close}>
