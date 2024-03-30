@@ -6,6 +6,7 @@ const Modal = ({ children, show, onClose, title }) => {
   return (
     show && (
       <React.Fragment>
+        {/*  NOTE : Here i have given a self-closing div element, so that when user click on this div then this onClick event gets fired. It is outside og below Div element */}
         <div className={modalStyle.modal_backdrop} onClick={onClose} />
 
         <div className={modalStyle.modal_wrapper}>
