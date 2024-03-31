@@ -1,7 +1,7 @@
 import React from "react";
 
 const ShowProject = () => {
-  return <div>ShowProject lis</div>;
+  return <div>ShowProject list</div>;
 };
 
 export default ShowProject;
