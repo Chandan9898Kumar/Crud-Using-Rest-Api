@@ -1,7 +1,7 @@
 import React from "react";
 
 const EditProject = () => {
-  return <div>EditProject lis</div>;
+  return <div>EditProject list</div>;
 };
 
 export default EditProject;
