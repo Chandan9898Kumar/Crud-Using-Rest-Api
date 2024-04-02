@@ -5,7 +5,6 @@ import "./todo.css";
 const ToDoNavLinkSideContent = () => {
   const { id } = useParams();
   return (
-    // <div className="side-bar-head-link">
     <div className="side-bar-sub-head-link">
       <div className="div-Width">
         <NavLink to="/todo" caseSensitive className={({ isActive }) => (isActive ? "isActiveLink" : "staticLink")}>
@@ -28,7 +27,6 @@ const ToDoNavLinkSideContent = () => {
         </NavLink>
       </div>
     </div>
-    // </div>
   );
 };
 
