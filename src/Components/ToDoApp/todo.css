@@ -1,12 +1,3 @@
-/* .side-bar-head-link {
-    position: relative;
-    width: 25%;
-    height: 100vh;
-    background: rgb(249 250 251);
-    font-size: 0.65em;
-
-} */
-
 .side-bar-sub-head-link {
     position: relative;
     width: 260px;
@@ -70,4 +61,21 @@
     height: 40px;
     border-radius: 10px;
     text-align: center;
+}
+
+table.todo-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table.todo-table>tr,
+th,
+td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+table.todo-table tr:nth-child(even){
+    background-color: #f2f2f2;
 }
