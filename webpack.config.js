@@ -84,6 +84,9 @@ module.exports = {
       {
         test: /\.m?js$/,
         type: "javascript/auto",
+        resolve: {
+          fullySpecified: false,
+        },
       },
 
       {
@@ -161,7 +164,7 @@ module.exports = {
               gifsicle: {
                 interlaced: false,
               },
-           
+
               webp: {
                 quality: 75,
               },
@@ -211,7 +214,6 @@ module.exports = {
         ],
       },
 
-    
       {
         test: /\.(eot|otf|ttf|woff|woff2)$/,
         loader: require.resolve("file-loader"),
@@ -219,7 +221,6 @@ module.exports = {
           name: "[path][name].[hash:8].[ext]",
         },
       },
-
     ],
   },
 
@@ -250,7 +251,6 @@ module.exports = {
       dry: false,
       cleanOnceBeforeBuildPatterns: ["**/*", "!stats.json", "!important.js", "!folder/**/*"],
     }),
-
 
     new MiniCssExtractPlugin({
       filename: "[name].css",

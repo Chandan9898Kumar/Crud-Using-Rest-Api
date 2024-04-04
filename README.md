@@ -66,3 +66,21 @@ Solution :-
 Using 'prop-types' to document and validate the types of props passed to a component helps prevent errors. Prop types help to ensure that the correct data types are being passed into your components, reducing the likelihood of runtime errors. Prop types serve as documentation for your components, making it clear what types of data each component expects and what the component does with that data. They can help to identify issues with your code by providing helpful error messages when an incorrect data type is passed to a component.
 
 Using prop types can help to facilitate collaboration between developers by making it clear what data is expected by each component and reducing confusion about how to use the component. Using prop types can improve the overall quality of your code by reducing the likelihood of runtime errors and making it more maintainable and readable.
+
+
+### Error In Webpack
+
+Module not found: Error: Can't resolve './App' in '/home/user/Desktop/WebDev/React/temp/merntemplate/src'
+Did you mean 'App.js'?
+BREAKING CHANGE: The request './App' failed to resolve only because it was resolved as fully specified
+(probably because the origin is strict EcmaScript Module, e. g. a module with javascript mimetype, a '*.mjs' file, or a '*.js' file where the package.json contains '"type": "module"').
+The extension in the request is mandatory for it to be fully specified.
+Add the extension to the request.
+
+` Solution : In webPack Rules write this.`
+{
+    test: /\.m?js/,
+    resolve: {
+      fullySpecified: false,
+    },
+}
