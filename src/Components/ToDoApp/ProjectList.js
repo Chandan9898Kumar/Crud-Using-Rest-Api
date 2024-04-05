@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "../../Common/Modal/Modal";
 import "./todo.css";
 import Button from "../../Common/ButtonComponent/Button";
