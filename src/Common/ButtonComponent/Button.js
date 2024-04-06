@@ -23,7 +23,7 @@ const Button = ({ size, variant, type, onClick, children, ...props }) => {
   if (variant === "success") buttonStyle.backgroundColor = "#2ecc71"; // Green Color
 
   return (
-    <button type={type} onClick={onClick} style={buttonStyle} {...props}>
+    <button type={type} onClick={onClick} style={buttonStyle}>
       {children}
     </button>
   );
