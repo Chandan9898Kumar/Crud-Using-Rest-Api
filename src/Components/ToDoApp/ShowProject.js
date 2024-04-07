@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../Common/ButtonComponent/Button";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { NotFoundIcon } from "../../Assets/SvgImage";
@@ -15,6 +15,22 @@ const ShowProject = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const ERROR_MESSAGE = "Data you are looking for is not available.";
+  const [projectDetails, setProjectDetails] = useState({});
+  const [isError, setIsError] = useState("");
+
+  useEffect(() => {
+    const fetchProjectDetails = async () => {
+      try {
+        const result = await axios.get(`/api/projects/${id}`, config);
+        setProjectDetails(result.data);
+        setIsError("");
+      } catch (error) {
+        setIsError(error.response.data);
+      }
+    };
+
+    fetchProjectDetails();
+  }, [id]);
 
   const styles = {
     modal_container: {
@@ -57,6 +73,13 @@ const ShowProject = () => {
       position: "relative",
       top: "35px",
     },
+    apiError: {
+      left: "38%",
+      color: "red",
+      fontSize: "30px",
+      fontWeight: 700,
+      position: "relative",
+    },
   };
 
   return (
@@ -78,6 +101,7 @@ const ShowProject = () => {
           </div>
         </div>
       )}
+      {isError && <div style={styles.apiError}>{isError}</div>}
     </div>
   );
 };
