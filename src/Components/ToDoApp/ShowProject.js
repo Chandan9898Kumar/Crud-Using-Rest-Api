@@ -49,6 +49,7 @@ const ShowProject = () => {
       flexDirection: "column",
       transform: "translate(-50%, -50%)",
       backgroundColor: "#fff",
+      color: "black",
     },
     title: {
       fontSize: "30px",
@@ -71,7 +72,7 @@ const ShowProject = () => {
       fontSize: "30px",
       fontWeight: 700,
       position: "relative",
-      top: "35px",
+      top: "50px",
     },
     apiError: {
       left: "38%",
@@ -79,6 +80,20 @@ const ShowProject = () => {
       fontSize: "30px",
       fontWeight: 700,
       position: "relative",
+    },
+    sub_container: {
+      display: "grid",
+      gridAutoColumns: "minmax(0, 1fr)",
+      gridAutoFlow: "column",
+      position: "relative",
+      top: "20px",
+      padding: "10px 20px",
+    },
+    paragraph: {
+      fontSize: "20px",
+      fontWeight: 600,
+      textAlign: "left",
+      textTransform: "uppercase",
     },
   };
 
@@ -96,9 +111,33 @@ const ShowProject = () => {
         </div>
       ) : (
         <div style={styles.modal_container}>
-          <div>
-            <span style={styles.title}>Project Details</span>
+          <span style={styles.title}>Project Details</span>
+
+          <div style={styles.sub_container}>
+            <p style={styles.paragraph}>Created At</p>
+            <p>{projectDetails.created_at}</p>
           </div>
+
+          <div style={styles.sub_container}>
+            <p style={styles.paragraph}>Updated At</p>
+            <p>{projectDetails.updated_at}</p>
+          </div>
+
+          <div style={styles.sub_container}>
+            <p style={styles.paragraph}>description</p>
+            <p>{projectDetails.description}</p>
+          </div>
+          
+          <div style={styles.sub_container}>
+            <p style={styles.paragraph}>Name</p>
+            <p>{projectDetails.name}</p>
+          </div>
+
+          <div style={styles.sub_container}>
+            <p style={styles.paragraph}>Id</p>
+            <p>{projectDetails.id}</p>
+          </div>
+
         </div>
       )}
       {isError && <div style={styles.apiError}>{isError}</div>}
