@@ -34,13 +34,13 @@ const ShowProject = () => {
 
   const styles = {
     modal_container: {
-      height: "500px",
+      height: "470px",
       borderRadius: "12px",
       padding: "10px",
       margin: "10px auto",
       position: "fixed",
       width: "100%",
-      maxWidth: "600px",
+      maxWidth: "500px",
       left: "55%",
       top: "50%",
       zIndex: 11111,
@@ -127,7 +127,7 @@ const ShowProject = () => {
             <p style={styles.paragraph}>description</p>
             <p>{projectDetails.description}</p>
           </div>
-          
+
           <div style={styles.sub_container}>
             <p style={styles.paragraph}>Name</p>
             <p>{projectDetails.name}</p>
@@ -137,7 +137,6 @@ const ShowProject = () => {
             <p style={styles.paragraph}>Id</p>
             <p>{projectDetails.id}</p>
           </div>
-
         </div>
       )}
       {isError && <div style={styles.apiError}>{isError}</div>}
