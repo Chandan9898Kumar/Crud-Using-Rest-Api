@@ -38,6 +38,13 @@ const CreateProject = () => {
       top: "25%",
       padding: "10px 10px",
     },
+    button: {
+      display: "block",
+      position: "relative",
+      top: "50%",
+      textAlign: "right",
+      padding: "10px 10px",
+    },
   };
 
   const handleNameChange = (event) => {
@@ -47,6 +54,8 @@ const CreateProject = () => {
   const handleDescriptionChange = (event) => {
     setDescription(event.target.value);
   };
+
+  const handleClick = () => {};
 
   return (
     <div>
@@ -62,6 +71,11 @@ const CreateProject = () => {
         </div>
         <div style={styles.inputTwo}>
           <Input type="text" label="Description" height="20px" placeholder="Enter Description" id="Description" value={description} handleChange={handleDescriptionChange} />
+        </div>
+        <div style={styles.button}>
+          <Button type="submit" variant="primary" size={"lg"} onClick={handleClick}>
+            Proceed
+          </Button>
         </div>
       </div>
     </div>
