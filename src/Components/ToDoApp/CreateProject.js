@@ -2,13 +2,26 @@ import React, { useState } from "react";
 import Input from "../../Common/InputField/Input";
 import Button from "../../Common/ButtonComponent/Button";
 import { useNavigate } from "react-router-dom";
+
+import axios from "axios";
+axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+
+const config = {
+  headers: {
+    "X-Binarybox-Api-Key": process.env.REACT_APP_API_KEY,
+  },
+};
+
 const CreateProject = () => {
   const navigate = useNavigate();
   const [nameField, setNameField] = useState("");
   const [description, setDescription] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const styles = {
     head: {
-      height: "470px",
+      height: "400px",
       borderRadius: "12px",
       padding: "10px",
       position: "relative",
@@ -39,11 +52,50 @@ const CreateProject = () => {
       padding: "10px 10px",
     },
     button: {
-      display: "block",
-      position: "relative",
-      top: "50%",
       textAlign: "right",
-      padding: "10px 10px",
+    },
+    errorSuccessText: {
+      position: "relative",
+      top: "45%",
+      display: "grid",
+      gridAutoColumns: "minmax(0, 1fr)",
+      gridAutoFlow: "column",
+    },
+    spanError: {
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      fontSize: "16px",
+      fontWeight: 550,
+      textRendering: "optimizeLegibility",
+      outline: " 0px",
+      textDecoration: "none",
+      border: "0px",
+      padding: "10px 18px",
+      verticalAlign: "middle",
+      boxSizing: "border-box",
+      borderRadius: "4px",
+      color: "rgb(255, 77, 79)",
+      backgroundColor: "rgb(255, 241, 240)",
+      borderColor: "rgb(255, 163, 158)",
+    },
+    spanSuccess: {
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      fontSize: "16px",
+      fontWeight: 550,
+      textRendering: "optimizeLegibility",
+      outline: " 0px",
+      textDecoration: "none",
+      border: "0px",
+      padding: "10px 18px",
+      verticalAlign: "middle",
+      boxSizing: "border-box",
+      borderRadius: "4px",
+      color: "rgb(82, 196, 26);",
+      backgroundColor: "rgb(246, 255, 237)",
+      borderColor: "rgb(149, 222, 100)",
     },
   };
 
@@ -55,8 +107,32 @@ const CreateProject = () => {
     setDescription(event.target.value);
   };
 
-  const handleClick = () => {};
+  const handleClick = async () => {
+    setIsSaving(true);
+    const payload = {
+      name: nameField,
+      description: description,
+    };
+    try {
+      const result = await axios.post("/api/projects", payload, config);
 
+      if (result.status === 200) {
+        setErrorMessage("");
+        setSuccessMessage("Project saved successfully!");
+        setDescription("");
+        setNameField("");
+      }
+    } catch (error) {
+      setErrorMessage(error.response.data.message);
+    } finally {
+      setIsSaving(false);
+      const timer = setTimeout(() => {
+        setSuccessMessage("");
+        setErrorMessage("");
+        clearTimeout(timer);
+      }, 1000);
+    }
+  };
   return (
     <div>
       <div style={{ padding: "10px 30px" }}>
@@ -72,10 +148,15 @@ const CreateProject = () => {
         <div style={styles.inputTwo}>
           <Input type="text" label="Description" height="20px" placeholder="Enter Description" id="Description" value={description} handleChange={handleDescriptionChange} />
         </div>
-        <div style={styles.button}>
-          <Button type="submit" variant="primary" size={"lg"} onClick={handleClick}>
-            Proceed
-          </Button>
+        <div style={styles.errorSuccessText}>
+          {errorMessage && <span style={styles.spanError}>{errorMessage.split(".")[0] + "."}</span>}
+          {successMessage && <span style={styles.spanSuccess}>{successMessage}</span>}
+
+          <div style={styles.button}>
+            <Button isDisabled={isSaving} type="submit" variant="primary" size={"lg"} onClick={handleClick}>
+              Proceed
+            </Button>
+          </div>
         </div>
       </div>
     </div>

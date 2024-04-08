@@ -1,7 +1,6 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
-const Button = ({ size, variant, type, onClick, children, ...props }) => {
-  
+const Button = ({ size, variant, type, onClick, isDisabled = false, children, ...props }) => {
   const buttonStyle = {
     border: "none",
     borderRadius: "4px",
@@ -23,7 +22,7 @@ const Button = ({ size, variant, type, onClick, children, ...props }) => {
   if (variant === "success") buttonStyle.backgroundColor = "#2ecc71"; // Green Color
 
   return (
-    <button type={type} onClick={onClick} style={buttonStyle}>
+    <button disabled={isDisabled} type={type} onClick={onClick} style={buttonStyle}>
       {children}
     </button>
   );
@@ -35,6 +34,7 @@ Button.propTypes = {
   type: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.any,
+  isDisabled: PropTypes.bool,
 };
 
 export default memo(Button);

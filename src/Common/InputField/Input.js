@@ -9,6 +9,7 @@ const Input = ({ value, label = "", type = "", placeholder = "", handleChange, e
       outline: "none",
       borderRadius: "5px",
       height: height,
+      fontSize: "18px",
     },
     input_container: {
       display: "grid",
