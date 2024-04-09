@@ -20,6 +20,10 @@ const Button = ({ size, variant, type, onClick, isDisabled = false, children, ..
 
   if (variant === "warning") buttonStyle.backgroundColor = "#ff0000"; //  Red Color
   if (variant === "success") buttonStyle.backgroundColor = "#2ecc71"; // Green Color
+  if (isDisabled) {
+    buttonStyle.backgroundColor = "grey";
+    buttonStyle.cursor = " no-drop";
+  }
 
   return (
     <button disabled={isDisabled} type={type} onClick={onClick} style={buttonStyle}>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Button from "../../Common/ButtonComponent/Button";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { NotFoundIcon } from "../../Assets/SvgImage";
 import axios from "axios";
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
