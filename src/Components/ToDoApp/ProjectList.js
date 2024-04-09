@@ -6,6 +6,9 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { ShowIcon, EditIcon, DeleteIcon } from "../../Assets/SvgImage";
 import ComponentModal from "../../Common/DialogBox/DialogBox";
+import { useSelector, useDispatch } from "react-redux";
+import { ProjectListTitle } from "../../Redux/TodoApplication/ProjectListReducer";
+
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 const config = {
   headers: {
@@ -22,6 +25,9 @@ const ProjectList = () => {
   const [isDialog, setIsDialog] = useState(false);
   const [projectId, setProjectId] = useState("");
 
+  const title = useSelector((state) => state.BaseProjectComponent);
+  const dispatch = useDispatch();
+
   const fetchProjectList = async () => {
     try {
       const result = await axios.get("/api/projects", config);
@@ -34,7 +40,8 @@ const ProjectList = () => {
 
   useEffect(() => {
     fetchProjectList();
-  }, []);
+    dispatch(ProjectListTitle("This Page contains all the items which is present."));
+  }, [dispatch]);
 
   const handleDeleteProject = async () => {
     try {
@@ -69,7 +76,7 @@ const ProjectList = () => {
       )}
 
       <Modal show={showModal} onClose={() => setShowModal(false)} title="Project Manager Application">
-        <p>This Page contains all the items which is present.</p>
+        <p>{title.projectTitle}</p>
       </Modal>
       <div style={{ display: "block", textAlign: "right", position: "relative", right: "0px" }}>
         <button

@@ -4,6 +4,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import Input from "../../Common/InputField/Input";
 import axios from "axios";
 import LoadComponent from "../../Common/LoadingComponent/LoadComponent";
+
+import { useSelector, useDispatch } from "react-redux";
+import { EditProjectTitle } from "../../Redux/TodoApplication/EditProjectReducer";
+
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
 const config = {
@@ -21,6 +25,9 @@ const EditProject = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+
+  const title = useSelector((state) => state.EditProject);
+  const dispatch = useDispatch();
 
   const styles = {
     editHead: {
@@ -122,7 +129,8 @@ const EditProject = () => {
 
   useEffect(() => {
     fetchProjectDetails();
-  }, [fetchProjectDetails]);
+    dispatch(EditProjectTitle("View All Projects"));
+  }, [fetchProjectDetails,dispatch]);
 
   const handleNameChange = (event) => {
     setNameField(event.target.value);
@@ -161,7 +169,7 @@ const EditProject = () => {
   return (
     <div style={{ padding: "10px 20px" }}>
       <Button type="submit" variant="primary" size={"lg"} onClick={() => navigate("/todo")}>
-        View All Projects
+        {title.EditProjectTitle}
       </Button>
 
       <div style={styles.editHead}>

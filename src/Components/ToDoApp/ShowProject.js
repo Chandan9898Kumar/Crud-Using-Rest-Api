@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import Button from "../../Common/ButtonComponent/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { NotFoundIcon } from "../../Assets/SvgImage";
+
+import { useSelector, useDispatch } from "react-redux";
+import { showProjectTitle } from "../../Redux/TodoApplication/ShowProjectReducer";
+
 import axios from "axios";
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
-
 const config = {
   headers: {
     "X-Binarybox-Api-Key": process.env.REACT_APP_API_KEY,
@@ -18,7 +21,11 @@ const ShowProject = () => {
   const [projectDetails, setProjectDetails] = useState({});
   const [isError, setIsError] = useState("");
 
+  const title = useSelector((state) => state.ShowProject);
+  const dispatch = useDispatch();
+
   useEffect(() => {
+    dispatch(showProjectTitle("View All Projects"));
     const fetchProjectDetails = async () => {
       try {
         const result = await axios.get(`/api/projects/${id}`, config);
@@ -30,7 +37,7 @@ const ShowProject = () => {
     };
 
     fetchProjectDetails();
-  }, [id]);
+  }, [id,dispatch]);
 
   const styles = {
     modal_container: {
@@ -99,7 +106,7 @@ const ShowProject = () => {
     <div>
       <div style={{ padding: "10px 30px" }}>
         <Button type="submit" variant="primary" size={"lg"} onClick={() => navigate("/todo")}>
-          View All Projects
+          {title.showProjectTitle}
         </Button>
       </div>
       {id === "undefined" ? (

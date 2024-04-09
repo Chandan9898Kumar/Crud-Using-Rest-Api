@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "../../Common/InputField/Input";
 import Button from "../../Common/ButtonComponent/Button";
 import { useNavigate } from "react-router-dom";
+
+import { useSelector, useDispatch } from "react-redux";
+import { createProjectTitle } from "../../Redux/TodoApplication/CreateProjectReducer";
 
 import axios from "axios";
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
@@ -19,6 +22,10 @@ const CreateProject = () => {
   const [isSaving, setIsSaving] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+
+  const title = useSelector((state) => state.CreateProject);
+  const dispatch = useDispatch();
+
   const styles = {
     head: {
       height: "400px",
@@ -99,6 +106,10 @@ const CreateProject = () => {
     },
   };
 
+  useEffect(() => {
+    dispatch(createProjectTitle("View All Projects"));
+  }, [dispatch]);
+
   const handleNameChange = (event) => {
     setNameField(event.target.value);
   };
@@ -137,7 +148,7 @@ const CreateProject = () => {
     <div>
       <div style={{ padding: "10px 30px" }}>
         <Button type="submit" variant="primary" size={"lg"} onClick={() => navigate("/todo")}>
-          View All Projects
+          {title.createProjectTitle}
         </Button>
       </div>
       <div style={styles.head}>
