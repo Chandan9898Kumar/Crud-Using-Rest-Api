@@ -143,3 +143,24 @@ consider a lucky draw number generator, we want to get a number only after a par
 
 
  */
+
+/**     New 
+ 
+  const useThrottle = (func, delay) => {
+  const [flag, setFlag] = useState(true);
+
+  return function () {
+    let args = arguments,
+      context = this;
+    if (flag) {
+      func.apply(context, args);
+      setTimeout(() => setFlag(true), delay);
+      setFlag(false);
+    }
+  };
+};
+
+
+ * 
+ * 
+ */
