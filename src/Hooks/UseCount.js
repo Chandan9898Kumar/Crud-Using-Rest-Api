@@ -1,1 +1,7 @@
-import React from "react" 
+import React from "react";
+
+const UseCounter = () => {
+  return <></>;
+};
+
+export default UseCounter;
