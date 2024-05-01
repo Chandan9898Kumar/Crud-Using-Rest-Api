@@ -58,7 +58,8 @@ const Home = () => {
 
     // Here when user search then searched data will be returned if no data found then the entire which came from api will be shown.
     // If there is a scenario which comes : only show data when user type something,If no data is found then show empty [] or any message or don't show anything in search menu
-    // Example :   return filteredValues && filteredValues.length > 0 ? filteredValues : []
+    // Example :
+    // return filteredValues && filteredValues.length > 0 ? filteredValues : [];
   }, [searchedValue, userData]);
 
   const searchedItemFromList = useMemo(() => {
