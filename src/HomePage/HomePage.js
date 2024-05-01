@@ -79,23 +79,25 @@ const Home = () => {
   // Pagination integrated based on search.Whatever data will come after search have pagination.
   // For Ex : after search got 25 data, so autosuggestion bar will show 25 data and in table it will show 10 data per page.
 
-  const paginatedItems = (searchedItemFromList && searchedItemFromList.length > 0 && searchedItemFromList.slice(currentPage * ITEM_PER_PAGE - ITEM_PER_PAGE, currentPage * ITEM_PER_PAGE)) || [];
+  const paginatedItems = useMemo(() => {
+    return (searchedItemFromList && searchedItemFromList.length > 0 && searchedItemFromList.slice(currentPage * ITEM_PER_PAGE - ITEM_PER_PAGE, currentPage * ITEM_PER_PAGE)) || [];
+  }, [searchedItemFromList, currentPage]);
 
-  const onNextClick = () => {
+  const onNextClick = useCallback(() => {
     setCurrentPage((prev) => prev + 1);
-  };
+  }, []);
 
-  const onPreviousClick = () => {
+  const onPreviousClick = useCallback(() => {
     setCurrentPage((prev) => prev - 1);
-  };
+  }, []);
 
-  const onNextLastClick = (TOTAL_PAGE) => {
+  const onNextLastClick = useCallback((TOTAL_PAGE) => {
     setCurrentPage(TOTAL_PAGE);
-  };
+  }, []);
 
-  const onPreviousLastClick = () => {
+  const onPreviousLastClick = useCallback(() => {
     setCurrentPage(1);
-  };
+  }, []);
 
   return (
     <div className="container">
