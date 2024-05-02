@@ -1,13 +1,14 @@
 import express from "express";
+import { controllers } from "../controllers/customer.js";
 
 const moduleRouter = express.Router();
 
-moduleRouter.route("/customers").get(controllers.fetchAllCustomers);
-moduleRouter.route("/customers/:customer_id").get(controllers.fetchCustomerDetails);
-moduleRouter.route("/customers/:customer_id").delete(controllers.deleteCustomer);
-moduleRouter.route("/customer").delete(controllers.deleteAllCustomer);
-moduleRouter.route("/customer").post(controllers.createCustomer);
-moduleRouter.route("/customer/customer_id").patch(controllers.updateCustomerDetails);
-
+moduleRouter.get("/customers", controllers.fetchAllCustomers);
+// moduleRouter.get("/customers/:customer_id", controllers.fetchCustomerDetails);
+// moduleRouter.delete("/customers/:customer_id", controllers.deleteCustomer);
+// moduleRouter.delete("/customer", controllers.deleteAllCustomer);
+// moduleRouter.post("/customer", controllers.createCustomer);
+// moduleRouter.patch("/customer/customer_id", controllers.updateCustomerDetails);
 
 export default moduleRouter;
+

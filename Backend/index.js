@@ -1,14 +1,15 @@
-import moduleRouter from "./routes/customer"
+import moduleRouter from "./routes/customer.js";
+import productRouter from "./routes/products.js";
+import errorHandler from "./middlewares/errorHandler.middleware.js";
+import express from "express";
+import session from "express-session";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import helmet from "helmet";
+import dotenv from "dotenv";
+import compression from "compression";
 
-const express = require("express");
 const app = express();
-
-const session = require("express-session");
-const cookieParser = require("cookie-parser");
-const cors = require("cors");
-const helmet = require("helmet");
-const compression = require("compression");
-const dotenv = require("dotenv");
 
 app.use(express.json());
 app.use(express.raw());
@@ -49,16 +50,11 @@ dotenv.config({ path: "./.env" });
 
 const PORT = process.env.PORT || 5000;
 
+app.use("/api/v1/user", moduleRouter);
 
+app.use("/api/v1/item", productRouter);
 
-
-
-
-app.use('/api/v1/user',moduleRouter)
-
-
-
-
+app.use(errorHandler); // This Should be at last.
 
 app.listen(PORT, (error) => {
   if (!error) {
