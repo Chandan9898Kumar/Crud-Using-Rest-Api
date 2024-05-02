@@ -6,10 +6,10 @@
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": ["cookie-parser","cors","nodemon","express","helmet","bcrypt"],
   "author": "React Project",
   "license": "ISC",
-  "description": "",
+  "description": "This is express project to create backend api",
   "dependencies": {
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -21,6 +21,13 @@
     "express-session": "^1.18.0",
     "exprexx": "^1.0.0",
     "helmet": "^7.1.0",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "express-async-handler": "^1.2.0",
+    "bcrypt": "^5.1.1"
+  },
+  "devDependencies": {
+    "chai": "^5.1.0",
+    "chai-http": "^4.4.0",
+    "mocha": "^10.4.0"
   }
 }
