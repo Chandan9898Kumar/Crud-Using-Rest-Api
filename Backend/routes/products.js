@@ -3,11 +3,12 @@ import { controllers } from "../controllers/products.js";
 
 const productRouter = express.Router();
 
+//                                     Define the API routes
+
 productRouter.get("/products", controllers.fetchAllProducts);
-// productRouter.get("/products/:customer_id", controllers.fetchCustomerDetails);
-// productRouter.delete("/products/:customer_id", controllers.deleteCustomer);
-// productRouter.delete("/products", controllers.deleteAllCustomer);
-// productRouter.post("/products", controllers.createCustomer);
-// productRouter.patch("/products/customer_id", controllers.updateCustomerDetails);
+productRouter.get("/products/:product_id", controllers.fetchProductDetails);
+productRouter.delete("/products/:id", controllers.deleteProduct);
+productRouter.post("/products", controllers.createProduct);
+productRouter.patch("/products/:id", controllers.updateProductDetails);
 
 export default productRouter;

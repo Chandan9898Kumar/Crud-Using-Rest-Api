@@ -1,9 +1,27 @@
 import axios from "axios";
 
 const productFactory = () => {
-  const getProducts = ({ offset = "", limit = "", ...rest }) => axios.get(`https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=${limit}`);
+  const getAllProducts = ({ offset = "", limit = "", ...rest }) => axios.get(`https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=${limit}`);
+
+  const getProductDetails = ({ product_id: id }) => {
+    return axios.get(`https://api.escuelajs.co/api/v1/products/${id}`);
+  };
+
+  const createProductItem = (data) => axios.post("https://api.escuelajs.co/api/v1/products/", data);
+
+  const updateProduct = ({ id, data }) => {
+    return axios.patch(`https://api.escuelajs.co/api/v1/products/${id}`, { data });
+  };
+
+  const deleteProductItem = (id) => {
+    return axios.delete(`https://api.escuelajs.co/api/v1/products/${id}`);
+  };
   return {
-    getProducts,
+    getAllProducts,
+    getProductDetails,
+    createProductItem,
+    updateProduct,
+    deleteProductItem,
   };
 };
 

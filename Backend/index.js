@@ -56,6 +56,11 @@ app.use("/api/v1/item", productRouter);
 
 app.use(errorHandler); // This Should be at last.
 
+
+
+
+// Start the server
+
 app.listen(PORT, (error) => {
   if (!error) {
     console.log("Server is Successfully Running,and App is listening on port " + PORT);
