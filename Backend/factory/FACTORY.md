@@ -51,33 +51,33 @@ https://api.escuelajs.co/api/v1/products/
 
 - To fetch the first page of entries in a collection, the API needs to be called with the offset set to 0 and the limit the products that you want in the response.
 
-
 `Request:`
 
 [GET] https://api.escuelajs.co/api/v1/products?offset=0&limit=10
 
 `Response:`
 
-[
-  {
-    "id": 1,
-    "title": "Handmade Fresh Table",
-    "price": 687,
-    "description": "Andy shoes are designed to keeping in...",
-    "category": {
-      "id": 5,
-      "name": "Others",
-      "image": "https://placeimg.com/640/480/any?r=0.591926261873231"
-    },
-    "images": [
-      "https://placeimg.com/640/480/any?r=0.9178516507833767",
-      "https://placeimg.com/640/480/any?r=0.9300320592588625",
-      "https://placeimg.com/640/480/any?r=0.8807778235430017"
-    ]
-  }
-  // ... and 9 items more
-]
+```ts
+{
+  "id": 1,
+  "title": "Handmade Fresh Table",
+  "price": 687,
+  "description": "Andy shoes are designed to keeping in...",
+  "category": {
+    "id": 5,
+    "name": "Others",
+    "image": "https://placeimg.com/640/480/any?r=0.591926261873231"
+  },
+  "images": [
+    "https://placeimg.com/640/480/any?r=0.9178516507833767",
+    "https://placeimg.com/640/480/any?r=0.9300320592588625",
+    "https://placeimg.com/640/480/any?r=0.8807778235430017"
+  ]
+}
+// ... and 9 items more
 
+
+```
 
 To fetch the next page of entries, the API needs to be called with an offset parameter that equals the sum of the previous offset value and limit returned to the previous result,
 
@@ -90,16 +90,15 @@ Note that the offset should be increased by the previous limit and not by the si
 `For example, for a pagination with 10 items per page, it looks like this:`
 
 `Request	Description `:
-1. /products?offset=0&limit=10	Return the first 10 products.
-2. /products?offset=10&limit=10	Return products from 10 to 20
-3. /products?offset=20&limit=10	Return products from 20 to 30
 
-
+1. /products?offset=0&limit=10 Return the first 10 products.
+2. /products?offset=10&limit=10 Return products from 10 to 20
+3. /products?offset=20&limit=10 Return products from 20 to 30
 
 `Or for a pagination with 20 items per page, it looks like this:`
 
-Request	Description :
-1. /products?offset=0&limit=20	Return the first 20 products.
-2. /products?offset=20&limit=20	Return products from 20 to 40
-3. /products?offset=40&limit=20	Return products from 40 to 60
+Request Description :
 
+1. /products?offset=0&limit=20 Return the first 20 products.
+2. /products?offset=20&limit=20 Return products from 20 to 40
+3. /products?offset=40&limit=20 Return products from 40 to 60
