@@ -10,7 +10,7 @@ const productFactory = () => {
   const createProductItem = (data) => axios.post("https://api.escuelajs.co/api/v1/products/", data);
 
   const updateProduct = ({ id, data }) => {
-    return axios.patch(`https://api.escuelajs.co/api/v1/products/${id}`, { data });
+    return axios.put(`https://api.escuelajs.co/api/v1/products/${id}`, data);
   };
 
   const deleteProductItem = (id) => {

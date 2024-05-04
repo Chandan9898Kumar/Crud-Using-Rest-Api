@@ -60,14 +60,12 @@ const createProduct = asyncHandler(async (req, res, next) => {
 const updateProductDetails = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
   const data = req.body;
-  let error;
   try {
     const response = await updateProduct({ id, data });
-    error = response;
     return res.status(200).json(stringifyData(response.data));
   } catch (err) {
     res.status(400);
-    throw new Error(error);
+    throw new Error("Something Went Wrong...");
   }
 
   /**       Body

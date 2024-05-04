@@ -9,6 +9,6 @@ productRouter.get("/products", controllers.fetchAllProducts);
 productRouter.get("/products/:product_id", controllers.fetchProductDetails);
 productRouter.delete("/products/:id", controllers.deleteProduct);
 productRouter.post("/products", controllers.createProduct);
-productRouter.patch("/products/:id", controllers.updateProductDetails);
+productRouter.put("/products/:id", controllers.updateProductDetails);
 
 export default productRouter;
