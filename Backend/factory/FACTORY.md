@@ -1,3 +1,5 @@
+### We are using fake api : https://fakeapi.platzi.com
+
 ### Filter Products
 
 `Filter by title`
