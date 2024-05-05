@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Loader from "./Loader/Loader";
 import ToDoMenuDrawer from "./Components/ToDoApp/SideDrawer";
 const NavLinks = lazy(() => import("./NavLinks/NavLink"));
