@@ -7,7 +7,7 @@ const NavLinks = lazy(() => import("./NavLinks/NavLink"));
 const AccountLogin = lazy(() => import("./Login/Login"));
 const AccountRegister = lazy(() => import("./Register/Register"));
 const Home = lazy(() => import("./HomePage/HomePage"));
-const Service = lazy(() => import("./Components/Services/Service"));
+const DragDrop = lazy(() => import("./Components/DragAndDrop/DragDrop"));
 const Contact = lazy(() => import("./Components/Contacts/Contact"));
 const ProjectList = lazy(() => import("./Components/ToDoApp/ProjectList"));
 const CreateProject = lazy(() => import("./Components/ToDoApp/CreateProject"));
@@ -24,7 +24,7 @@ function App() {
             <Route exact path="/" element={<Home />} />
             <Route exact path="/login" element={<AccountLogin />} />
             <Route exact path="/register" element={<AccountRegister />} />
-            <Route exact path="/service" element={<Service />} />
+            <Route exact path="/drag-drop" element={<DragDrop />} />
             <Route exact path="/contact" element={<Contact />} />
 
             {/* TO-DO APP Protected Route  */}

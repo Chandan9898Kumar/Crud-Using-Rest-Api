@@ -30,7 +30,7 @@ const NavLinks = () => {
           </NavLink>
         </div>
         <div>
-          <NavLink to="/service" caseSensitive className={({ isActive }) => (isActive ? "isActive" : "static")}>
+          <NavLink to="/drag-drop" caseSensitive className={({ isActive }) => (isActive ? "isActive" : "static")}>
             Services
           </NavLink>
         </div>
