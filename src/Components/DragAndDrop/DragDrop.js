@@ -14,7 +14,7 @@ const DragDrop = () => {
     }
   };
 
-  // Pass the ticketName and sourceColumn name via dataTransfer
+  // Pass the ticketName and sourceColumn name via dataTransfer.
   const handleDragStart = (e, task, sourceColumn) => {
     e.dataTransfer.setData("task", task);
     e.dataTransfer.setData("sourceColumn", sourceColumn);
