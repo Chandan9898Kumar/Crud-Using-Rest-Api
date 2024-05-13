@@ -58,6 +58,7 @@ const DragDrop = () => {
   };
 
   return (
+
     <React.Fragment>
       <div className="add-ticket">
         <input type="text" value={newTicket} onChange={(e) => setNewTicket(e.target.value)} placeholder="Enter new ticket" />
@@ -71,6 +72,7 @@ const DragDrop = () => {
       </div>
     </React.Fragment>
   );
+  
 };
 
 const Column = ({ title, tasks, onDrop, onDragStart }) => {
