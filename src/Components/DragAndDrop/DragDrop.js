@@ -76,6 +76,7 @@ const DragDrop = () => {
 };
 
 const Column = ({ title, tasks, onDrop, onDragStart }) => {
+
   return (
     <div className="column" onDragOver={(e) => e.preventDefault()} onDrop={onDrop}>
       <h3>{title}</h3>
@@ -87,4 +88,5 @@ const Column = ({ title, tasks, onDrop, onDragStart }) => {
     </div>
   );
 };
+
 export default DragDrop;
