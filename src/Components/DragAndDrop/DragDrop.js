@@ -71,6 +71,7 @@ const DragDrop = () => {
         <Column title="Completed" tasks={completed} onDrop={(e) => handleDrop(e, "Completed")} onDragStart={handleDragStart} />
       </div>
     </React.Fragment>
+    
   );
   
 };
