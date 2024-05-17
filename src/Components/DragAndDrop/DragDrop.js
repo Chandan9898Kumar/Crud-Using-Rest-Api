@@ -9,10 +9,12 @@ const DragDrop = () => {
   const [newTicket, setNewTicket] = useState("");
 
   const handleAddTicket = () => {
+
     if (newTicket.trim() !== "") {
       setBacklog([...backlog, newTicket]);
       setNewTicket("");
     }
+    
   };
 
   // Pass the ticketName and sourceColumn name via dataTransfer.
