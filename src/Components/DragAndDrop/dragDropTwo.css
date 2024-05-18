@@ -1,0 +1,43 @@
+.drag-drop-container {
+    text-align: center;
+    font-family: monospace;
+  }
+  
+  .drag-drop-board {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+  }
+  
+  .drag-drop-header {
+    text-decoration-line: underline;
+    font-size: 1.5rem;
+  }
+  
+  .task-header {
+    margin: 10px;
+    text-decoration: underline;
+    font-size: 18px;
+    font-weight: 800;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  
+  .task-card {
+    height: 50px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    padding: 5px;
+  }
+
+  .draggableElement{
+    background: beige;
+    max-width: 300px;
+    width: 100%;
+    max-height: 400px;
+    height: 100vh;
+  }
