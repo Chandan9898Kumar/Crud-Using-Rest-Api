@@ -1,6 +1,7 @@
 import React, { useState, memo } from "react";
 import "./dragDropTwo.css";
 const DragDropTwo = () => {
+  
   const [tasks, setTasks] = useState([
     { name: "STORY-4513: Add tooltip", category: "inProgress", bgcolor: "lightblue" },
     {
