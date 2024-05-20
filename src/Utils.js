@@ -1,4 +1,3 @@
-
 //                                                                         Re-useable functions
 
 /* eslint-disable import/group-exports */
@@ -43,7 +42,8 @@ export const roundTo = (number, places = 0) => Math.round(number * 10 ** places)
 
 export const roundToNearest = (number, step) => Math.round(number / step) * step;
 
-export const debounce = (callback, wait, timeoutId = null) =>
+export const debounce =
+  (callback, wait, timeoutId = null) =>
   (...args) => {
     window.clearTimeout(timeoutId);
 
@@ -427,4 +427,14 @@ export const replaceDigits = (str) => {
     .replace(/8/g, "eight")
     .replace(/9/g, "nine")
     .replace(/0/g, "zero");
+};
+
+// Generates a random unique session ID
+//  A function to return the replacement text:
+export const generateUUID = () => {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+    const r = (Math.random() * 16) | 0,
+        v = c === "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
 };
