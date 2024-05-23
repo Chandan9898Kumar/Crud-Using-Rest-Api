@@ -68,7 +68,7 @@ export const throttle = (func, limit) => {
             lastRan = Date.now();
           }
         },
-        limit - (Date.now() - lastRan),
+        limit - (Date.now() - lastRan)
       );
     }
   };
@@ -90,7 +90,7 @@ export const throttleV2 = (func, limit) => {
             lastRan = Date.now();
           }
         },
-        limit - (Date.now() - lastRan),
+        limit - (Date.now() - lastRan)
       );
     }
   };
@@ -159,7 +159,7 @@ export const convertArrayToMap = (list) =>
       ...acc,
       [item.id]: item,
     }),
-    {},
+    {}
   );
 
 // Either removes or adds an item to an array
@@ -312,8 +312,8 @@ export const splitCommaSeparatedArray = (str) => {
 
 export function hash(val) {
   let hash = 0,
-      i,
-      chr;
+    i,
+    chr;
   if (val.length === 0) return hash;
   for (i = 0; i < val.length; i++) {
     chr = val.charCodeAt(i);
@@ -353,7 +353,7 @@ export const getYValueForBezier = function (xTarget, x1, y1, x2, y2) {
         controlPoint2: [x2, y2],
         endPoint: [1, 1],
       },
-      t,
+      t
     );
   };
 
@@ -434,7 +434,7 @@ export const replaceDigits = (str) => {
 export const generateUUID = () => {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
     const r = (Math.random() * 16) | 0,
-        v = c === "x" ? r : (r & 0x3) | 0x8;
+      v = c === "x" ? r : (r & 0x3) | 0x8;
     return v.toString(16);
   });
 };
