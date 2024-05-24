@@ -430,7 +430,7 @@ export const replaceDigits = (str) => {
 };
 
 // Generates a random unique session ID
-//  A function to return the replacement text:
+// A function to return the replacement text:
 export const generateUUID = () => {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
     const r = (Math.random() * 16) | 0,
