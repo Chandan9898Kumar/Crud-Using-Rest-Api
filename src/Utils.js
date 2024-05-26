@@ -107,12 +107,9 @@ export const slugify = (str = "") => {
     .toLowerCase()
     .replace(/\s/g, "-")
     .replace(/[^a-zA-Z0-9-]/g, "");
-
-  // Replace all numbers with their word counterpart
-  slug = replaceDigits(slug);
-
   return slug;
 };
+
 export const isEmpty = (obj) => Object.keys(obj).length === 0;
 
 export const getInterpolatedValue = (y1, y2, ratio) => {
@@ -415,7 +412,7 @@ export const transformValues = (obj, callback) => {
 };
 
 // In a string, turn digits (1) into spelled words (one)
-export const replaceDigits = (str) => {
+export const replaceDigit = (str) => {
   return str
     .replace(/1/g, "one")
     .replace(/2/g, "two")
@@ -437,4 +434,10 @@ export const generateUUID = () => {
       v = c === "x" ? r : (r & 0x3) | 0x8;
     return v.toString(16);
   });
+};
+
+export const getCurrentTimeFormatted = () => {
+  const curDateTime = new Date().toISOString();
+
+  return curDateTime;
 };
