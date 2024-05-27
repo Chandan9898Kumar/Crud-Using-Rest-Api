@@ -342,6 +342,7 @@ export const getValuesForBezierCurve = ({ startPoint, endPoint, controlPoint1, c
 
 export const getYValueForBezier = function (xTarget, x1, y1, x2, y2) {
   const xTolerance = 0.0001;
+  
   const myBezier = function (t) {
     return getValuesForBezierCurve(
       {
