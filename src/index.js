@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import ErrorBoundary from "./ErrorBoundary";
 import { store } from "./Redux/Store";
 import { Provider } from "react-redux";
+import ScrollTop from "./ScrollToTop/ScrollTop";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 //  To remove console.log in the production build of a React application created. when it is running in production then no console.log will be visible nut in development it will.
@@ -20,6 +21,7 @@ root.render(
     <ErrorBoundary fallback="Something Went Wrong...">
       <Provider store={store}>
         <App />
+        <ScrollTop />
       </Provider>
     </ErrorBoundary>
   </React.StrictMode>
