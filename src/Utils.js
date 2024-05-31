@@ -342,7 +342,7 @@ export const getValuesForBezierCurve = ({ startPoint, endPoint, controlPoint1, c
 
 export const getYValueForBezier = function (xTarget, x1, y1, x2, y2) {
   const xTolerance = 0.0001;
-  
+
   const myBezier = function (t) {
     return getValuesForBezierCurve(
       {
@@ -441,4 +441,39 @@ export const getCurrentTimeFormatted = () => {
   const curDateTime = new Date().toISOString();
 
   return curDateTime;
+};
+
+//                                      Difference between two dates.
+/**
+ * a function that takes two valid dates as an input and returns the difference between them in the number of days.
+  1. We can then convert this millisecond to get the number of days, weeks, months.
+  2. In a day we have around 86400000 milliseconds.
+  Note : const DAY_IN_MILLISECONDS = 1000 * 60 * 60 * 24;
+  //                                 1000 * seconds * minutes * hours
+
+  Thus we can divide the difference by this number and we will get our number of days.
+
+  NOTE : pass dates in function like below
+  //1. mm/dd/yyyy    2.mm/dd/yyyy
+    getDaysBetweenDates("10/15/2020", "12/1/2020");
+
+//  1. yyyy-mm-dd       2.mm/dd/yyyy
+    getDaysBetweenDates("2022-01-30", "12/1/2020");
+ */
+export const getDaysBetweenDates = (dateText1, dateText2) => {
+  //millseconds in a day
+  const DAY_IN_MILLISECONDS = 1000 * 60 * 60 * 24;
+
+  //convert the date strings to actual dates
+  const date1 = new Date(dateText1);
+  const date2 = new Date(dateText2);
+
+  // get the difference between the two days
+  const diffTime = Math.abs(date2 - date1);
+
+  // divide it by no of milliseconds in a single day
+  const diffDays = Math.ceil(diffTime / DAY_IN_MILLISECONDS);
+
+  //return the days
+  return diffDays;
 };
