@@ -146,7 +146,7 @@ consider a lucky draw number generator, we want to get a number only after a par
 
 /**     New 
  
-  const useThrottle = (func, delay) => {
+ const useThrottle = (func, delay) => {
   const [flag, setFlag] = useState(true);
 
   return function () {
@@ -160,7 +160,20 @@ consider a lucky draw number generator, we want to get a number only after a par
   };
 };
 
+const Throttle = () => {
+  const printText = () => console.log("Logger");
+  const throttledLogger = useThrottle(printText, 3000);
 
+  return (
+    <div>
+      <button onClick={throttledLogger}>Click Here</button>
+    </div>
+  );
+};
+
+export default function App() {
+  return <Throttle />;
+}
  * 
  * 
  */
