@@ -1,0 +1,28 @@
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 500px;
+    margin: 4rem auto;
+  }
+
+  .tableThead{
+    background-color: rgba(35, 35, 35, 1);
+    backdrop-filter: blur(10px);
+    text-transform: capitalize;
+    inset: 10%;
+    z-index: -1;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .tableTh{
+    border: 1px solid rgb(206, 206, 206);
+    padding: 10px;
+    text-align: center;
+  }
+
+  .tableTd{
+    border: 1px solid rgb(206, 206, 206);
+    padding: 10px;
+    text-align: center;
+  }
