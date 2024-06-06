@@ -110,41 +110,42 @@ Output:
 //                                                      Using Throttling inside a function
 
 /**
- * 
- * 
- * 
- const throttle = (func, limit) => {
-  let lastFunc;
-  let lastRan;
-  return function() {
-    const context = this;
-    const args = arguments;
-    if (!lastRan) {
-      func.apply(context, args);
-      lastRan = Date.now();
-    } else {
-      clearTimeout(lastFunc);
-      lastFunc = setTimeout(function() {
-        if ((Date.now() - lastRan) >= limit) {
-          func.apply(context, args)
-          lastRan = Date.now()
-        }
-      }, limit - (Date.now() - lastRan));
-    }
-  }
-}
 
+ import {useEffect} from "react";
+import {useRef, useState} from "react";
 
+const useThrottle = (value, delay) => {
+  const [throttledValue, setThrottledValue] = useState(value);
+
+  const lastExecuted = useRef(Date.now());
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      const now = Date.now();
+      const timeElapsed = now - lastExecuted.current;
+
+      if (timeElapsed >= delay) {
+        setThrottledValue(value);
+        lastExecuted.current = now;
+      }
+    }, delay - (Date.now() - lastExecuted.current));
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [delay, value]);
+
+  return throttledValue;
+};
+
+export default useThrottle;
 
 Throttling is a way/technique to restrict the number of function execution/call. For example,
 consider a lucky draw number generator, we want to get a number only after a particular time.
 
-
-
-
  */
 
-/**     New 
+/**                                   New useThrottle
  
  const useThrottle = (func, delay) => {
   const [flag, setFlag] = useState(true);
@@ -159,6 +160,9 @@ consider a lucky draw number generator, we want to get a number only after a par
     }
   };
 };
+export default useThrottle;
+
+
 
 const Throttle = () => {
   const printText = () => console.log("Logger");

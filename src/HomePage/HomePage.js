@@ -4,6 +4,7 @@ import { HomeIcon, TableIcon } from "../Assets/SvgImage";
 import { Api } from "../Apis/Api";
 import PropTypes from "prop-types";
 import LoadComponent from "../Common/LoadingComponent/LoadComponent";
+import useWindowSize from "../Hooks/UseWindowSize";
 const SearchFiled = lazy(() => import("../Common/SearchComponent/SearchField"));
 const DateRangePicker = lazy(() => import("../DateRangePicker/DateRange"));
 const DataTable = lazy(() => import("../Table/Table"));
@@ -20,6 +21,8 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const isLoading = userData && userData.length === 0;
   const ITEM_PER_PAGE = 10;
+
+  const { width, height } = useWindowSize();
 
   useEffect(() => {
     async function fetchData() {
@@ -111,6 +114,10 @@ const Home = () => {
         </div>
       </div>
 
+      <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", flexDirection: "column", width: "100%", maxWidth: "200px", gap: "10px", left: "20px", position: "relative" }}>
+        <div>{`Window Width ${width ?? 0}`}</div>
+        <div>{`Window Height ${height ?? 0}`}</div>
+      </div>
       <div className="item">
         <div className="sub-item">
           <div className="item-text">
