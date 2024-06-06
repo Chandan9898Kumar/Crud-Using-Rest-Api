@@ -1,7 +1,7 @@
 import React, { useState, memo } from "react";
 import "./dragDropTwo.css";
+import ToolTip from "../../Common/ToolTip/ToolTip";
 const DragDropTwo = () => {
-  
   const [tasks, setTasks] = useState([
     { name: "STORY-4513: Add tooltip", category: "inProgress", bgcolor: "lightblue" },
     {
@@ -72,16 +72,20 @@ const DragDropTwo = () => {
             onDrop(e, "inProgress");
           }}
         >
-          <div className="task-header">
-            In-PROGRESS <span>{getAllTasks().inProgress.length}</span>
-          </div>
+          <ToolTip content={`Total ${getAllTasks().inProgress.length} items are in Progress `} direction="left">
+            <div className="task-header">
+              In-PROGRESS <span>{getAllTasks().inProgress.length}</span>
+            </div>
+          </ToolTip>
           {getAllTasks().inProgress}
         </div>
 
         <div className="draggableElement" onDragOver={(e) => e.preventDefault()} onDrop={(e) => onDrop(e, "complete")}>
-          <div className="task-header">
-            COMPLETED <span>{getAllTasks().complete.length}</span>
-          </div>
+          <ToolTip content={`Total ${getAllTasks().complete.length} items are COMPLETED `} direction="right">
+            <div className="task-header">
+              COMPLETED <span>{getAllTasks().complete.length}</span>
+            </div>
+          </ToolTip>
           {getAllTasks().complete}
         </div>
       </div>
