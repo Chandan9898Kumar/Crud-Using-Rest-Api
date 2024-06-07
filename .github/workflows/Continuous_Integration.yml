@@ -46,10 +46,10 @@ jobs:
 
       # we upload the artifact to the runner using the command uses: actions/upload-artifact@v3
       # Finally, we specify the path to the build using path: ./dist ( dist is the default build output location for apps built with Vite)
-      - name: Build Project
-        run: npm run build
-      - name: Upload artifact to enable deployment
-        uses: actions/upload-artifact@v3
-        with:
-          name: production-files
-          path: ./dist
+      # - name: Build Project
+      #   run: npm run build
+      # - name: Upload artifact to enable deployment
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: production-files
+      #     path: ./dist
