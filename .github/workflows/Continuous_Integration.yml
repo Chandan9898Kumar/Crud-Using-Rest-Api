@@ -2,10 +2,16 @@ name: Continuous Integration (CI)
 
 run-name: ${{github.actor}} is testing out GitHub Actions.
 
+# workflow to run when a push happens to the main/other branch, and also when a pull request is opened or changed.
 on:
   push:
     branches:
       - features
+
+#  CANCEL PREVIOUS RUNS : For CI runs that take a couple of minutes it might be a good idea to cancel previous CI runs. With GitHub actions we can configure this by using the "concurrency" option, and group the pipeline by "workflow" and "ref".
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -14,6 +20,7 @@ jobs:
     steps:
       - name: Checkout to the repository
         uses: actions/checkout@v2
+
       - name: Setup Node.js Environment
         uses: actions/setup-node@v2-beta
         with:
@@ -24,10 +31,9 @@ jobs:
 
       - name: Run test cases
         run: npm run test
-      
+
       - name: check Code coverage
         run: npm test -- --coverage
-
 
       - name: Check code linting
         run: npm run lint

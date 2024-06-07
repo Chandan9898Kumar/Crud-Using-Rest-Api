@@ -59,33 +59,142 @@ Solution :-
    OR
    b `   $env:NODE_OPTIONS="--max-old-space-size=8192"   `
 
-
-
-
 ### Best Practices React
 
 1. `prop-types`
-Using 'prop-types' to document and validate the types of props passed to a component helps prevent errors. Prop types help to ensure that the correct data types are being passed into your components, reducing the likelihood of runtime errors. Prop types serve as documentation for your components, making it clear what types of data each component expects and what the component does with that data. They can help to identify issues with your code by providing helpful error messages when an incorrect data type is passed to a component.
+   Using 'prop-types' to document and validate the types of props passed to a component helps prevent errors. Prop types help to ensure that the correct data types are being passed into your components, reducing the likelihood of runtime errors. Prop types serve as documentation for your components, making it clear what types of data each component expects and what the component does with that data. They can help to identify issues with your code by providing helpful error messages when an incorrect data type is passed to a component.
 
 Using prop types can help to facilitate collaboration between developers by making it clear what data is expected by each component and reducing confusion about how to use the component. Using prop types can improve the overall quality of your code by reducing the likelihood of runtime errors and making it more maintainable and readable.
-
 
 ### Error In Webpack
 
 Module not found: Error: Can't resolve './App' in '/home/user/Desktop/WebDev/React/temp/merntemplate/src'
 Did you mean 'App.js'?
 BREAKING CHANGE: The request './App' failed to resolve only because it was resolved as fully specified
-(probably because the origin is strict EcmaScript Module, e. g. a module with javascript mimetype, a '*.mjs' file, or a '*.js' file where the package.json contains '"type": "module"').
+(probably because the origin is strict EcmaScript Module, e. g. a module with javascript mimetype, a '_.mjs' file, or a '_.js' file where the package.json contains '"type": "module"').
 The extension in the request is mandatory for it to be fully specified.
 Add the extension to the request.
 
 ` Solution : In webPack Rules write this.`
 {
-    test: /\.m?js/,
-    resolve: {
-      fullySpecified: false,
-    },
+test: /\.m?js/,
+resolve: {
+fullySpecified: false,
+},
 }
 
+### What is continuous integration (CI)?
 
-### CI/CD
+CI is a practice where developers merge all their code changes into a central repository early and often. It is the use of automated tools to test each change you merge, insisting on the new code’s correctness before integration.
+
+### What problem does CI solve?
+
+To summarize, the objective of CI is to help in the early detection and resolution of bugs, increase code quality, and ensure the code remains stable.
+
+### What is continuous delivery?
+
+1. Continuous delivery (CD) is a practice where code changes are automatically built, tested, and released to the production environment. It ensures that software can be released frequently with little resistance.
+
+2. CD is an extension of CI, it automates the deployment process by ensuring all code changes are deployed to a testing environment and or a production environment after the build stage.
+
+`You can create multiple workflows in your repository. Below are examples of workflows you can create in GitHub Actions :`
+
+1. Build workflow: This helps us build our code from the source ensuring the code works well on all platforms and environments
+2. Test workflow: This runs tests (unit and integrated) on every pull request to your repository ensuring the code is bug-free
+3. Deploy workflow: This helps developers to deploy code to a production environment.
+4. Notification workflow: This is used to send a notification when an event occurs in a repository.
+
+### In summary, using GitHub Actions developers can create a CI/CD pipeline to automate the software development lifecycle workflows.
+
+- It covers a couple of stages:
+
+1. `Source stage`: At this stage, you develop or implement the required features using version control software like Git.
+2. `Build Stage`: This step put together the source code with all its dependencies into an artifact (executable format)
+3. `Test stage`: At this stage, you integrate automated testing to validate the quality of the code, and detect and fix bugs.
+   Various tests can be executed at this stage, once the code passes the tests, it is ready to be deployed.
+4. `Deployment`: The final stage is to automatically deploy the app to the staging or production environment.
+
+### Constituent of GitHub Action workflow file
+
+1. Central to GitHub Actions are workflows. You can set up a workflow to be activated when an event occurs in your repository.
+2. To run the workflow, the triggers need to be defined. workflow to run when a push happens to the main/other branch, and also when a pull request is opened or changed.
+3. Below is an example of a workflow file. We will use this sample to explore the constituent of a workflow flow.
+
+```ts
+name: learn-github-actions
+on: [push]
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: npm i
+      - run: npm run build
+      - run: npm run test
+
+```
+
+`name:`
+This represents the name of your workflow. When set, GitHub will display the name of the workflow in the "Actions" tab of your repository.
+
+`on:`
+The on will automatically activate the workflow based on the specified events. You can specify single or multiple events to trigger a workflow.
+
+- The syntax is as below:
+
+```ts
+on: event; // for a single event
+on: [event1, event2]; // for multiple events
+```
+
+- For example:
+
+1. on: delete will run a workflow when the delete event occurs in your repository.
+2. on: push will run a workflow when you push code to the repository.
+3. on: [push, fork] will run a workflow when a push is made to any branch in the repository or when someone forks the repository.
+
+`jobs:`
+
+- jobs are the building blocks of the workflows. It represents a set of executable steps. Each job consists:
+
+1. a name
+2. a runner
+3. set of step,
+
+- The name should correspond with your objective. In the code snippet below, we define a job named build-test.
+
+```ts
+jobs: build - test;
+```
+
+`runs-on`
+The runs-on represents a runner. A runner is a virtual server hosted by GitHub that runs your workflows when they are triggered by an event. You can set up your job to run on Ubuntu Linux, Microsoft Windows, and macOS virtual machines.
+
+- In this example, the code runs on the latest version of the Ubuntu Linux virtual machine.
+
+```ts
+runs-on: ubuntu-latest
+```
+
+`steps:`
+
+- The steps: contains all the processes that will run the job. In each step, you can run an action or script. Use the uses and run keyword to specify an action or script to run respectively.
+
+`uses:`
+
+1. Specify the uses keywords when there is an action to run. An action is a custom application for the GitHub Actions platform that performs a complex but frequently repeated task.
+2. For instance, uses: actions/checkout@v3 will run version 3 (v3) of the actions/checkout application. This checks out your repository onto the specified runner (virtual machine).
+3. Assuming you want to install Node.js on the runner, you will the action: uses: actions/setup-node@v3
+
+`run:`
+
+- The run keyword executes a command on the runner. In the code snippet below, we are running npm i to install dependencies defined in our package.json on the runner.
+
+You can run npm run build and npm run test to build and test the app on the virtual machine.
+
+- run: npm i
+- run: npm run build
+- run: npm run test
