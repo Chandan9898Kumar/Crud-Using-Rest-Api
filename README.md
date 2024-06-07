@@ -59,33 +59,51 @@ Solution :-
    OR
    b `   $env:NODE_OPTIONS="--max-old-space-size=8192"   `
 
-
-
-
 ### Best Practices React
 
 1. `prop-types`
-Using 'prop-types' to document and validate the types of props passed to a component helps prevent errors. Prop types help to ensure that the correct data types are being passed into your components, reducing the likelihood of runtime errors. Prop types serve as documentation for your components, making it clear what types of data each component expects and what the component does with that data. They can help to identify issues with your code by providing helpful error messages when an incorrect data type is passed to a component.
+   Using 'prop-types' to document and validate the types of props passed to a component helps prevent errors. Prop types help to ensure that the correct data types are being passed into your components, reducing the likelihood of runtime errors. Prop types serve as documentation for your components, making it clear what types of data each component expects and what the component does with that data. They can help to identify issues with your code by providing helpful error messages when an incorrect data type is passed to a component.
 
 Using prop types can help to facilitate collaboration between developers by making it clear what data is expected by each component and reducing confusion about how to use the component. Using prop types can improve the overall quality of your code by reducing the likelihood of runtime errors and making it more maintainable and readable.
-
 
 ### Error In Webpack
 
 Module not found: Error: Can't resolve './App' in '/home/user/Desktop/WebDev/React/temp/merntemplate/src'
 Did you mean 'App.js'?
 BREAKING CHANGE: The request './App' failed to resolve only because it was resolved as fully specified
-(probably because the origin is strict EcmaScript Module, e. g. a module with javascript mimetype, a '*.mjs' file, or a '*.js' file where the package.json contains '"type": "module"').
+(probably because the origin is strict EcmaScript Module, e. g. a module with javascript mimetype, a '_.mjs' file, or a '_.js' file where the package.json contains '"type": "module"').
 The extension in the request is mandatory for it to be fully specified.
 Add the extension to the request.
 
 ` Solution : In webPack Rules write this.`
 {
-    test: /\.m?js/,
-    resolve: {
-      fullySpecified: false,
-    },
+test: /\.m?js/,
+resolve: {
+fullySpecified: false,
+},
 }
 
+### CI/CD in GitHub Actions
 
-### CI/CD
+- DECIDE WHEN THE WORKFLOW IS RUN.
+
+To run the workflow, the triggers need to be defined. workflow to run when a push happens to the main/other branch, and also when a pull request is opened or changed.
+
+```ts
+name: ci;
+on: push: branches: -"main";
+pull_request: {
+}
+```
+
+- THE TASKS OF A WORKFLOW link
+
+Next, we need to define the tasks of the workflow. This is done by adding one or more jobs, which includes the steps that are executed.
+
+For a simple CI/CD pipeline, I prefer to just stick to one job because it's simpler. If you're working on a project that includes multiple tasks, it might be better to define multiple jobs as these are being run in parallel and thus will take less time to run.
+
+A job needs an environment to run on (runs-on), and it includes the steps that need to be carried out. A workflow of a Node.js project might look like the following workflow, that builds, tests, and releases the project.
+
+```ts
+
+```
