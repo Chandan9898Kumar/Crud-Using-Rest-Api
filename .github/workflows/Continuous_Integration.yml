@@ -8,6 +8,7 @@ on:
     branches:
       - features
 
+#  CANCEL PREVIOUS RUNS : For CI runs that take a couple of minutes it might be a good idea to cancel previous CI runs. With GitHub actions we can configure this by using the "concurrency" option, and group the pipeline by "workflow" and "ref".
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -30,17 +31,15 @@ jobs:
 
       - name: Run test cases
         run: npm run test
-      
+
       - name: check Code coverage
         run: npm test -- --coverage
-
 
       - name: Check code linting
         run: npm run lint
 
       - name: build
-        run: npm run build
-
+        run: npm run winBuild
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
