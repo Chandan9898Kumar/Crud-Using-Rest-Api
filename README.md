@@ -84,21 +84,18 @@ fullySpecified: false,
 }
 
 ### What is continuous integration (CI)?
+
 CI is a practice where developers merge all their code changes into a central repository early and often. It is the use of automated tools to test each change you merge, insisting on the new code’s correctness before integration.
 
 ### What problem does CI solve?
+
 To summarize, the objective of CI is to help in the early detection and resolution of bugs, increase code quality, and ensure the code remains stable.
 
-- DECIDE WHEN THE WORKFLOW IS RUN.
+### What is continuous delivery?
 
-To run the workflow, the triggers need to be defined. workflow to run when a push happens to the main/other branch, and also when a pull request is opened or changed.
+1. Continuous delivery (CD) is a practice where code changes are automatically built, tested, and released to the production environment. It ensures that software can be released frequently with little resistance.
 
-```ts
-name: ci;
-on: push: branches: -"main";
-pull_request: {
-}
-```
+2. CD is an extension of CI, it automates the deployment process by ensuring all code changes are deployed to a testing environment and or a production environment after the build stage.
 
 `You can create multiple workflows in your repository. Below are examples of workflows you can create in GitHub Actions :`
 
@@ -116,3 +113,26 @@ pull_request: {
 3. `Test stage`: At this stage, you integrate automated testing to validate the quality of the code, and detect and fix bugs.
    Various tests can be executed at this stage, once the code passes the tests, it is ready to be deployed.
 4. `Deployment`: The final stage is to automatically deploy the app to the staging or production environment.
+
+### Constituent of GitHub Action workflow file
+
+1. Central to GitHub Actions are workflows. You can set up a workflow to be activated when an event occurs in your repository.
+2. To run the workflow, the triggers need to be defined. workflow to run when a push happens to the main/other branch, and also when a pull request is opened or changed.
+3. Below is an example of a workflow file. We will use this sample to explore the constituent of a workflow flow.
+
+```ts
+name: learn-github-actions
+on: [push]
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: npm i
+      - run: npm run build
+      - run: npm run test
+
+```

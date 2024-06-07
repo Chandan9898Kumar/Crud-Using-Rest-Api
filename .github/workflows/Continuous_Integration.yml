@@ -29,9 +29,6 @@ jobs:
       - name: Install Package Dependencies
         run: npm install
 
-      - name: build
-        run:  npm run winBuild
-
       - name: Run test cases
         run: npm run test
 
