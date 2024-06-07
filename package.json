@@ -31,7 +31,8 @@
     "build": "cross-env NODE_ENV=production react-scripts build  webpack && GENERATE_SOURCEMAP=false ",
     "winBuild": "cross-env NODE_ENV=production set \"GENERATE_SOURCEMAP=false\" && react-scripts build",
     "test": "jest --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src"
   },
   "eslintConfig": {
     "extends": [
