@@ -1,4 +1,6 @@
-//   Creates a stateful value that is persisted to localStorage, and a function to update it.
+//          1. Creates a stateful value that is persisted to localStorage, and a function to update it.
+//          2. The localStorage Object which stores data with no expiration date.
+//          3. The data is not deleted when the browser is closed, and are available in future sessions
 
 import { useState, useCallback } from "react";
 const useLocalStorage = (key, initialValue = null) => {
@@ -66,7 +68,6 @@ export default useLocalStorage;
 }
  */
 // ========================================================================================================================================
-
 
 //                      2nd  example
 
