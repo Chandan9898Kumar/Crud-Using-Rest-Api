@@ -1,3 +1,5 @@
+[![Continuous Integration (CI)](https://github.com/Chandan9898Kumar/Crud-Using-Rest-Api/actions/workflows/Continuous_Integration.yml/badge.svg?branch=features)](https://github.com/Chandan9898Kumar/Crud-Using-Rest-Api/actions/workflows/Continuous_Integration.yml)
+
 # Getting Started with Create React App And Its Dependencies.
 
 #### React
