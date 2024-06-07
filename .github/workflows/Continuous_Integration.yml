@@ -42,20 +42,20 @@ jobs:
           name: production-files
           path: ./build
 
+      - name: Check code linting
+        run: npm run lint
+
       - name: Run test cases
         run: npm run test
 
       - name: check Code coverage
         run: npm test -- --coverage
 
-      - name: Check code linting
-        run: npm run lint
-
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
         with:
           name: code-coverage-report
-          path: output/test/code-coverage.html
+          path: ./coverage
 
       # we upload the artifact to the runner using the command uses: actions/upload-artifact@v3
       # Finally, we specify the path to the build using path: ./dist ( dist is the default build output location for apps built with Vite)
