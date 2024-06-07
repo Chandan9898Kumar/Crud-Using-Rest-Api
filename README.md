@@ -136,3 +136,65 @@ jobs:
       - run: npm run test
 
 ```
+
+`name:`
+This represents the name of your workflow. When set, GitHub will display the name of the workflow in the "Actions" tab of your repository.
+
+`on:`
+The on will automatically activate the workflow based on the specified events. You can specify single or multiple events to trigger a workflow.
+
+- The syntax is as below:
+
+```ts
+on: event; // for a single event
+on: [event1, event2]; // for multiple events
+```
+
+- For example:
+
+1. on: delete will run a workflow when the delete event occurs in your repository.
+2. on: push will run a workflow when you push code to the repository.
+3. on: [push, fork] will run a workflow when a push is made to any branch in the repository or when someone forks the repository.
+
+`jobs:`
+
+- jobs are the building blocks of the workflows. It represents a set of executable steps. Each job consists:
+
+1. a name
+2. a runner
+3. set of step,
+
+- The name should correspond with your objective. In the code snippet below, we define a job named build-test.
+
+```ts
+jobs: build - test;
+```
+
+`runs-on`
+The runs-on represents a runner. A runner is a virtual server hosted by GitHub that runs your workflows when they are triggered by an event. You can set up your job to run on Ubuntu Linux, Microsoft Windows, and macOS virtual machines.
+
+- In this example, the code runs on the latest version of the Ubuntu Linux virtual machine.
+
+```ts
+runs-on: ubuntu-latest
+```
+
+`steps:`
+
+- The steps: contains all the processes that will run the job. In each step, you can run an action or script. Use the uses and run keyword to specify an action or script to run respectively.
+
+`uses:`
+
+1. Specify the uses keywords when there is an action to run. An action is a custom application for the GitHub Actions platform that performs a complex but frequently repeated task.
+2. For instance, uses: actions/checkout@v3 will run version 3 (v3) of the actions/checkout application. This checks out your repository onto the specified runner (virtual machine).
+3. Assuming you want to install Node.js on the runner, you will the action: uses: actions/setup-node@v3
+
+`run:`
+
+- The run keyword executes a command on the runner. In the code snippet below, we are running npm i to install dependencies defined in our package.json on the runner.
+
+You can run npm run build and npm run test to build and test the app on the virtual machine.
+
+- run: npm i
+- run: npm run build
+- run: npm run test
