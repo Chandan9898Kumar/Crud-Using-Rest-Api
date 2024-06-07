@@ -96,16 +96,19 @@ pull_request: {
 }
 ```
 
-- THE TASKS OF A WORKFLOW link
+`You can create multiple workflows in your repository. Below are examples of workflows you can create in GitHub Actions :`
 
-Next, we need to define the tasks of the workflow. This is done by adding one or more jobs, which includes the steps that are executed.
+1. Build workflow: This helps us build our code from the source ensuring the code works well on all platforms and environments
+2. Test workflow: This runs tests (unit and integrated) on every pull request to your repository ensuring the code is bug-free
+3. Deploy workflow: This helps developers to deploy code to a production environment.
+4. Notification workflow: This is used to send a notification when an event occurs in a repository.
 
-For a simple CI/CD pipeline, I prefer to just stick to one job because it's simpler. If you're working on a project that includes multiple tasks, it might be better to define multiple jobs as these are being run in parallel and thus will take less time to run.
+### In summary, using GitHub Actions developers can create a CI/CD pipeline to automate the software development lifecycle workflows.
 
-A job needs an environment to run on (runs-on), and it includes the steps that need to be carried out. A workflow of a Node.js project might look like the following workflow, that builds, tests, and releases the project.
+- It covers a couple of stages:
 
-```ts
-
-
-
-```
+1. `Source stage`: At this stage, you develop or implement the required features using version control software like Git.
+2. `Build Stage`:  This step put together the source code with all its dependencies into an artifact (executable format)
+3. `Test stage`:   At this stage, you integrate automated testing to validate the quality of the code, and detect and fix bugs.
+                   Various tests can be executed at this stage, once the code passes the tests, it is ready to be deployed.
+4. `Deployment`:   The final stage is to automatically deploy the app to the staging or production environment.
