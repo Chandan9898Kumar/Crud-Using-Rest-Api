@@ -198,3 +198,165 @@ You can run npm run build and npm run test to build and test the app on the virt
 - run: npm i
 - run: npm run build
 - run: npm run test
+
+### Complete Example : The workflow for the build is as below:
+
+```ts
+name: DevOps-GitHibActions
+on: push
+jobs:
+  # Build Job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - name: Install Dependencies
+        run: npm install
+      - name: Build Project
+        run: npm run build
+      - name: Upload artifact to enable deployment
+        uses: actions/upload-artifact@v3
+        with:
+          name: production-files
+          path: ./dist
+```
+
+`Let's examine the stages:`
+
+1. First, we specify the name of the workflow as DevOps-GitHibActions (you can use any name)
+2. The on:push event will trigger the workflow whenever we push code to the repository
+3. We specify the job to run as build
+4. runs-on: the job will run on Ubuntu virtual machine hosted by GitHub
+5. steps : This details how to run the job :
+   `A.` To begin, we check out the source code on the virtual machine using the actions/checkout@v3
+   `B.` Next, we installed Node on the virtual machine using actions/setup-node@v3 , and specify which version of node to install using with: node-version: 18.x
+   `C.` We installed our NPM dependencies located in the package.json file on the virtual machine using the command run: npm install
+   `D.` We build our artifact using the command run: npm run build
+   `E.` Next, we upload the artifact to the runner using the command uses: actions/upload-artifact@v3
+   `F.` Finally, we specify the path to the build using path: ./dist ( dist is the default build output location for apps built with Vite)
+
+### The next job is to deploy the app to GitHub pages.
+
+- The workflow is captured below:
+
+```ts
+// initial code of build (above put here at top) remains the same, just add the following
+ # Deploy Job
+  deploy:
+    # Add a dependency to the build job
+    needs: build
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: production-files
+          path: ./dist
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.CI_CD_TOKEN }}
+          publish_dir: ./dist
+
+```
+
+`Let's examine the stages:`
+
+1. deploy: signifies the name of the job
+2. Before deploying we will need the build artifacts. This is achieved by adding needs: build
+3. Next, we specify the virtual machine to run on using runs-on: ubuntu-latest
+4. steps to deploy the app :
+   `A.`First, we download the build artifact using uses: actions/download-artifact@v3.
+   `B.`We also specify the path to the build using path: ./dist
+   `C.`To deploy the app to GitHub pages, we will use peaceiris/actions-gh-pages@v3
+   `D.`Now, at the github_token section, we will need the personal access token to enable GitHub pages to deploy our app from the repository. We will indicate the secret name we set up earlier. (My secret was named CI_CD_TOKEN, yours will be different). The format is : github_token: ${{ secrets.YOUR_SECRET_NAME }}
+   `E. `Finally, we specify the directory to publish the app using publish_dir: ./dist
+
+- NOW
+
+### Updating the package.json and vite.config.js
+
+- Anytime you push code to your repository, the workflow will run, and the app will be built and deployed. However, if you visit your app on GitHub pages, it will display a blank page.
+
+- To fix this issue, go to your local repository:
+
+1. Add the homepage of the website to the package.json file
+2. Add the base URL to the vite.config.js file.
+
+By default, a build is produced assuming your app is hosted at the server root. Because our app is located in a sub-directory of our GitHub domain, we specify the homepage in the package.json file
+
+```ts
+Add the snippet below to the package.json file
+  "homepage": "https://{YOURNAME}.github.io/ci-cd-testing/"
+// You can get the URL from your GitHub pages section
+```
+
+Next, locate the vite.config.js file in your local repository. Add the base section to the file
+
+```ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig({
+  plugins: [react()],
+  base: "/ci-cd-testing/", // Add only this section
+});
+```
+
+# Summary
+
+1. CI is a practice where developers merge all their code changes into a central repository early and often
+2. Continuous delivery (CD) is a practice where code changes are automatically built, tested, and released to the production environment. It ensures that software can be released frequently with little resistance.
+3. Setting up a CI/CD tool helps the team to focus on writing code and committing to the shared repository.
+4. GitHub Actions is a CI/CD tool that handles the automatic building, testing, and deploying of code
+5. This can save your team time and reduce the risk of errors in your software.
+
+### ALL CODE TOGETHER
+
+```ts
+name: DevOps-GitHibActions
+on: push
+jobs:
+  # Build Job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      - name: Install Dependencies
+        run: npm install
+      - name: Build Project
+        run: npm run build
+      - name: Upload artifact to enable deployment
+        uses: actions/upload-artifact@v3
+        with:
+          name: production-files
+          path: ./dist
+  # Deploy Job
+  deploy:
+    # Add a dependency to the build job
+    needs: build
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: production-files
+          path: ./dist
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.CI_CD_TOKEN }}
+          publish_dir: ./dist
+```
