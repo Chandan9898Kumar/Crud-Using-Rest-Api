@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "cross-env NODE_ENV=development NODE_OPTIONS=--trace-deprecation webpack-dev-server",
-    "build": "cross-env NODE_ENV=production CI=false && react-scripts build  webpack && GENERATE_SOURCEMAP=false ",
+    "build": "cross-env NODE_ENV=production CI=false && react-scripts build  webpack",
     "winBuild": "cross-env NODE_ENV=production set \"GENERATE_SOURCEMAP=false\"  \"CI=false\" && react-scripts build",
     "test": "jest --env=jsdom",
     "eject": "react-scripts eject",
