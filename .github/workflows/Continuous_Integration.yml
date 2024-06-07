@@ -29,6 +29,9 @@ jobs:
       - name: Install Package Dependencies
         run: npm install
 
+      - name: build
+        run: npm run winBuild
+
       - name: Run test cases
         run: npm run test
 
@@ -37,9 +40,6 @@ jobs:
 
       - name: Check code linting
         run: npm run lint
-
-      - name: build
-        run: npm run winBuild
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v3
