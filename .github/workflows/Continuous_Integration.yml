@@ -13,6 +13,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  CI: false
+
 jobs:
   build:
     runs-on: windows-latest
@@ -29,12 +32,9 @@ jobs:
       - name: Install Package Dependencies
         run: npm install
 
-        env:
-          CI: false
-
       - name: Build Project
         run: npm run build
-        
+
       - name: Upload artifact to enable deployment
         uses: actions/upload-artifact@v3
         with:
