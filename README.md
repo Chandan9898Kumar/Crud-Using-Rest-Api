@@ -93,7 +93,7 @@ To summarize, the objective of CI is to help in the early detection and resoluti
 
 ### What is continuous delivery?
 
-1. Continuous delivery (CD) is a practice where code changes are automatically built, tested, and released to the production environment. It ensures that software can be released frequently with little resistance.
+1. Continuous delivery (CD) is a practice where code changes are automatically built, tested, and deployed to the production environment. It ensures that software can be released frequently with little resistance. However, it doesn’t necessarily mean it’s deployed immediately. Continuous Deployment, on the other hand, is when changes are deployed to production as soon as they pass the automated tests.
 
 2. CD is an extension of CI, it automates the deployment process by ensuring all code changes are deployed to a testing environment and or a production environment after the build stage.
 
@@ -360,3 +360,7 @@ jobs:
           github_token: ${{ secrets.CI_CD_TOKEN }}
           publish_dir: ./dist
 ```
+
+# Explain the concept of “staging” and “production” environments?
+
+Staging and production environments are crucial in CI/CD. `Staging` is a replica of your production environment where you test changes before deploying to production. It helps catch issues early. The `production`environment is where your live app resides and is accessible to users.
