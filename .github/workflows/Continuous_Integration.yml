@@ -1,0 +1,39 @@
+name: Continuous Integration (CI)
+
+run-name: ${{github.actor}} is testing out GitHub Actions.
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout to the repository
+        uses: actions/checkout@v2
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: 14
+
+      - name: Install Package Dependencies
+        run: npm install
+
+      - name: Run test cases
+        run: npm run test
+      
+      - name: check Code coverage
+        run: npm test -- --coverage
+
+
+      - name: Check code linting
+        run: npm run lint
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: output/test/code-coverage.html
