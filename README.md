@@ -83,7 +83,11 @@ fullySpecified: false,
 },
 }
 
-### CI/CD in GitHub Actions
+### What is continuous integration (CI)?
+CI is a practice where developers merge all their code changes into a central repository early and often. It is the use of automated tools to test each change you merge, insisting on the new code’s correctness before integration.
+
+### What problem does CI solve?
+To summarize, the objective of CI is to help in the early detection and resolution of bugs, increase code quality, and ensure the code remains stable.
 
 - DECIDE WHEN THE WORKFLOW IS RUN.
 
@@ -108,7 +112,7 @@ pull_request: {
 - It covers a couple of stages:
 
 1. `Source stage`: At this stage, you develop or implement the required features using version control software like Git.
-2. `Build Stage`:  This step put together the source code with all its dependencies into an artifact (executable format)
-3. `Test stage`:   At this stage, you integrate automated testing to validate the quality of the code, and detect and fix bugs.
-                   Various tests can be executed at this stage, once the code passes the tests, it is ready to be deployed.
-4. `Deployment`:   The final stage is to automatically deploy the app to the staging or production environment.
+2. `Build Stage`: This step put together the source code with all its dependencies into an artifact (executable format)
+3. `Test stage`: At this stage, you integrate automated testing to validate the quality of the code, and detect and fix bugs.
+   Various tests can be executed at this stage, once the code passes the tests, it is ready to be deployed.
+4. `Deployment`: The final stage is to automatically deploy the app to the staging or production environment.

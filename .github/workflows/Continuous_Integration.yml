@@ -30,7 +30,7 @@ jobs:
         run: npm install
 
       - name: build
-        run: CI=false npm run winBuild
+        run:  npm run winBuild
 
       - name: Run test cases
         run: npm run test
