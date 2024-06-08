@@ -21,14 +21,22 @@ jobs:
   build:
     runs-on: windows-latest
 
+    #  RUNNING ON MULTIPLE ENVIRONMENTS link: strategy matrix syntax.
+    #  specified the different versions as an array. This array is assigned to a custom variable, which is used in the workflow.
+    #  All the steps in the job are run for every possible combination of the matrix. here we have given [14.x] so it will run 1 time,[12.x,14.x] then it will run 2 times
+    #   one for 12.x and other for 14.x
+    strategy:
+      matrix:
+        node-version: [14.x]
+
     steps:
       - name: Checkout to the repository
         uses: actions/checkout@v2
 
-      - name: Setup Node.js Environment
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2-beta
         with:
-          node-version: 14
+          node-version: ${{ matrix.node-version }}
 
       - name: Install Package Dependencies
         run: npm install
