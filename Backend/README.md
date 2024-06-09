@@ -172,3 +172,132 @@ Beautifully explicit, isn’t it?
 - There are two main scenarios which I find 202 Accepted to be especially suitable:
   `A. `If the resource will be created as a result of future processing — example: After a job/process has finished.
   `B. `If the resource already existed in some way, but this should not be interpreted as an error.
+
+### Understanding Express Rate Limit Middleware.
+
+1. Installation:
+
+```ts
+   npm install express-rate-limit
+```
+
+2. Basic Setup:
+
+```ts
+const rateLimit = require("express-rate-limit");
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+});
+
+app.use(limiter);
+```
+
+- Customizing:
+  `A.` Message: Customize the response message:
+
+```ts
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: "Too many requests, please try again later.",
+});
+```
+
+`B.` Handlers: Add custom handlers for logging or other actions:
+
+```ts
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  handler: (req, res, next) => {
+    res.status(429).send("Too many requests, please try again later.");
+  },
+});
+```
+
+### Understanding Express Slow Down Middleware .
+
+Express Slow Down is another middleware that slows down responses instead of blocking them outright, which can deter abuse.
+
+1. Installation:
+
+```ts
+  npm install express-slow-down
+```
+
+2. Basic Setup:
+
+```ts
+const slowDown = require("express-slow-down");
+
+const speedLimiter = slowDown({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  delayAfter: 100, // Allow 100 requests per 15 minutes, then...
+  delayMs: 500, // Begin adding 500ms of delay per request above 100
+});
+
+app.use(speedLimiter);
+```
+
+- Customizing::
+  `A.` Delay After: Adjust the delay threshold:
+
+```ts
+const speedLimiter = slowDown({
+  windowMs: 15 * 60 * 1000,
+  delayAfter: 50, // Start slowing down after 50 requests
+  delayMs: 1000, // 1 second delay per request after threshold
+});
+```
+
+`B.` Max Delay: Set a maximum delay:
+
+```ts
+const speedLimiter = slowDown({
+  windowMs: 15 * 60 * 1000,
+  delayAfter: 100,
+  delayMs: 500,
+  maxDelayMs: 5000, // Maximum delay of 5 seconds
+});
+```
+
+### Practical Uses and Examples .
+
+Combining rate limiting and slowing down requests can provide robust protection for your API:
+
+1. Combining Middlewares:
+
+`A.` Sequential Usage:
+
+```ts
+app.use(limiter);
+app.use(speedLimiter);
+```
+
+`B`. Example Endpoint:
+
+```ts
+app.get("/api", (req, res) => {
+  res.send("API response");
+});
+
+- Protecting Specific Routes:
+
+`A.` Apply middleware to specific routes:
+1. app.use('/api/', limiter, speedLimiter);
+
+`B`. Error Handling:
+1. Customize error responses for rate limiting:
+
+ app.use((err, req, res, next) => {
+   if (err instanceof rateLimit.RateLimitError) {
+     return res.status(429).json({ error: 'Rate limit exceeded' });
+   }
+   next(err);
+ });
+
+```
+
+<!--                                                                    OVER RATE LIMITING                            -->
