@@ -469,3 +469,57 @@ Let’s look at some common performance optimization techniques that you can ado
 2. Implement foolproof authentication and RBAC (Role-Based Access Control) mechanisms to protect your database resources from being accessed by unauthorized users. Your REST APIs are a gateway to your database, and you should ensure that all of your data is only accessed by users who are allowed to access it.
 
 3. Employ tools like Edge Stack as an API gateway solution for additional security features. It acts as a centralized entry point for all API traffic, enabling traffic encryption through SSL/TLS and offering protection against common attacks like DDoS (Distributed Denial-of-Service).
+
+# NOTE : By Integrate script called "dev" inside package.json:
+
+- The script makes sure that the development server restarts automatically when we make changes (thanks to nodemon).
+
+```ts
+"scripts": {
+    "dev": "nodemon src/index.js"
+  },
+```
+
+### Avoid verbs in endpoint names.
+
+It doesn't make much sense to use verbs inside your endpoints and is, in fact, pretty useless. Generally each URL should point towards a resource.Nothing more and nothing less.
+
+```ts
+// Current implementations (without verbs) . Good practice
+GET "/api/v1/workouts"
+GET "/api/v1/workouts/:workoutId"
+POST "/api/v1/workouts"
+PATCH "/api/v1/workouts/:workoutId"
+DELETE "/api/v1/workouts/:workoutId"
+
+// Implementation using verbs .  Wrong practice
+GET "/api/v1/getAllWorkouts"
+GET "/api/v1/getWorkoutById/:workoutId"
+CREATE "/api/v1/createWorkout"
+PATCH "/api/v1/updateWorkout/:workoutId"
+DELETE "/api/v1/deleteWorkout/:workoutId"
+
+```
+
+### Use data caching for performance improvements.
+
+- Using a data cache is also a great practice to improve the overall experience and performance of our API.
+
+- It makes a lot of sense to use a cache to serve data from, when the data is an often requested resource or/and querying that data from the database is a heavy lift and may take multiple seconds.
+
+- You can store this type of data inside your cache and serve it from there instead of going to the database every time to query the data.
+
+- `One important thing you have to keep in mind when serving data from a cache is that this data can become outdated.` So you have to make sure that the data inside the cache is always up to date.
+
+There are many different solutions out there :
+
+1. One appropriate example is to use `redis`.
+2. the express middleware `apicache`.
+
+- A few things you have to be aware of when using a cache:
+
+1. you always have to make sure that the data inside the cache is up to date because you don't want to serve outdated data.
+
+2. while the first request is being processed and the cache is about to be filled and more requests are coming in, you have to decide if you delay those other requests and serve the data from the cache or if they also receive data straight from the database like the first request.
+
+3. it's another component inside your infrastructure if you're choosing a distributed cache like Redis (so you have to ask yourself if it really makes sense to use it).

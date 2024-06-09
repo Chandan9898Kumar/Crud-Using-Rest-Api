@@ -11,3 +11,6 @@ moduleRouter.put("/customers/:id", controllers.updateCustomerDetails);
 // moduleRouter.delete("/customer", controllers.deleteAllCustomer);
 
 export default moduleRouter;
+
+
+//  NOTE : From this router component we passes requests to the corresponding controller.
