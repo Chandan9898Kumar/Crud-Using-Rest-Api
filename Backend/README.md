@@ -301,3 +301,171 @@ app.get("/api", (req, res) => {
 ```
 
 <!--                                                                    OVER RATE LIMITING                            -->
+
+“Application Programming Interface,” or API, refers to a communication channel between various software services. Applications that transmit requests and responses are called clients and servers, respectively.
+
+There are different types of API protocols:
+
+1. REST — relies on a client/server approach that separates the front and back ends of the API and provides considerable flexibility in development and implementation.
+2. RPC — The remote procedural call (RPC) protocol sends multiple parameters and receives results.
+3. SOAP — Supports a wide range of communication protocols found across the internet, such as HTTP, SMTP, and TCP.
+4. WebSocket — Provides a way to exchange data between browser and server via a persistent connection.
+
+- status codes:
+
+1. 200 for general success.
+2. 201 for successful creation.
+3. 202 for a successful request.
+4. 204 for no content.
+5. 307 for redirected content.
+6. 400 for bad requests.
+7. 401 for unauthorized requests.
+8. 403 for missing permissions.
+9. 404 for lacking resources.
+10. 5xx for internal errors.
+
+### Appropriate HTTP Method.
+
+1. GET requests are used to retrieve resources.
+2. PUT requests are typically employed for resource creation or replacement.
+3. POST requests are suitable for resource creation when the server assigns a unique identifier.
+4. PATCH requests allow for partial resource updates.
+5. DELETE requests, as the name implies, deletes the specified resource.
+
+Example :
+
+1. Retrieving a list of books: GET /api/books
+2. Creating a new book: POST /api/books
+3. Updating an existing book: PUT /api/books/{id}
+4. Deleting a book: DELETE /api/books/{id}
+
+```ts
+app.get("/api/books", (req, res) => {
+  // Retrieve and return a list of books
+});
+
+app.post("/api/books", (req, res) => {
+  // Create a new book
+});
+
+app.put("/api/books/:id", (req, res) => {
+  // Update the book with the specified ID
+});
+
+app.delete("/api/books/:id", (req, res) => {
+  // Delete the book with the specified ID
+});
+```
+
+### The Appropriate Request Headers for Authentication.
+
+- Request headers to provide a way to pass authentication information from the client to the server. By utilizing appropriate request headers, you can implement authentication mechanisms like API keys, JWT (JSON Web Tokens), OAuth, or other custom authentication schemes. Here are some recommended request headers to use:
+
+1. `Authorization header`: The Authorization header allows the client to include authentication credentials, such as tokens or API keys, in the request header. Here’s an example that uses the Bearer scheme to send the JWT after the scheme as authentication credentials.
+
+```ts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+```
+
+2. `API key header`: Another approach is using an x-api-key header to authenticate API requests. The client includes an API key, a unique identifier, in this header. The header carries the API key value, which is sent to the server for authentication.
+
+```ts
+x-api-key: ABCDEFG123456789
+```
+
+3. `Custom headers`: Depending on the authentication mechanism implemented, custom headers can pass authentication-related information.
+
+```ts
+X-Auth-Token: abcd12
+```
+
+### When to use Parameters vs. Query Parameters.
+
+- Web APIs often require you to work with additional information passed in the endpoint from the client. Understanding when to use `path parameters (e.g., /api/books/{id})` versus `query parameters (e.g., /api/books?category=fiction)` is essential, especially for API consumers.
+
+1. `Path parameters` are typically used to identify or retrieve a specific resource.
+
+2. `Query parameters` are more suitable for sorting the request data. You can also use it for filtering and pagination.
+
+`A. `Returning to our previous example of books API, we’ve used path parameters for deleting a book or updating a book information using the endpoint /api/books/{id}. Here, the path parameter is id, and its value is the unique book identifier.
+
+`B. `On the other hand, let’s say you wish to retrieve all the books that belong to a certain category. You can use query parameters to specify this filter, such as /api/books?category=fiction. Here, the query parameter is category, and its value is fiction.
+
+### Provide Informative and Actionable Error Messages.
+
+- A good API design ensures that your RESTful web services throw the correct error when needed. Having a robust error-handling mechanism aims to provide informative and actionable error messages.
+
+- You should wrap your code in Try-Catch blocks and return appropriate HTTP status codes, error payloads, and error messages that can be directly displayed to your users.
+
+- Consider the following API, which retrieves book information based on the path parameter id:
+
+```ts
+// Express.js example
+app.get("/api/books/:id", (req, res) => {
+  try {
+    const bookId = req.params.id;
+
+    // Retrieve book from the database
+    const book = database.getBookById(bookId);
+
+    // Check if the book exists
+    if (!book) {
+      // Return a 404 Not Found error
+      res.status(404).json({
+        error: "Book not found",
+      });
+      return;
+    }
+
+    // Return the book details
+    res.json(book);
+  } catch (error) {
+    // Handle any unexpected errors
+    console.error("Error occurred:", error);
+
+    // Return a generic 500 Internal Server Error with a meaningful message
+    res.status(500).json({
+      error: "An unexpected error occurred",
+    });
+  }
+});
+```
+
+- In the code snippet above, a 404 status is returned if the book doesn’t exist in the database. It also returns a 500 status with a generic error message if the API fails due to some other reason.
+
+### Versioning your REST APIs.
+
+- API versioning helps to easily manage changes and updates to an API while still maintaining compatibility with other versions of the APIs for clients. To version your APIs, you can assign unique identifiers or labels. Here are some common approaches to versioning your API:
+
+1. URL versioning: In this approach, the API version is included in the URL. For example, /api/v1/books indicate that this is version 1 of the API.
+2. Query parameter versioning: The version number is specified as a query parameter in the API request. For example, /api/books?version=1.
+3. Header versioning: The version number is a custom header in the API request. For example, Accept-Version: 1.
+4. Content negotiation versioning: The version is negotiated based on the Accept header or the media type of the request payload.
+
+- Versioning enables you to provide backward compatibility to your clients, facilitate the gradual adoption of changes for developers, and ensure stability throughout your various versions of APIs.
+
+### Adopt These Performance Optimization Techniques.
+
+- Performance is an essential factor in determining the end-user experience of your APIs.
+
+Let’s look at some common performance optimization techniques that you can adopt to create high-performing REST APIs:
+
+1. Use `caching mechanisms` to store frequently accessed data and reduce the load on the server. This can significantly improve response times when sending data between client and server and also reduce network traffic.
+
+2. Implement `pagination` to retrieve large datasets in smaller and more manageable chunks to ensure an optimized API design. By returning a limited number of results per page and providing navigation links, APIs can efficiently handle large amounts of data.
+
+3. Apply `compression techniques`, such as gzip, to reduce the size of data transferred between the client and server. This will improve response times for bandwidth-constrained environments and your application specific architectural constraints.
+
+4. `Leverage rate limiting and throttling mechanisms` to control the number of requests allowed from a particular client within a specific timeframe. This will prevent abuse and ensure fair usage of your REST API resources.
+
+### Apply These Security Best Practices.
+
+- Security is a critical aspect of developing any software. However, security is also a tricky subject. By addressing some common vulnerabilities and implementing robust security measures, you can protect your APIs and the sensitive data they handle.
+
+- Here are some security best practices that you should add to your REST APIs against some common vulnerabilities:
+
+1. Properly validate and sanitize user inputs received on the server side. Also, encode the API responses to prevent malicious code execution. Following this will protect your REST APIs against vulnerabilities like SQL injection and cross-site scripting (XSS).
+
+2. Implement foolproof authentication and RBAC (Role-Based Access Control) mechanisms to protect your database resources from being accessed by unauthorized users. Your REST APIs are a gateway to your database, and you should ensure that all of your data is only accessed by users who are allowed to access it.
+
+3. Employ tools like Edge Stack as an API gateway solution for additional security features. It acts as a centralized entry point for all API traffic, enabling traffic encryption through SSL/TLS and offering protection against common attacks like DDoS (Distributed Denial-of-Service).
