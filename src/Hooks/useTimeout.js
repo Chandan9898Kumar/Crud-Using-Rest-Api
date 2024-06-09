@@ -18,7 +18,7 @@ const useTimeout = (callback, delay) => {
       savedCallback.current();
     };
     if (delay !== null) {
-      let id = setTimeout(tick, delay);
+      const id = setTimeout(tick, delay);
       return () => clearTimeout(id);
     }
   }, [delay]);
@@ -27,13 +27,13 @@ const useTimeout = (callback, delay) => {
 export default useTimeout;
 
 //       Example to use this hook
-const OneSecondTimer = (props) => {
-  const [seconds, setSeconds] = React.useState(0);
-  useTimeout(() => {
-    setSeconds(seconds + 1);
-  }, 1000);
+// const OneSecondTimer = (props) => {
+//   const [seconds, setSeconds] = React.useState(0);
+//   useTimeout(() => {
+//     setSeconds(seconds + 1);
+//   }, 1000);
 
-  return <p>{seconds}</p>;
-};
+//   return <p>{seconds}</p>;
+// };
 
-ReactDOM.createRoot(document.getElementById("root")).render(<OneSecondTimer />);
+// ReactDOM.createRoot(document.getElementById("root")).render(<OneSecondTimer />);

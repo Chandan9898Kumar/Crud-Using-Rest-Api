@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import useThrottle from "./UseThrottle";
 
 const useWindowSize = () => {

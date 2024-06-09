@@ -1,8 +1,10 @@
 import React, { useState, useEffect, Suspense, lazy, memo, useMemo, useCallback } from "react";
+
 import "./home.css";
-import { HomeIcon, TableIcon } from "../Assets/SvgImage";
-import { Api } from "../Apis/Api";
 import PropTypes from "prop-types";
+
+import { Api } from "../Apis/Api";
+import { HomeIcon, TableIcon } from "../Assets/SvgImage";
 import LoadComponent from "../Common/LoadingComponent/LoadComponent";
 import useWindowSize from "../Hooks/UseWindowSize";
 const SearchFiled = lazy(() => import("../Common/SearchComponent/SearchField"));

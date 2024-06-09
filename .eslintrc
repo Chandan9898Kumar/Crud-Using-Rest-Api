@@ -51,7 +51,7 @@
         "args": "none"
       }
     ],
-    
+
     // best practices
     "curly": [1, "multi-line"],
     "default-case": 1,
@@ -162,7 +162,30 @@
     "no-sparse-arrays": "warn",
     "no-console": 1,
     "no-unexpected-multiline": "warn",
-    "no-var": "warn"
+    "no-var": "warn",
+    "import/order": [
+      1,
+      {
+        "groups": ["builtin", "external", "internal", ["parent", "sibling"]], // The groups sets the order intended for every group.
+
+        // pathGroups can group by path set by a pattern. In this case, I want to look for react import to be before any other import.
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        // pathGroupsExcludedImportTypes defines import types. "React" will be handled as other type so it can be separated for the other external packages.
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always", // newlines-between separates each group with a new line in between.
+        // alphabetize sort the order in which group will be sorted. I choose in ascending way and case sensitive.
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
   },
 
   "overrides": [
@@ -378,5 +401,6 @@
 //       ]
 //     }]
 //   }
+
 
 // }

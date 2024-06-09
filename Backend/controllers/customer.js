@@ -103,3 +103,7 @@ export const controllers = {
   createCustomer,
   updateCustomerDetails,
 };
+
+
+//  NOTE : HERE in controllers component :
+// Inside the Controller we'll be handling all stuff that is related to HTTP. That means we're dealing with requests and responses for our endpoints.

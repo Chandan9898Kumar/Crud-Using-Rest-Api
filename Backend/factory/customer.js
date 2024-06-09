@@ -22,3 +22,5 @@ const customerFactory = () => {
 export default customerFactory;
 
 //  Note : Here we don't need to make this factory component,we can directly send data from controllers as well.
+
+// NOTE: The whole business logic will be in the Factory/Service component/layer that exports certain services (methods) which are used by the controller.
