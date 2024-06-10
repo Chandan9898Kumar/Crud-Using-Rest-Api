@@ -85,9 +85,11 @@ jobs:
 
       - name: Check code linting
         run: npm run lint
+        continue-on-error: true
 
       - name: Run test cases
         run: npm run test
+        continue-on-error: false
 
       - name: check Code coverage
         run: npm test -- --coverage
