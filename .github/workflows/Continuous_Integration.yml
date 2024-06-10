@@ -30,6 +30,10 @@ jobs:
         node-version: [14.x]
 
     steps:
+      
+      - name: First Step
+        run: echo "Runned by ${{github.actor}}"
+
       - name: Checkout to the repository
         uses: actions/checkout@v2
 
