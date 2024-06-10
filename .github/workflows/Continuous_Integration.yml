@@ -51,10 +51,11 @@ jobs:
 
       # Keep in mind that actions/cache@v3 keep cache for each branch separately, and only main branch can share its cache between others. So for each new branch the first run won't hit cache.
       - name: Cache node modules
+        id: cache-nodemodules
         uses: actions/cache@v3
         with:
           path: ./node_modules
-          key: node_modules-${{hashFiles('yarn.lock')}}
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
           restore-keys: node_modules- # Take any latest cache if failed to find it for current yarn.lock
 
       # - name: Cache npm
@@ -64,6 +65,8 @@ jobs:
       #     key: ${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Package Dependencies
+        # only run npm i if cache not found
+        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: npm install
 
       - name: Build Project
