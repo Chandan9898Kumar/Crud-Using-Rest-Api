@@ -30,25 +30,37 @@ jobs:
         node-version: [14.x]
 
     steps:
-
       - name: First Step
         run: echo "Runned by ${{github.actor}}"
 
       - name: List Repository Files
-        run: ls 
+        run: ls
 
       - name: Checkout to the repository
         uses: actions/checkout@v2
         with:
-          ref: 'master'
+          ref: "master"
 
       - name: List Repository Files of master
-        run: ls 
+        run: ls
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2-beta
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ./node_modules
+          key: node_modules-${{hashFiles('yarn.lock')}}
+          restore-keys: node_modules- # Take any latest cache if failed to find it for current yarn.lock
+
+      # - name: Cache npm
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: ~/.npm
+      #     key: ${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Package Dependencies
         run: npm install
