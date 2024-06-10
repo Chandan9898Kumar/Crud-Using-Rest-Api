@@ -49,6 +49,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      # Keep in mind that actions/cache@v3 keep cache for each branch separately, and only main branch can share its cache between others. So for each new branch the first run won't hit cache.
       - name: Cache node modules
         uses: actions/cache@v3
         with:
