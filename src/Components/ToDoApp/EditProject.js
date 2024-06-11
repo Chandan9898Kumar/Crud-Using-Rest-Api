@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
-import Button from "../../Common/ButtonComponent/Button";
-import { useNavigate, useParams } from "react-router-dom";
-import Input from "../../Common/InputField/Input";
-import axios from "axios";
-import LoadComponent from "../../Common/LoadingComponent/LoadComponent";
 
+import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+
+import Button from "../../Common/ButtonComponent/Button";
+import Input from "../../Common/InputField/Input";
+import LoadComponent from "../../Common/LoadingComponent/LoadComponent";
 import { EditProjectTitle } from "../../Redux/TodoApplication/EditProjectReducer";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
@@ -130,7 +131,7 @@ const EditProject = () => {
   useEffect(() => {
     fetchProjectDetails();
     dispatch(EditProjectTitle("View All Projects"));
-  }, [fetchProjectDetails,dispatch]);
+  }, [fetchProjectDetails, dispatch]);
 
   const handleNameChange = (event) => {
     setNameField(event.target.value);

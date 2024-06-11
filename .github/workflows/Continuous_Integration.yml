@@ -79,7 +79,7 @@ jobs:
 
       - name: Check code linting
         run: npm run lint
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Run test cases
         run: npm run test

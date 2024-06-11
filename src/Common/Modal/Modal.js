@@ -1,7 +1,8 @@
 import React from "react";
 
-import modalStyle from "./Modal.module.css";
 import PropTypes from "prop-types";
+
+import modalStyle from "./Modal.module.css";
 const Modal = ({ children, show, onClose, title }) => {
   return (
     show && (

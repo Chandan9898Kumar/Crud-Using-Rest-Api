@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import Button from "../../Common/ButtonComponent/Button";
-import { useNavigate, useParams } from "react-router-dom";
-import { NotFoundIcon } from "../../Assets/SvgImage";
-
-import { useSelector, useDispatch } from "react-redux";
-import { showProjectTitle } from "../../Redux/TodoApplication/ShowProjectReducer";
 
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+
+import { NotFoundIcon } from "../../Assets/SvgImage";
+import Button from "../../Common/ButtonComponent/Button";
+import { showProjectTitle } from "../../Redux/TodoApplication/ShowProjectReducer";
+
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 const config = {
   headers: {
@@ -37,7 +38,7 @@ const ShowProject = () => {
     };
 
     fetchProjectDetails();
-  }, [id,dispatch]);
+  }, [id, dispatch]);
 
   const styles = {
     modal_container: {

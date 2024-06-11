@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
+
 import Modal from "../../Common/Modal/Modal";
+
 import "./todo.css";
-import Button from "../../Common/ButtonComponent/Button";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { ShowIcon, EditIcon, DeleteIcon } from "../../Assets/SvgImage";
-import ComponentModal from "../../Common/DialogBox/DialogBox";
 import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+
+import { ShowIcon, EditIcon, DeleteIcon } from "../../Assets/SvgImage";
+import Button from "../../Common/ButtonComponent/Button";
+import ComponentModal from "../../Common/DialogBox/DialogBox";
 import { ProjectListTitle } from "../../Redux/TodoApplication/ProjectListReducer";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
