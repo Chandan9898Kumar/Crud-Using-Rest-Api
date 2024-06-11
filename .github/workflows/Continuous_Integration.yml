@@ -16,6 +16,7 @@ concurrency:
 #  CI:false means we are setting the environment CI to false so that warnings can not be considered as error.
 env:
   CI: false
+  FORCE_COLOR: 1
 
 jobs:
   build:
