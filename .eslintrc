@@ -164,7 +164,7 @@
     "no-unexpected-multiline": "warn",
     "no-var": "warn",
     "import/order": [
-      2,
+      1,
       {
         "groups": ["builtin", "external", "internal", ["parent", "sibling"]], // The groups sets the order intended for every group.
 
