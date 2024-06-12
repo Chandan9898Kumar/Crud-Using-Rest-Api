@@ -18,3 +18,9 @@
     overflow: hidden;
     animation: typeWriter 2s linear infinite alternate;
 }
+
+/*  This will create an invisible first letter that will take the place of the real first letter. */
+.type-writer-effect span:before {
+    content: " ";
+    display: inline-block;
+}
