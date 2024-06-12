@@ -1,5 +1,6 @@
 import React, { lazy, useState, Suspense, useMemo } from "react";
 
+import "./contact.css";
 import useFetch from "../../Hooks/UseFetch";
 const ReUsableTable = lazy(() => import("../../Common/ReUsableTable/ReUsableTable"));
 
@@ -66,7 +67,7 @@ const Contact = () => {
         }}
       >
         <Suspense fallback="Loading...">
-          <h2>Table Component</h2>
+          <h2 className="type-writer-effect">Table Component</h2>
           <ReUsableTable headers={headers} isError={isError} isLoading={isLoading} data={searchedData} />
         </Suspense>
       </div>
