@@ -4,14 +4,8 @@ import PropTypes from "prop-types";
 
 import tableStyle from "./usableTable.module.css";
 import LoadComponent from "../../Common/LoadingComponent/LoadComponent";
-import useFetch from "../../Hooks/UseFetch";
 
-
-const API = "https://jsonplaceholder.typicode.com/users";
-
-const Table = ({ headers }) => {
-  const [data, isError, isLoading] = useFetch(API);
-
+const Table = ({ headers, isError, isLoading, data }) => {
   if (isError) {
     return <p>Error: {isError.message}</p>;
   }
@@ -58,6 +52,9 @@ const TableData = ({ user, headers }) => {
 
 Table.propTypes = {
   headers: PropTypes.array,
+  isError: PropTypes.bool,
+  data: PropTypes.array,
+  isLoading: PropTypes.bool,
 };
 
 TableHeader.propTypes = {

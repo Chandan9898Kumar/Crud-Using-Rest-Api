@@ -1,4 +1,6 @@
-import React, { lazy, useState, Suspense } from "react";
+import React, { lazy, useState, Suspense, useMemo } from "react";
+
+import useFetch from "../../Hooks/UseFetch";
 const ReUsableTable = lazy(() => import("../../Common/ReUsableTable/ReUsableTable"));
 
 const headers = [
@@ -8,12 +10,22 @@ const headers = [
   { title: "website", value: "website" },
 ];
 
+const API = "https://jsonplaceholder.typicode.com/users";
+
 const Contact = () => {
   const [search, setSearch] = useState("");
+  const [data, isError, isLoading] = useFetch(API);
 
   const onSearch = (event) => {
     setSearch(event.target.value);
   };
+
+  const searchedData = useMemo(() => {
+    return data?.filter((item) => {
+      return search.trim() === "" ? item : item.name.toLowerCase().includes(search);
+    });
+  }, [search, data]);
+
   return (
     <React.Fragment>
       <div style={{ padding: "20px 40px" }}>
@@ -31,6 +43,7 @@ const Contact = () => {
             transition: ".5s ease",
           }}
           type="text"
+          name="search"
           id="inputText"
           placeholder="Search"
           pattern="[A-Za-z]"
@@ -54,7 +67,7 @@ const Contact = () => {
       >
         <Suspense fallback="Loading...">
           <h2>Table Component</h2>
-          <ReUsableTable headers={headers} />
+          <ReUsableTable headers={headers} isError={isError} isLoading={isLoading} data={searchedData} />
         </Suspense>
       </div>
     </React.Fragment>
