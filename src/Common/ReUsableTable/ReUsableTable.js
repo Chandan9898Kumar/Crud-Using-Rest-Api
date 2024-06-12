@@ -1,8 +1,11 @@
 import React, { memo } from "react";
-import useFetch from "../../Hooks/UseFetch";
+
+import PropTypes from "prop-types";
+
 import tableStyle from "./usableTable.module.css";
 import LoadComponent from "../../Common/LoadingComponent/LoadComponent";
-import PropTypes from "prop-types";
+import useFetch from "../../Hooks/UseFetch";
+
 
 const API = "https://jsonplaceholder.typicode.com/users";
 

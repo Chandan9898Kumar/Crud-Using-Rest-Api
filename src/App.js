@@ -1,8 +1,10 @@
 import React, { Suspense, lazy } from "react";
+
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Loader from "./Loader/Loader";
+
 import ToDoMenuDrawer from "./Components/ToDoApp/SideDrawer";
+import Loader from "./Loader/Loader";
 const NavLinks = lazy(() => import("./NavLinks/NavLink"));
 const AccountLogin = lazy(() => import("./Login/Login"));
 const AccountRegister = lazy(() => import("./Register/Register"));

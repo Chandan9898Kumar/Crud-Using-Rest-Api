@@ -1,6 +1,8 @@
 import React, { memo } from "react";
-import Loader from "../../Loader/Loader";
+
 import PropTypes from "prop-types";
+
+import Loader from "../../Loader/Loader";
 const LoadComponent = ({ load, children }) => {
   return (
     <React.Fragment>

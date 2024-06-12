@@ -1,11 +1,14 @@
 import React from "react";
+
 import ReactDOM from "react-dom/client";
+
 import "./index.css";
+import { Provider } from "react-redux";
+
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 import ErrorBoundary from "./ErrorBoundary";
 import { store } from "./Redux/Store";
-import { Provider } from "react-redux";
+import reportWebVitals from "./reportWebVitals";
 import ScrollTop from "./ScrollToTop/ScrollTop";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+
 import "./Nav.css";
-import DarkModeToggleModified from "../DarkLightTheme/Mode";
 import { SettingIcon } from "../Assets/SvgImage";
+import DarkModeToggleModified from "../DarkLightTheme/Mode";
 
 const NavLinks = () => {
   const [isClick, setIsClick] = useState(false);
@@ -36,7 +38,7 @@ const NavLinks = () => {
         </div>
         <div>
           <NavLink to="/contact" caseSensitive className={({ isActive }) => (isActive ? "isActive" : "static")}>
-            contact
+            Practice
           </NavLink>
         </div>
         <div>
