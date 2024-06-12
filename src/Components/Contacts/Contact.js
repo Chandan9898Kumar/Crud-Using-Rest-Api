@@ -67,7 +67,9 @@ const Contact = () => {
         }}
       >
         <Suspense fallback="Loading...">
-          <h2 className="type-writer-effect">Table Component</h2>
+          <span className="type-writer-effect">
+            <span>Table Component</span>
+          </span>
           <ReUsableTable headers={headers} isError={isError} isLoading={isLoading} data={searchedData} />
         </Suspense>
       </div>

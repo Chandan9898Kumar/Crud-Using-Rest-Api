@@ -1,28 +1,20 @@
-@keyframes typewriter {
-    from {
-        width: 0%;
-    }
+@keyframes typeWriter {
 
-    to {
-        width: 50%;
+    90%,
+    100% {
+        width: 100%
     }
 }
 
-@keyframes blink {
-    from {
-        border-color: transparent;
-    }
-
-    to {
-        border-color: transparent;
-    }
+.type-writer-effect {
+    font-size: 50px;
+    display: inline-flex;
 }
 
-
- h2.type-writer-effect {
-    font-size: 18px;
-    white-space: nowrap;
+.type-writer-effect span {
+    height: 1.2em;
+    width: 0%;
+    word-break: break-all;
     overflow: hidden;
-    animation: typewriter 2s steps(13) infinite alternate,blink 800ms steps(13) infinite normal;
-    border-right: 1px solid transparent;
+    animation: typeWriter 2s linear infinite alternate;
 }
