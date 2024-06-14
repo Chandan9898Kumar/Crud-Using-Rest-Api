@@ -580,3 +580,9 @@ function paginatedResultsMiddleWare(model) {
 
 - NOTE : API To Hit = "http://localhost:5000/users?page=1&limit=10". when user hit this api then server will get this page and limit data from req.query
 ```
+
+### New Api Sites to get mocked data:
+
+1. https://rickandmortyapi.com/
+
+2. https://www.mockaroo.com/
