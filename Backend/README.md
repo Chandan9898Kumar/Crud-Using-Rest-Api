@@ -140,7 +140,7 @@ POST: /buckets/
 
 - Answer is: Use the querystring.
 
-- We you should use the querystring for pagination. It would look like this:
+- We should use the querystring for pagination. It would look like this:
   `A.` GET: /books?page=1&page_size=10
 
 - But, it may be less obvious for filtering. At first, you might think of doing something like this to retrieve a list of only published books:
@@ -523,3 +523,60 @@ There are many different solutions out there :
 2. while the first request is being processed and the cache is about to be filled and more requests are coming in, you have to decide if you delay those other requests and serve the data from the cache or if they also receive data straight from the database like the first request.
 
 3. it's another component inside your infrastructure if you're choosing a distributed cache like Redis (so you have to ask yourself if it really makes sense to use it).
+
+### Example of Creating a pagination Api
+
+```ts
+- paginatedResultsMiddleWare function is acting as middleware here.So this function will gets called first inside app.get("") and then function inside get method will be called.
+
+import data from "./MockData/data.js"
+
+
+app.get("/users", paginatedResultsMiddleWare(data), (req, res) => {
+  res.json(res.paginatedResults);
+});
+
+function paginatedResultsMiddleWare(model) {
+  return async (req, res, next) => {
+    const page = parseInt(req.query.page);
+    const limit = parseInt(req.query.limit);
+
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    const results = {};
+
+    //  user this to show user next page and its limit
+    if (endIndex < model.length) {
+      results.next = {
+        page: page + 1,
+        limit: limit,
+      };
+    }
+   //  user this to show user previous page and its limit
+    if (startIndex > 0) {
+      results.previous = {
+        page: page - 1,
+        limit: limit,
+      };
+    }
+    try {
+      results.results = model.slice(startIndex,endIndex);
+      res.paginatedResults = results;
+      next();
+    } catch (e) {
+      res.status(500).json({ message: e.message });
+    }
+  };
+}
+
+1. NOTE:  Also we can use this paginatedResultsMiddleWare function which acts as a middleware in other api which is having pagination functionality.
+`Example :`
+    app.get("/customers", paginatedResultsMiddleWare(data), (req, res) => {
+        res.json(res.paginatedResults);
+    });
+
+
+
+- NOTE : API To Hit = "http://localhost:5000/users?page=1&limit=10". when user hit this api then server will get this page and limit data from req.query
+```

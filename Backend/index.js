@@ -1,13 +1,14 @@
-import moduleRouter from "./routes/customer.js";
-import productRouter from "./routes/products.js";
-import errorHandler from "./middlewares/errorHandler.middleware.js";
-import express from "express";
-import session from "express-session";
+import compression from "compression";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import helmet from "helmet";
 import dotenv from "dotenv";
-import compression from "compression";
+import express from "express";
+import session from "express-session";
+import helmet from "helmet";
+
+import errorHandler from "./middlewares/errorHandler.middleware.js";
+import moduleRouter from "./routes/customer.js";
+import productRouter from "./routes/products.js";
 
 const app = express();
 
@@ -55,9 +56,6 @@ app.use("/api/v1/user", moduleRouter);
 app.use("/api/v1/item", productRouter);
 
 app.use(errorHandler); // This Should be at last.
-
-
-
 
 // Start the server
 

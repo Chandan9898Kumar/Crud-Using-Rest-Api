@@ -1,4 +1,5 @@
 import asyncHandler from "express-async-handler";
+
 import productFactory from "../factory/products.js";
 
 const factory = productFactory();
