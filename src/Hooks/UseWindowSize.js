@@ -8,12 +8,12 @@ const useWindowSize = () => {
     height: undefined,
   });
 
-  function handleResize() {
+  const handleResize = () => {
     setWindowSize({
       width: window.innerWidth,
       height: window.innerHeight,
     });
-  }
+  };
 
   const throttledHandleResize = useThrottle(handleResize, 1000, { leading: true, trailing: false });
 

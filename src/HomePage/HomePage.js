@@ -116,9 +116,29 @@ const Home = () => {
         </div>
       </div>
 
-      <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", flexDirection: "column", width: "100%", maxWidth: "200px", gap: "10px", left: "20px", position: "relative" }}>
-        <div>{`Window Width ${width ?? 0}`}</div>
-        <div>{`Window Height ${height ?? 0}`}</div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          flexDirection: "column",
+          width: "100%",
+          maxWidth: "250px",
+          left: "20px",
+          position: "relative",
+          background: "#ffffff",
+          rowGap: "25px",
+          fontSize: "20px",
+          fontWeight: 500,
+          borderRadius: "30px",
+        }}
+      >
+        <div>
+          Window Width : <span style={{ color: "plum" }}>{` ${width ?? 0}`}</span>
+        </div>
+        <div>
+          Window Height : <span style={{ color: "plum" }}>{`${height ?? 0}`}</span>
+        </div>
       </div>
       <div className="item">
         <div className="sub-item">
