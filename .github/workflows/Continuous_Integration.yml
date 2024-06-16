@@ -40,7 +40,7 @@ jobs:
       - name: Checkout to the repository
         uses: actions/checkout@v2
         with:
-          ref: "master"
+          ref: "${{ github.ref }}"
 
       - name: List Repository Files of master
         run: ls
