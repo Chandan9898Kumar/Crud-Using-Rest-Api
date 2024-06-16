@@ -41,7 +41,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: "${{ github.ref }}"
-
+        #  github.ref tells the github about branch :  the existing branch from which the pr has been raised.
       - name: List Repository Files of master
         run: ls
 
