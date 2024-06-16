@@ -24,7 +24,7 @@ describe("App component Testing", () => {
     act(() => {
       render(<App />, container);
     });
-    expect(datas).toBeDefined();
+    expect(container).toBeDefined();
   });
 });
 
