@@ -1,7 +1,9 @@
 import React from "react";
+
 import { render, screen, unmountComponentAtNode, fireEvent } from "@testing-library/react";
-import App from "./App";
 import { act } from "react-dom/test-utils";
+
+import App from "./App";
 import "@testing-library/jest-dom/extend-expect";
 
 describe("App component Testing", () => {
@@ -22,7 +24,7 @@ describe("App component Testing", () => {
     act(() => {
       render(<App />, container);
     });
-    expect(container).toBeDefined();
+    expect(data).toBeDefined();
   });
 });
 
