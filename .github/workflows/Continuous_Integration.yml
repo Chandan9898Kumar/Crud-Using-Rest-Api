@@ -81,6 +81,7 @@ jobs:
       - name: Check code linting
         run: npm run lint
         continue-on-error: false
+        # The continue-on-error attribute allows you to continue the workflow even if a step fails. This means that you can retry the failed step manually by running the workflow again.
 
       - name: Run test cases
         run: npm run test
