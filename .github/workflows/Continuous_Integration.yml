@@ -69,15 +69,6 @@ jobs:
         if: steps.cache-nodemodules.outputs.cache-hit != 'true'
         run: npm install
 
-      - name: Build Project
-        run: npm run build
-
-      - name: Upload artifact to enable deployment
-        uses: actions/upload-artifact@v3
-        with:
-          name: production-files
-          path: ./build
-
       - name: Check code linting
         run: npm run lint
         continue-on-error: false
@@ -95,6 +86,15 @@ jobs:
         with:
           name: code-coverage-report
           path: ./coverage
+
+      - name: Build Project
+        run: npm run build
+
+      - name: Upload artifact to enable deployment
+        uses: actions/upload-artifact@v3
+        with:
+          name: production-files
+          path: ./build
 
       # we upload the artifact to the runner using the command uses: actions/upload-artifact@v3
       # Finally, we specify the path to the build using path: ./dist ( dist is the default build output location for apps built with Vite)
