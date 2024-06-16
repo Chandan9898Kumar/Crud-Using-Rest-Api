@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, screen, unmountComponentAtNode, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 
 import App from "./App";
@@ -27,9 +27,6 @@ describe("App component Testing", () => {
     expect(container).toBeDefined();
   });
 });
-
-
-
 
 // test('increment count on button click', () => {
 //   const { getByText, getByTestId } = render(<App />);
