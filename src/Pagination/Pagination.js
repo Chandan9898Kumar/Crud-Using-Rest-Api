@@ -1,6 +1,8 @@
 import React, { memo, useMemo } from "react";
+
 import "./pagination.css";
 import PropTypes from "prop-types";
+
 import { LeftArrowIcon, DoubleLeftArrowIcon, RightArrowIcon, DoubleRightArrowIcon } from "../Assets/SvgImage";
 
 const Pagination = ({ ITEM_PER_PAGE, totalItem, paginatedItems, currentPage, onPreviousClick, onPreviousLastClick, onNextClick, onNextLastClick }) => {
