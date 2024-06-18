@@ -461,7 +461,7 @@ export const getCurrentTimeFormatted = () => {
     getDaysBetweenDates("2022-01-30", "12/1/2020");
  */
 export const getDaysBetweenDates = (dateText1, dateText2) => {
-  //millseconds in a day
+  //mill-seconds in a day
   const DAY_IN_MILLISECONDS = 1000 * 60 * 60 * 24;
 
   //convert the date strings to actual dates
