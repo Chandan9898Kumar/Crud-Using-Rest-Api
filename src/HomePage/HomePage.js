@@ -130,7 +130,7 @@ const Home = () => {
           rowGap: "25px",
           fontSize: "20px",
           fontWeight: 500,
-          borderRadius: "30px",
+          borderRadius: "10px",
         }}
       >
         <div>
