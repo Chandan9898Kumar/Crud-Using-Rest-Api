@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+
 import PropTypes from "prop-types";
 
 const Input = ({ value, label = "", type = "", placeholder = "", handleChange, error = "", id = "", height = "", ...otherProps }) => {
