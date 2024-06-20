@@ -41,6 +41,9 @@
 2. Jest.
 3. Enzyme.
 
+- NOTE : To Run A Single File Use : npm test -- --findRelatedTests RelativePath
+  `Example` : To Test Only HomePage File : npm test -- --findRelatedTests src\HomePage\HomePage.js
+
 ### Re-Render :
 
 `When a component that is already displayed is re-render again. Purpose is to keep the UI in sync with the states`
