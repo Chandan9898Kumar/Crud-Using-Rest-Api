@@ -3,7 +3,7 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 
-import Home from "../HomePage";
+import DateRange from "../DateRange";
 
 import "@testing-library/jest-dom/extend-expect";
 import Enzyme from "enzyme";
@@ -14,17 +14,24 @@ Enzyme.configure({ adapter: new Adapter() });
 const findByTestAttr = (wrapper, val) => wrapper.find(`[data-test="${val}"]`);
 
 const props = {
-  onClick: jest.fn(),
+  selectionRange: {
+    startDate: "2024-06-21T19:01:14.728Z",
+    endDate: "2024-06-21T19:01:14.728Z",
+    key: "selection",
+  },
+  handleSelect: jest.fn(),
+  onchange: jest.fn(),
+  onclick: jest.fn(),
 };
 
-describe("Home component Testing", () => {
+describe("Testing Date Range Picker", () => {
   let wrapper;
   let container = null;
 
   beforeEach(() => {
     container = document.createElement("div");
     document.body.appendChild(container);
-    wrapper = mount(<Home {...props} />);
+    wrapper = mount(<DateRange {...props} />);
   });
 
   afterEach(() => {
@@ -34,21 +41,17 @@ describe("Home component Testing", () => {
     container = null;
   });
 
-  test("Testing Home Page ", () => {
+  test("Testing DateRange Page ", () => {
     act(() => {
-      render(<Home />, container);
+      render(<DateRange {...props} />, container);
     });
     expect(container).toBeDefined();
   });
 
-  test("should test all the table headings", () => {
-    act(() => {
-      render(<Home />, container);
-    });
-    const textDetails = ["Repository Name", "Default Branch", "Language", "Fork", "Git URL", "Topics", "Score"];
-    textDetails.forEach((item) => {
-      const linkElement = screen.getByText(item);
-      expect(linkElement).toBeInTheDocument();
-    });
+  test("Test click Event", () => {
+    render(<DateRange {...props} />);
+    fireEvent.click(screen.getByText(/Select Date/i));
+    const removeDate = screen.getByText(/Remove Date/i);
+    expect(removeDate).toBeDefined();
   });
 });
