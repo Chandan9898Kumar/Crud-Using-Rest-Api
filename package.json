@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@cfaester/enzyme-adapter-react-18": "^0.8.0",
     "@date-io/date-fns": "^1.3.13",
     "@reduxjs/toolkit": "^2.2.3",
     "@testing-library/jest-dom": "^5.17.0",
