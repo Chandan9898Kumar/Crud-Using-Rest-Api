@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+
 import "./table.css";
 import PropTypes from "prop-types";
 
