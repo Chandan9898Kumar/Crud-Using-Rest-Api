@@ -15,9 +15,9 @@ const findByTestAttr = (wrapper, val) => wrapper.find(`[data-test="${val}"]`);
 
 const props = {
   selectionRange: {
-    startDate: "2024-06-21T19:01:14.728Z",
-    endDate: "2024-06-21T19:01:14.728Z",
-    key: "selection",
+    startDate: new Date(),
+    endDate: new Date(),
+    key: "selection Date",
   },
   handleSelect: jest.fn(),
   onchange: jest.fn(),
@@ -25,18 +25,18 @@ const props = {
 };
 
 describe("Testing Date Range Picker", () => {
-  let wrapper;
   let container = null;
-
   beforeEach(() => {
     container = document.createElement("div");
     document.body.appendChild(container);
-    wrapper = mount(<DateRange {...props} />);
+    jest.useFakeTimers();
   });
 
   afterEach(() => {
     // cleanup on exiting
     // unmountComponentAtNode(container);
+    jest.clearAllMocks();
+    jest.clearAllTimers();
     container.remove();
     container = null;
   });
@@ -49,7 +49,10 @@ describe("Testing Date Range Picker", () => {
   });
 
   test("Test click Event", () => {
-    render(<DateRange {...props} />);
+    // render is responsible for rendering your app to the JS Dom, and screen allows you to interact with it and see what's there.
+    act(() => {
+      render(<DateRange {...props} />, container);
+    });
     fireEvent.click(screen.getByText(/Select Date/i));
     const removeDate = screen.getByText(/Remove Date/i);
     expect(removeDate).toBeDefined();
