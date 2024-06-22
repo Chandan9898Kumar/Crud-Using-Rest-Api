@@ -16,7 +16,7 @@ const tableHead = ["Repository Name", "Default Branch", "Language", "Fork", "Git
 
 const Home = () => {
   const [searchedValue, setSearchedValue] = useState("");
-  const [userData, setUserDate] = useState([]);
+  const [userData, setUserData] = useState([]);
   const [isError, setIsError] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
@@ -30,9 +30,9 @@ const Home = () => {
     async function fetchData() {
       try {
         const response = await Api.getUsers();
-        setUserDate(response.data.items);
-      } catch ({ message }) {
-        setIsError(message);
+        setUserData(response.data.items);
+      } catch (error) {
+        setIsError(error);
       }
     }
     fetchData();
