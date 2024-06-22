@@ -197,7 +197,7 @@ export default Home;
 const RenderLists = ({ item, onClick }) => {
   return (
     <div className="select-item-container">
-      <div className="sub-item-container" onClick={() => onClick(item.name)}>
+      <div data-test="listBtn" className="sub-item-container" onClick={() => onClick(item.name)}>
         {item.name}
       </div>
     </div>
