@@ -88,3 +88,73 @@ If an error occurs during the copy operation, the error state will be set with t
 
 The “Reset” button calls the reset function, resetting the copied and error states to their initial values.
  */
+
+/**                                                   2nd Example
+ import { useState } from "react";
+
+const useCopyToClipboard = () => {
+  const [copiedText, setCopiedText] = useState(null);
+
+  const copy = async (text) => {
+    // checking if clipboard is supported or not
+
+    if (!navigator || !navigator.clipboard) {
+      console.warn("Clipboard not supported");
+
+      return;
+    }
+
+    try {
+      // saving to clipboard
+
+      await navigator.clipboard.writeText(text);
+
+      setCopiedText(text);
+    } catch (error) {
+      // setting error
+
+      console.warn("Copy operation failed", error);
+
+      setCopiedText(null);
+    }
+  };
+
+  return [copiedText, copy];
+};
+
+export default useCopyToClipboard;
+
+
+
+
+//        Use Case :
+
+import { useState } from 'react';
+
+import useCopyToClipboard from './useCopyToClipboard';
+
+export default function App() {
+  const [value, copy] = useCopyToClipboard();
+  const [text, setText] = useState('');
+
+  const handleClick = () => {
+    copy(text);
+  };
+
+  const handleInputChange = (e) => {
+    const { target: { value = '' } = {} } = e;
+
+    setText(value);
+  };
+
+  return (
+    <main>
+      <input type="text" value={text} onChange={handleInputChange} />
+      <button onClick={handleClick}>Copy Text</button>
+      <p>Copied value: {value || 'Nothing is copied yet'}</p>
+    </main>
+  );
+}
+
+
+ */
