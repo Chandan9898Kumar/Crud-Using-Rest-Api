@@ -22,19 +22,31 @@ const Pagination = ({ ITEM_PER_PAGE, totalItem, paginatedItems, currentPage, onP
     <div className="page-container">
       <div className="page-heading">{`${totalItemCount === 0 ? 0 : startItem} - ${endItem} of ${totalItemCount}`}</div>
 
-      <button aria-label="previousLastClick" className={isFirstPage ? "arrow-button-inactive" : "arrow-button-active"} disabled={isFirstPage} onClick={onPreviousLastClick}>
+      <button
+        data-test="DoubleLeftArrowIcon"
+        aria-label="previousLastClick"
+        className={isFirstPage ? "arrow-button-inactive" : "arrow-button-active"}
+        disabled={isFirstPage}
+        onClick={onPreviousLastClick}
+      >
         <DoubleLeftArrowIcon height={20} width={18} />
       </button>
 
-      <button aria-label="lastClick" className={isFirstPage ? "arrow-button-inactive" : "arrow-button-active"} disabled={isFirstPage} onClick={onPreviousClick}>
+      <button data-test="LeftArrowIcon" aria-label="lastClick" className={isFirstPage ? "arrow-button-inactive" : "arrow-button-active"} disabled={isFirstPage} onClick={onPreviousClick}>
         <LeftArrowIcon height={20} width={18} />
       </button>
 
-      <button aria-label="nextClick" className={isLastPage ? "arrow-button-inactive" : "arrow-button-active"} disabled={isLastPage} onClick={onNextClick}>
+      <button data-test="RightArrowIcon" aria-label="nextClick" className={isLastPage ? "arrow-button-inactive" : "arrow-button-active"} disabled={isLastPage} onClick={onNextClick}>
         <RightArrowIcon height={20} width={18} />
       </button>
 
-      <button aria-label="lastNextClick" className={isLastPage ? "arrow-button-inactive" : "arrow-button-active"} disabled={isLastPage} onClick={() => onNextLastClick(TOTAL_PAGE)}>
+      <button
+        data-test="DoubleRightArrowIcon"
+        aria-label="lastNextClick"
+        className={isLastPage ? "arrow-button-inactive" : "arrow-button-active"}
+        disabled={isLastPage}
+        onClick={() => onNextLastClick(TOTAL_PAGE)}
+      >
         <DoubleRightArrowIcon height={20} width={18} />
       </button>
     </div>

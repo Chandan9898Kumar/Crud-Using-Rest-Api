@@ -4,6 +4,7 @@ import { render, screen, fireEvent, waitForElement, cleanup } from "@testing-lib
 import axios from "axios";
 import { act } from "react-dom/test-utils";
 
+import Pagination from "../../Pagination/Pagination";
 import Home from "../HomePage";
 import { AutoComplete } from "../HomePage";
 import "@testing-library/jest-dom/extend-expect";
@@ -23,7 +24,7 @@ const props = {
 jest.mock("axios");
 
 describe("Home component Testing", () => {
-  let container = null;
+  let containers = null;
 
   // For each test, we usually want to render our React tree to a DOM element that’s attached to document.
   // This is important so that it can receive DOM events. When the test ends, we want to “clean up” and unmount the tree from the document.
@@ -31,8 +32,8 @@ describe("Home component Testing", () => {
   // A common way to do it is to use a pair of "beforeEach" and "afterEach" blocks so that they’ll always run and isolate the effects of a test to itself:
 
   beforeEach(() => {
-    container = document.createElement("div");
-    document.body.appendChild(container);
+    containers = document.createElement("div");
+    document.body.appendChild(containers);
     jest.useFakeTimers(); // used  to simulate setTimeout functions without having to wait for real time to pass.
   });
 
@@ -41,12 +42,12 @@ describe("Home component Testing", () => {
 
   afterEach(() => {
     // cleanup on exiting
-    // unmountComponentAtNode(container);
+    // unmountComponentAtNode(containers);
     jest.clearAllMocks();
     jest.clearAllTimers();
     cleanup();
-    container.remove();
-    container = null;
+    containers.remove();
+    containers = null;
   });
 
   test("component should not be an empty element ", async () => {
@@ -84,9 +85,9 @@ describe("Home component Testing", () => {
 
     // Use the asynchronous version of act to apply resolved promises.
     await act(async () => {
-      render(<Home {...props} />, container);
+      render(<Home {...props} />, containers);
     });
-    expect(container).toBeDefined();
+    expect(containers).toBeDefined();
   });
 
   it("Testing api in useEffect when it is failed", async () => {
@@ -94,14 +95,14 @@ describe("Home component Testing", () => {
     axios.get.mockRejectedValue("Not Found");
 
     await act(async () => {
-      render(<Home {...props} />, container);
+      render(<Home {...props} />, containers);
     });
-    expect(container).toBeDefined();
+    expect(containers).toBeDefined();
   });
 
   test("should test all the table headings", () => {
     act(() => {
-      render(<Home {...props} />, container);
+      render(<Home {...props} />, containers);
     });
     const textDetails = ["Repository Name", "Default Branch", "Language", "Fork", "Git URL", "Topics", "Score"];
     textDetails.forEach((item) => {
@@ -111,21 +112,19 @@ describe("Home component Testing", () => {
   });
 
   test("Test autocomplete component", async () => {
-    const items = [
-      { id: 1, name: "A", default_branch: "main", language: "eng", forks: "yes", git_url: "www", topics: [1, 2, 3, 4, 5], score: "88" },
-      { id: 2, name: "B", default_branch: "master", language: "jpn", forks: "yes", git_url: "www", topics: [8, 9, 10, 11], score: "98" },
-    ];
+    const items = { id: 1, name: "A", default_branch: "main", language: "eng", forks: "yes", git_url: "www", topics: [1, 2, 3, 4, 5], score: "88" };
+
     const onClickFake = jest.fn();
 
     await act(async () => {
-      render(<AutoComplete item={items} onClick={onClickFake} />, container);
+      render(<AutoComplete item={items} onClick={onClickFake} />, containers);
     });
 
     const button = document.querySelector("[data-test=listBtn]");
-    items.forEach(() => {
-      fireEvent(button, new MouseEvent("click", { bubbles: true }));
-    });
-    expect(onClickFake).toHaveBeenCalledTimes(2);
+
+    fireEvent(button, new MouseEvent("click", { bubbles: true }));
+
+    expect(onClickFake).toHaveBeenCalledTimes(1);
     //run jest's fake timers
     jest.runAllTimers();
   }, 500000);
