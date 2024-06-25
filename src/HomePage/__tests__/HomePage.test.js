@@ -50,9 +50,9 @@ describe("Home component Testing", () => {
     containers = null;
   });
 
-  test("component should not be an empty element ", async () => {
+  test("component should not be an empty element ", () => {
     let element;
-    await act(async () => {
+    act(() => {
       const { container } = render(<Home {...props} />);
       element = container;
     });
@@ -79,6 +79,8 @@ describe("Home component Testing", () => {
         items: [
           { id: 1, name: "A", default_branch: "main", language: "eng", forks: "yes", git_url: "www", topics: [1, 2, 3, 4, 5], score: "88" },
           { id: 2, name: "B", default_branch: "master", language: "jpn", forks: "yes", git_url: "www", topics: [8, 9, 10, 11], score: "98" },
+          { id: 3, name: "C", default_branch: "main", language: "eng", forks: "yes", git_url: "www", topics: [1, 2, 3, 4, 5], score: "75" },
+          { id: 4, name: "D", default_branch: "master", language: "jpn", forks: "yes", git_url: "www", topics: [8, 9, 10, 11], score: "78" },
         ],
       },
     });
@@ -111,20 +113,21 @@ describe("Home component Testing", () => {
     });
   });
 
-  test("Test autocomplete component", async () => {
+  test("Test autocomplete component", () => {
     const items = { id: 1, name: "A", default_branch: "main", language: "eng", forks: "yes", git_url: "www", topics: [1, 2, 3, 4, 5], score: "88" };
 
     const onClickFake = jest.fn();
 
-    await act(async () => {
+    act(() => {
       render(<AutoComplete item={items} onClick={onClickFake} />, containers);
     });
 
     const button = document.querySelector("[data-test=listBtn]");
 
-    fireEvent(button, new MouseEvent("click", { bubbles: true }));
+    fireEvent(button, new MouseEvent("click", { bubbles: true, cancelable: true }));
 
     expect(onClickFake).toHaveBeenCalledTimes(1);
+    expect(screen.getByText(/A/i)).toBeInTheDocument();
     //run jest's fake timers
     jest.runAllTimers();
   }, 500000);
