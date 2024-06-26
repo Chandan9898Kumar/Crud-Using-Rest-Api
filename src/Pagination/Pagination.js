@@ -20,7 +20,7 @@ const Pagination = ({ ITEM_PER_PAGE, totalItem, paginatedItems, currentPage, onP
 
   return (
     <div className="page-container">
-      <div className="page-heading">{`${totalItemCount === 0 ? 0 : startItem} - ${endItem} of ${totalItemCount}`}</div>
+      <div data-test="pageInfo" className="page-heading">{`${totalItemCount === 0 ? 0 : startItem} - ${endItem} of ${totalItemCount}`}</div>
 
       <button
         data-test="DoubleLeftArrowIcon"

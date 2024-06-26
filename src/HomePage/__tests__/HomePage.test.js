@@ -141,28 +141,14 @@ describe("Home component Testing", () => {
     });
     const ITEM_PER_PAGE = 10;
     const currentPage = 1;
-    const paginatedItems = [];
-    const onPreviousClick = jest.fn();
-    const onPreviousLastClick = jest.fn();
-    const onNextClick = jest.fn();
-    const onNextLastClick = jest.fn();
     const totalItemCount = 4;
     const startItem = (currentPage - 1) * ITEM_PER_PAGE + 1;
     const endItem = Math.min(currentPage * ITEM_PER_PAGE, totalItemCount);
     const paginationText = `${totalItemCount === 0 ? 0 : startItem} - ${endItem} of ${totalItemCount}`;
     await act(async () => {
-      render(
-        <Home
-          ITEM_PER_PAGE={ITEM_PER_PAGE}
-          currentPage={currentPage}
-          paginatedItems={paginatedItems}
-          onPreviousClick={onPreviousClick}
-          onPreviousLastClick={onPreviousLastClick}
-          onNextClick={onNextClick}
-          onNextLastClick={onNextLastClick}
-        />
-      );
+      render(<Home />);
     });
-    expect(paginationText).toBeTruthy();
+    const element = document.querySelector("[data-test=pageInfo]");
+    expect(element).toHaveTextContent(paginationText);
   });
 });
