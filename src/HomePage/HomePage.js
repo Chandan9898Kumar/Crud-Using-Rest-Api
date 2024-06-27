@@ -146,7 +146,9 @@ const Home = () => {
             <TableIcon width={40} height={40} />
             Total Items
           </div>
-          <div className="item-count">{searchedItemFromList?.length || 0}</div>
+          <div data-testid="item-length" className="item-count">
+            {searchedItemFromList?.length || 0}
+          </div>
         </div>
       </div>
 
