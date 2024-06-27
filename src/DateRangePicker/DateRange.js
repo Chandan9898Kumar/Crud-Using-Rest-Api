@@ -14,7 +14,7 @@ const DateRange = ({ selectionRange, handleSelect }) => {
           {!isDate ? "Select Date" : "Remove Date"}
         </button>
       </div>
-      <div className="date-range">{isDate && <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} />}</div>
+      <div data-test='date-range' className="date-range">{isDate && <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} />}</div>
     </div>
   );
 };
