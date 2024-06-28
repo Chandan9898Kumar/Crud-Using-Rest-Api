@@ -129,50 +129,12 @@ module.exports = {
         ],
       },
 
-      {
-        test: /\.(png|svg|jpg|gif)$/i,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              limit: 8192,
-              name: "[path][name].[hash:8].[ext]",
-            },
-          },
-        ],
-      },
-
-      //                             Below: npm i image-webpack-loader
-
+      //  To Load SVG,PNG,GIF,JPE Files.
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
-        use: [
-          "file-loader",
-          {
-            loader: "image-webpack-loader",
-            options: {
-              mozjpeg: {
-                progressive: true,
-              },
-              // optipng.enabled: false will disable optipng
-              optipng: {
-                enabled: false,
-              },
-              pngquant: {
-                quality: [0.65, 0.9],
-                speed: 4,
-              },
-              gifsicle: {
-                interlaced: false,
-              },
-
-              webp: {
-                quality: 75,
-              },
-            },
-          },
-        ],
+        type: "asset/resource",
       },
+
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
