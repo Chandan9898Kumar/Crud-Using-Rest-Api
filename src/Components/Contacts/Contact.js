@@ -2,8 +2,29 @@ import React, { lazy, useState, Suspense, useMemo } from "react";
 
 import "./contact.css";
 import useFetch from "../../Hooks/UseFetch";
+import tableData1 from "../../MockData/tableData1.json";
+import tableData2 from "../../MockData/tableData2.json";
 const ReUsableTable = lazy(() => import("../../Common/ReUsableTable/ReUsableTable"));
 
+//   SortAble Table
+
+const SortableTable = lazy(() => import("../../Common/SortableTable/SortableTable"));
+
+const columnWithByDefaultSorting = [
+  { label: "Full Name", accessor: "full_name", sortable: true },
+  { label: "Email", accessor: "email", sortable: false },
+  { label: "Gender", accessor: "gender", sortable: true, sortbyOrder: "desc" },
+  { label: "Age", accessor: "age", sortable: true },
+  { label: "Start date", accessor: "start_date", sortable: true },
+];
+
+const columnsWithNoByDefaultSorting = [
+  { label: "Name", accessor: "name", sortable: true },
+  { label: "Country", accessor: "country", sortable: true },
+  { label: "GitHub username", accessor: "github_username", sortable: true },
+  { label: "Course price", accessor: "money", sortable: true },
+];
+// ==========================
 const headers = [
   { title: "Name", value: "name" },
   { title: "Phone Number", value: "phone" },
@@ -71,6 +92,14 @@ const Contact = () => {
             <span>Table Component</span>
           </span>
           <ReUsableTable headers={headers} isError={isError} isLoading={isLoading} data={searchedData} />
+
+          <SortableTable
+            key="byDefaultSort"
+            caption="1. Developers currently enrolled in this course. The table below is ordered (descending) by the Gender column."
+            data={tableData1}
+            columns={columnWithByDefaultSorting}
+          />
+          <SortableTable key="noByDefaultSort" caption="2. List of developers with an affordable course (has no default sorting)." data={tableData2} columns={columnsWithNoByDefaultSorting} />
         </Suspense>
       </div>
     </React.Fragment>
