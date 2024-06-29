@@ -1,0 +1,81 @@
+/* 
+=================
+Table
+=====================
+*/
+
+.table-sort {
+  width: 100%;
+  border-spacing: 0;
+  max-width: 1000px;
+  margin: 20px auto;
+  overflow: auto;
+  text-transform: uppercase;
+  border-collapse: collapse;
+}
+
+caption {
+  font-style:normal;
+  font-size: 18px;
+  text-align: left;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #76a0b9;
+  line-height: 35px;
+}
+
+
+.table-head-sort{
+  background-color: plum;
+  backdrop-filter: blur(10px);
+  inset: 10%;
+  z-index: -1;
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* .table-sort th {
+  background: #fff;
+  padding: 8px 10px;
+  border-bottom: 1px solid #1a1a1a;
+  font-weight: bold;
+  text-align: left;
+} */
+
+.table-sort th.up {
+  background-image: url("../../Assets/images/up_arrow.png");
+}
+
+.table-sort th.down {
+  background-image: url("../../Assets//images/down_arrow.png");
+}
+
+.table-sort th.default {
+  background-image: url("../../Assets/images/default.png");
+}
+
+th.up,
+th.default,
+th.down {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center right;
+}
+
+.table-sort td {
+  border-top: 1px solid #ddd;
+  padding: 8px 20px;
+}
+
+.table-sort tbody tr:first-child td {
+  border-top: none;
+}
+
+.table-sort tbody tr:nth-child(n) td {
+  background: #eff0f0;
+}
+
+.table-sort tbody tr:nth-child(2n) td {
+  background: #fff;
+}
