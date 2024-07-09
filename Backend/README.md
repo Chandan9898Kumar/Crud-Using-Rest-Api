@@ -587,6 +587,43 @@ function paginatedResultsMiddleWare(model) {
 
 2. https://www.mockaroo.com/
 
+### 𝐇𝐨𝐰 𝐭𝐨 𝐈𝐦𝐩𝐫𝐨𝐯𝐞 𝐀𝐏𝐈 𝐏𝐞𝐫𝐟𝐨𝐫𝐦𝐚𝐧𝐜𝐞
+
+1. Pagination
+
+- Efficient Data Transfer: Implement server-side pagination.
+- Client Navigation: Use intuitive query parameters like `page` and `pageSize`.
+- Clear Documentation: Provide guidance in your API documentation.
+
+2. Seamless Asynchronous Logging
+
+- Asynchronous Logging: Log activities asynchronously.
+- Reduce Overhead: Use message queues or dedicated services for background processing.
+
+3. Connection Pooling
+
+- Optimized Operations: Employ strategic connection pooling.
+- Stable Management: Ensure swift and stable database interaction.
+
+4. Advanced Caching Techniques
+
+- Fast Access: Use in-memory systems like Redis or Memcached.
+- Reduce Strain: Employ HTTP caching directives.
+
+5. Dynamic Load Balancing
+
+- Resilient API: Implement intelligent load balancing.
+- Balanced Load: Distribute incoming requests across multiple servers.
+
+6. Payload Compression
+
+- Streamlined Transmission: Utilize compression techniques like GZIP, Brotli, or Zstandard.
+- Quick Interactions: Reduce transfer times for efficient API interactions.
+
+<p align="center">
+  <img src="../Backend/Assets/ApiPerformance.gif" height="584" width="700" background='rgba(0, 255, 0, 1)' loading="lazy"/>
+</p>
+
 ### “What’s the difference between Session-based authentication and JWTs?”
 
 - `Session-Based Authentication`
