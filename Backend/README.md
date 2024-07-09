@@ -586,3 +586,64 @@ function paginatedResultsMiddleWare(model) {
 1. https://rickandmortyapi.com/
 
 2. https://www.mockaroo.com/
+
+### “What’s the difference between Session-based authentication and JWTs?”
+
+- `Session-Based Authentication`
+  In this approach, you store the session information in a database or session store and give a session ID to the user.
+
+For the user, it’s similar to just getting the Ticket ID of their flight. All other details are stored in the airline’s database.
+
+Here’s how it works:
+
+- 1. The user makes a login request and the frontend app sends the request to the backend server
+
+- 2. The backend creates a session using a secret key and stores the data in session storage
+
+- 3. Then, the server sends a cookie back to the client with the unique session ID
+
+- 4. The user makes a new request to view another page and the browser sends the session id along with it.
+
+- 5. The server verifies the user using this ID.
+
+- `JWT-based Authentication`
+
+In the JWT-based approach, you don’t store the session information in the session store.
+
+The entire information is available within the token.
+
+It’s like getting the flight ticket along with all the details available on the ticket but encrypted.
+
+Here’s how it works:
+
+- 1. The user makes a login request and it goes to the backend server
+
+- 2. The backend server verifies the credentials and issues a JWT. The JWT is signed using a private key. No session storage is involved.
+
+- 3. The JWT is passed to the browser using a cookie. For every subsequent request, the browser sends the cookie with the JWT
+
+- 4. The server verifies the JWT using the secret private key and extracts the user info.
+
+<p align="center">
+  <img src="../Backend/Assets/sessionJwt.jpg" height="584" width="700" background='rgba(0, 255, 0, 1)' loading="lazy"/>
+</p>
+
+### What’s the better approach - Session or JWTs?
+
+In a general sense, you can give the favorite answer of every software engineer.
+
+“It depends”
+
+`JWTs offer some cool benefits when compared to sessions such as:`
+
+- No separate storage
+
+- Easier to scale the client and server
+
+`But JWTs also have some disadvantages:`
+
+- Invalidating a JWT is not easy. With session, you can simply delete them from the session store.
+
+- The data in the JWT can become stale
+
+- The JWTs aren’t exactly small when it comes to size
