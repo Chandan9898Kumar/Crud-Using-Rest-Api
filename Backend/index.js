@@ -51,9 +51,9 @@ dotenv.config({ path: "./.env" });
 
 const PORT = process.env.PORT || 5000;
 
-app.use("/api/v1/user", moduleRouter);
+app.use("/api/v1/", moduleRouter);
 
-app.use("/api/v1/item", productRouter);
+app.use("/api/v1/", productRouter);
 
 app.use(errorHandler); // This Should be at last.
 

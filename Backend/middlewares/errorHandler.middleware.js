@@ -33,6 +33,7 @@ const errorHandler = (err, req, res, next) => {
     title: errorTitle,
     message: errorMessage,
     stackTrace: err.stack || "No stack trace available",
+    statusCode: statusCode,
   };
 
   res.status(statusCode).json(errorResponse);
