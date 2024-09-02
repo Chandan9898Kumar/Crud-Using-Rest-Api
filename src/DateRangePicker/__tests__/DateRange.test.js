@@ -6,10 +6,10 @@ import { act } from "react-dom/test-utils";
 import DateRange from "../DateRange";
 
 import "@testing-library/jest-dom/extend-expect";
-import Enzyme from "enzyme";
-import { shallow, mount } from "enzyme";
-import Adapter from "@cfaester/enzyme-adapter-react-18";
-Enzyme.configure({ adapter: new Adapter() });
+// import Enzyme from "enzyme";
+// import { shallow, mount } from "enzyme";
+// import Adapter from "@cfaester/enzyme-adapter-react-18";
+// Enzyme.configure({ adapter: new Adapter() });
 
 const findByTestAttr = (wrapper, val) => wrapper.find(`[data-test="${val}"]`);
 
