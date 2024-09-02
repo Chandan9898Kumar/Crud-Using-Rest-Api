@@ -1,43 +1,93 @@
-.drag-drop-container {
-    text-align: center;
-    font-family: monospace;
-  }
-  
-  .drag-drop-board {
-    display: flex;
-    justify-content: space-around;
-    align-items: baseline;
-  }
-  
-  .drag-drop-header {
-    text-decoration-line: underline;
-    font-size: 1.5rem;
-  }
-  
-  .task-header {
-    margin: 10px;
-    text-decoration: underline;
-    font-size: 18px;
-    font-weight: 800;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
-  
-  .task-card {
-    height: 50px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 5px;
-    padding: 5px;
-  }
+body {
+  box-sizing: border-box;
+}
 
-  .draggableElement{
-    background: beige;
-    max-width: 300px;
-    width: 100%;
-    max-height: 400px;
-    height: 100vh;
-  }
+.action-event {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+h2 {
+  text-decoration: underline;
+  text-transform: uppercase;
+  text-shadow: 3px -1px 18px rgba(128, 0, 0, 0.88);
+}
+
+.drag-drop-input {
+  height: 30px;
+  width: 100dvh;
+  max-width: 250px;
+  transition: all 0.8s;
+  padding: 5px 10px;
+  font-size: 18px;
+}
+
+.drag-drop-input:focus {
+  border: 2px solid cornflowerblue;
+  outline: none;
+}
+
+.drag-drop-button {
+  height: 45px;
+  padding: 6px 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+
+.drag-drop-container {
+  text-align: center;
+  font-family: monospace;
+}
+
+.drag-drop-board {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  margin: 10px auto;
+  padding: 10px 10px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.drag-drop-header {
+  text-decoration-line: underline;
+  font-size: 1.5rem;
+}
+
+.task-header {
+  margin: 10px;
+  text-decoration: underline;
+  font-size: 18px;
+  font-weight: 800;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  text-decoration: underline;
+  text-transform: uppercase;
+  text-shadow: 3px -1px 18px rgba(128, 0, 0, 0.88);
+}
+
+.task-card {
+  height: 50px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 10px;
+  padding: 5px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.draggableElement {
+  background: beige;
+  max-width: 450px;
+  width: 100%;
+  max-height: 450px;
+  height: 100dvh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

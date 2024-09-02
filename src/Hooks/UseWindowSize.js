@@ -15,7 +15,11 @@ const useWindowSize = () => {
     });
   };
 
-  const throttledHandleResize = useThrottle(handleResize, 1000, { leading: true, trailing: false });
+  const throttledHandleResize = useThrottle(handleResize, 800, { leading: true, trailing: false });
+
+  useEffect(() => {
+    handleResize();
+  }, []);
 
   useEffect(() => {
     window.addEventListener("resize", throttledHandleResize);
