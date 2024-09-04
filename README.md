@@ -364,7 +364,7 @@ jobs:
           publish_dir: ./dist
 ```
 
-# Explain the concept of “staging” and “production” environments?
+# Explain the concept of “staging” and “production” environments ?
 
 Staging and production environments are crucial in CI/CD. `Staging` is a replica of your production environment where you test changes before deploying to production. It helps catch issues early. The `production`environment is where your live app resides and is accessible to users.
 
