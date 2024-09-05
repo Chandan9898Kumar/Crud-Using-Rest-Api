@@ -37,7 +37,7 @@
 
 ### Testing
 
-1. React Testing Library : npm install --save-dev @testing-library/react
+1. React Testing Library : npm install --save-dev @testing-library/react.
 2. Jest.
 3. Enzyme.
 
