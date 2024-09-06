@@ -2,7 +2,7 @@
 
 # Getting Started with Create React App And Its Dependencies.
 
-#### React
+### React
 
 1. react - because this is a React-based template
 2. react-dom - for adding React app to the DOM
