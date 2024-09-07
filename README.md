@@ -124,6 +124,7 @@ To summarize, the objective of CI is to help in the early detection and resoluti
 3. Below is an example of a workflow file. We will use this sample to explore the constituent of a workflow flow.
 
 ```ts
+
 name: learn-github-actions
 on: [push]
 jobs:
