@@ -84,7 +84,7 @@ describe("Home component Testing", () => {
     //  Or We can test like below 1 by 1 as well instead of using for loop.
     //                 expect(element.querySelector("p").textContent).toBe("filtering out the data according to given date range.");
 
-    // Here wr used set time to handle this error :-  Exceeded timeout of 300 ms for a test.
+    // Here we used set time to handle this error :-  Exceeded timeout of 300 ms for a test.
   }, 50000);
 
   it("Testing api in useEffect when it is success", async () => {

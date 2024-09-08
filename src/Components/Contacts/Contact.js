@@ -1,4 +1,4 @@
-import React, { lazy, useState, Suspense, useMemo } from "react";
+import React, { lazy, useState, Suspense, useMemo, memo } from "react";
 
 import "./contact.css";
 import useFetch from "../../Hooks/UseFetch";
@@ -37,7 +37,7 @@ const API = "https://jsonplaceholder.typicode.com/users";
 const Contact = () => {
   const [search, setSearch] = useState("");
   const [data, isError, isLoading] = useFetch(API);
-
+  console.log(data,'data','isError',isError,'isLoading',isLoading);
   const onSearch = (event) => {
     setSearch(event.target.value);
   };
@@ -64,6 +64,7 @@ const Contact = () => {
             borderRadius: "10px",
             transition: ".5s ease",
           }}
+          data-testid="input-field"
           type="text"
           name="search"
           id="inputText"
@@ -105,4 +106,4 @@ const Contact = () => {
     </React.Fragment>
   );
 };
-export default Contact;
+export default memo(Contact);
