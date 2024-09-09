@@ -7,7 +7,7 @@ import LoadComponent from "../../Common/LoadingComponent/LoadComponent";
 
 const Table = ({ headers, isError, isLoading, data }) => {
   if (isError) {
-    return <p>Error: {isError.message}</p>;
+    return <p>Error: {isError}</p>;
   }
 
   return (
@@ -52,7 +52,7 @@ const TableData = ({ user, headers }) => {
 
 Table.propTypes = {
   headers: PropTypes.array,
-  isError: PropTypes.bool,
+  isError: PropTypes.string,
   data: PropTypes.array,
   isLoading: PropTypes.bool,
 };

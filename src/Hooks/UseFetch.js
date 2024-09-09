@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
 const useFetch = (api, options = "") => {
-  const [isLoading, setIsLoading] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
-  const [isError, setIsError] = useState(null);
+  const [isError, setIsError] = useState('');
 
   useEffect(() => {
     const controller = new AbortController();
@@ -11,6 +11,7 @@ const useFetch = (api, options = "") => {
     
     const fetchUser = async () => {
       setIsLoading(true);
+      setIsError('')
       try {
         const jsonData = await fetch(api, { ...options, signal });
         const result = await jsonData.json();
@@ -19,7 +20,7 @@ const useFetch = (api, options = "") => {
         if (error.name === "AbortError") {
           console.log("Fetching data was aborted");
         } else {
-          setIsError(error);
+          setIsError('Something Went wrong...');
         }
       } finally {
         setIsLoading(false);

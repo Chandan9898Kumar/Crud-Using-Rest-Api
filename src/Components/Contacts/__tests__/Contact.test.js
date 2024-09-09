@@ -8,6 +8,7 @@ import { act } from "react-dom/test-utils";
 import useFetch from "../../../Hooks/UseFetch";
 import Contact from "../Contact";
 import "@testing-library/jest-dom/extend-expect";
+import { wait } from "@testing-library/user-event/dist/utils";
 
 jest.mock("axios");
 
@@ -19,6 +20,13 @@ function mockFetch(data) {
     })
   );
 }
+
+const headers = [
+  { name: "Name", value: "name" },
+  { name: "Phone Number", value: "phone" },
+  { name: "Email", value: "email" },
+  { name: "website", value: "website" },
+];
 
 describe("Testing Contact Page", () => {
   let containers = null;
@@ -36,6 +44,7 @@ describe("Testing Contact Page", () => {
     containers.remove();
     containers = null;
   });
+
 
   test("Test Contact Page Should Be In The Document", () => {
     const container = render(<Contact />);
@@ -62,19 +71,31 @@ describe("Testing Contact Page", () => {
   });
 
   test("Testing Custom UseFetch Hook", async () => {
-    const headers = [
-      { Name: "Name", value: "name" },
-      { Name: "Phone Number", value: "phone" },
-      { Name: "Email", value: "email" },
-      { Name: "website", value: "website" },
-    ];
     window.fetch = mockFetch(headers);
-
-    const data = renderHook(() => useFetch());
-    await waitFor(() => expect(data).toBeDefined());
-
     await act(async () => {
       render(<Contact />);
     });
-  },1000);
+    const data = renderHook(() => useFetch());
+    await waitFor(() => expect(data).toBeDefined());
+  }, 1000);
+
+  test("useMemo Function covering when user has type something in input filed", async () => {
+    window.fetch = mockFetch(headers);
+    await act(async () => {
+      render(<Contact />);
+    });
+    
+    const inputField = document.querySelector("[data-testid=input-field]");
+    await waitFor(() => expect(inputField).toBeInTheDocument());
+
+    fireEvent.focus(inputField);
+
+    fireEvent.change(inputField, {
+      target: { value: "Name", name: "search" },
+    });
+
+    userEvent.tab();
+
+    await waitFor(() => expect(inputField).toHaveValue("Name"));
+  });
 });

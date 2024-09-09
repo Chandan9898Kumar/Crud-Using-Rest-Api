@@ -37,7 +37,7 @@ const API = "https://jsonplaceholder.typicode.com/users";
 const Contact = () => {
   const [search, setSearch] = useState("");
   const [data, isError, isLoading] = useFetch(API);
-  console.log(data,'data','isError',isError,'isLoading',isLoading);
+
   const onSearch = (event) => {
     setSearch(event.target.value);
   };
