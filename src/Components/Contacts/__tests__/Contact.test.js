@@ -7,8 +7,6 @@ import { act } from "react-dom/test-utils";
 
 import useFetch from "../../../Hooks/UseFetch";
 import Contact from "../Contact";
-import "@testing-library/jest-dom/extend-expect";
-
 
 jest.mock("axios");
 
