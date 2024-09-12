@@ -47,12 +47,12 @@ const ProjectList = () => {
   }, [dispatch]);
 
   const handleDeleteProject = async () => {
+    setIsError("");
     try {
       const isProjectDeleted = await axios.delete(`/api/projects/${projectId}`, config);
       if (isProjectDeleted.status === 200) {
         setIsSuccess("Item Deleted");
         setIsDialog(false);
-        setIsError("");
         fetchProjectList();
       }
     } catch (err) {
