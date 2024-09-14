@@ -149,7 +149,7 @@ const DragDropTwo = () => {
       <h2 className="drag-drop-header">Drag & Drop Two</h2>
       <div className="action-event">
         <input
-        className="drag-drop-input"
+          className="drag-drop-input"
           type="text"
           placeholder="Type"
           value={inputValue}
@@ -157,7 +157,9 @@ const DragDropTwo = () => {
             setInputValue(event.target.value);
           }}
         />
-        <button className="drag-drop-button" onClick={handleClick}>Add</button>
+        <button className="drag-drop-button" onClick={handleClick}>
+          Add
+        </button>
       </div>
 
       <div className="drag-drop-board">
@@ -329,3 +331,217 @@ export default function App() {
 }
 
 */
+
+//  DRAG & DROP BY CLASS COMPONENT
+
+/**
+import React from 'react';
+import './style.css';
+
+const CONSTANTS = [
+  {
+    name: 'STORY-4513: Add tooltip',
+    category: 'inProgress',
+    bgcolor: 'lightblue',
+  },
+  {
+    name: 'STORY-4547: Fix search bug',
+    category: 'inProgress',
+    bgcolor: 'lightgrey',
+  },
+  {
+    name: 'STORY-4525: New filter option',
+    category: 'complete',
+    bgcolor: 'lightgreen',
+  },
+  {
+    name: 'STORY-4526: Remove region filter',
+    category: 'complete',
+    bgcolor: '#ee9090',
+  },
+  {
+    name: 'STORY-4520: Improve performance',
+    category: 'complete',
+    bgcolor: '#eeed90',
+  },
+  {
+    name: 'STORY-4520: Improve performance In Tasks',
+    category: 'inProgress',
+    bgcolor: '#eeed90',
+  },
+];
+
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      tasks: CONSTANTS,
+      process: 'This is Drag & Drop',
+    };
+    this.onDragStartItemRef = React.createRef();
+    this.onDragOverItemRef = React.createRef();
+
+    this.getTask = this.getTask.bind(this);
+    this.startDragElement = this.startDragElement.bind(this);
+    this.dropDragElement = this.dropDragElement.bind(this);
+    this.startEnterDraggable = this.startEnterDraggable.bind(this);
+  }
+
+  startDragElement(event, item, position) {
+    this.onDragStartItemRef.current = position;
+    event.dataTransfer.setData('itemId', item.name);
+  }
+
+  startEnterDraggable(event, item, position) {
+    this.onDragOverItemRef.current = position;
+
+    const { tasks } = this.state;
+
+    let elementToBeShifted = tasks[this.onDragStartItemRef.current];
+    let exchangeTask = [...tasks];
+    exchangeTask.splice(this.onDragStartItemRef.current, 1);
+    exchangeTask.splice(this.onDragOverItemRef.current, 0, elementToBeShifted);
+
+    this.onDragStartItemRef.current = this.onDragOverItemRef.current;
+    this.onDragOverItemRef.current = null;
+    this.setState({ tasks: exchangeTask });
+    // console.log(exchangeTask, 'exchangeTask');
+  }
+
+  dropDragElement(event, typeOfDrop) {
+    let getDroppedItem = event.dataTransfer.getData('itemId');
+    const { tasks } = this.state;
+    let newTasks = [...tasks];
+    newTasks.forEach((items) => {
+      if (items.name === getDroppedItem) {
+        items.category = typeOfDrop;
+      }
+    });
+
+    this.setState({ tasks: newTasks });
+  }
+
+  getTask() {
+    const { tasks } = this.state;
+    let tasksToBeRender = {
+      inProgress: [],
+      complete: [],
+    };
+
+    tasks.forEach((item, index) => {
+      tasksToBeRender[item.category].push(
+        <div
+          className="items"
+          key={item.name}
+          draggable
+          onDragOver={(event) => {
+            event.preventDefault();
+          }}
+          onDragStart={(event) => this.startDragElement(event, item, index)}
+          onDragEnter={(event) => this.startEnterDraggable(event, item, index)}
+        >
+          {index} : {'  '} {item.name}
+        </div>
+      );
+    });
+
+    return tasksToBeRender;
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>This is Drag & Drop With Class Component</h1>
+
+        <div className="container">
+          <div
+            data-theme="progress"
+            className="progress"
+            onDragOver={(event) => {
+              event.preventDefault();
+            }}
+            onDrop={(event) => this.dropDragElement(event, 'inProgress')}
+          >
+            <h1>In Progress</h1>
+            {this.getTask().inProgress}
+          </div>
+
+          <div
+            data-theme="completed"
+            className="completed"
+            onDragOver={(event) => {
+              event.preventDefault();
+            }}
+            onDrop={(event) => this.dropDragElement(event, 'complete')}
+          >
+            <h1>Completed</h1>
+            {this.getTask().complete}
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default App;
+
+
+
+//  STYLE.CSS
+
+body {
+  box-sizing: border-box;
+  top: 0;
+  margin: 0;
+}
+
+h1 {
+  color: plum;
+  text-align: center;
+  text-decoration: underline;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 2rem;
+  line-height: 30px;
+}
+
+.container {
+  padding: 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.progress,
+.completed {
+  background-color: beige;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 10px;
+  height: 400px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.items {
+  background-color: rgb(216, 194, 166);
+  padding: 15px 10px;
+  margin: 10px 10px;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+[data-theme='progress'] {
+  color: aliceblue;
+  background-color: rgb(225, 236, 236);
+}
+
+[data-theme='completed'] {
+  color: red;
+  background-color: rgb(224, 218, 224);
+}
+
+
+ */
