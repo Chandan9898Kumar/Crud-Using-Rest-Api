@@ -1,36 +1,42 @@
-import React, { useState, memo, useRef } from "react";
+import React, { useState, memo, useRef, useEffect } from "react";
 
 import "./dragDropTwo.css";
 import ToolTip from "../../Common/ToolTip/ToolTip";
+
+const CONSTANTS = [
+  { name: "STORY-4513: Add tooltip", category: "inProgress", bgcolor: "lightblue" },
+  {
+    name: "STORY-4547: Fix search bug",
+    category: "inProgress",
+    bgcolor: "lightgrey",
+  },
+  {
+    name: "STORY-4525: New filter option",
+    category: "complete",
+    bgcolor: "lightgreen",
+  },
+  {
+    name: "STORY-4526: Remove region filter",
+    category: "complete",
+    bgcolor: "#ee9090",
+  },
+  {
+    name: "STORY-4520: Improve performance",
+    category: "complete",
+    bgcolor: "#eeed90",
+  },
+];
 const DragDropTwo = () => {
   const [inputValue, setInputValue] = useState("");
 
-  const [tasks, setTasks] = useState([
-    { name: "STORY-4513: Add tooltip", category: "inProgress", bgcolor: "lightblue" },
-    {
-      name: "STORY-4547: Fix search bug",
-      category: "inProgress",
-      bgcolor: "lightgrey",
-    },
-    {
-      name: "STORY-4525: New filter option",
-      category: "complete",
-      bgcolor: "lightgreen",
-    },
-    {
-      name: "STORY-4526: Remove region filter",
-      category: "complete",
-      bgcolor: "#ee9090",
-    },
-    {
-      name: "STORY-4520: Improve performance",
-      category: "complete",
-      bgcolor: "#eeed90",
-    },
-  ]);
+  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem("todoItems")) || CONSTANTS);
 
   const onDragStartItem = useRef();
   const onDragOverItem = useRef();
+
+  useEffect(() => {
+    localStorage.setItem("todoItems", JSON.stringify(tasks));
+  }, [tasks]);
 
   const handleClick = () => {
     if (!!inputValue.trim().length) {
@@ -376,7 +382,7 @@ class App extends React.Component {
     super();
 
     this.state = {
-      tasks: CONSTANTS,
+      tasks: JSON.parse(localStorage.getItem('todoItems')) || CONSTANTS,
       process: 'This is Drag & Drop',
     };
     this.onDragStartItemRef = React.createRef();
@@ -388,6 +394,10 @@ class App extends React.Component {
     this.startEnterDraggable = this.startEnterDraggable.bind(this);
   }
 
+  componentDidUpdate() {
+    localStorage.setItem('todoItems', JSON.stringify(this.state.tasks));
+  }
+  
   startDragElement(event, item, position) {
     this.onDragStartItemRef.current = position;
     event.dataTransfer.setData('itemId', item.name);
