@@ -5,16 +5,37 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import ToDoMenuDrawer from "./Components/ToDoApp/SideDrawer";
 import Loader from "./Loader/Loader";
-const NavLinks = lazy(() => import("./NavLinks/NavLink"));
-const AccountLogin = lazy(() => import("./Login/Login"));
-const AccountRegister = lazy(() => import("./Register/Register"));
-const Home = lazy(() => import("./HomePage/HomePage"));
-const DragDrop = lazy(() => import("./Components/DragAndDrop/DragDrop"));
-const Contact = lazy(() => import("./Components/Contacts/Contact"));
-const ProjectList = lazy(() => import("./Components/ToDoApp/ProjectList"));
-const CreateProject = lazy(() => import("./Components/ToDoApp/CreateProject"));
-const ShowProject = lazy(() => import("./Components/ToDoApp/ShowProject"));
-const EditProject = lazy(() => import("./Components/ToDoApp/EditProject"));
+
+const lazyRetry = function (componentImport) {
+  return new Promise((resolve, reject) => {
+    const hasRefreshed = JSON.parse(window.sessionStorage.getItem("retry-lazy-refreshed") || "false");
+
+    componentImport()
+      .then((component) => {
+        window.sessionStorage.setItem("retry-lazy-refreshed", "false");
+        resolve(component);
+      })
+      .catch((error) => {
+        if (!hasRefreshed) {
+          // not been refreshed yet
+          window.sessionStorage.setItem("retry-lazy-refreshed", "true");
+          return window.location.reload(); // refresh the page
+        }
+        reject(error);
+      });
+  });
+};
+
+const NavLinks = lazy(() => lazyRetry(() => import("./NavLinks/NavLink")));
+const AccountLogin = lazy(() => lazyRetry(() => import("./Login/Login")));
+const AccountRegister = lazy(() => lazyRetry(() => import("./Register/Register")));
+const Home = lazy(() => lazyRetry(() => import("./HomePage/HomePage")));
+const DragDrop = lazy(() => lazyRetry(() => import("./Components/DragAndDrop/DragDrop")));
+const Contact = lazy(() => lazyRetry(() => import("./Components/Contacts/Contact")));
+const ProjectList = lazy(() => lazyRetry(() => import("./Components/ToDoApp/ProjectList")));
+const CreateProject = lazy(() => lazyRetry(() => import("./Components/ToDoApp/CreateProject")));
+const ShowProject = lazy(() => lazyRetry(() => import("./Components/ToDoApp/ShowProject")));
+const EditProject = lazy(() => lazyRetry(() => import("./Components/ToDoApp/EditProject")));
 
 function App() {
   return (

@@ -372,3 +372,37 @@ Staging and production environments are crucial in CI/CD. `Staging` is a replica
 ### Artifact
 
 - An artifact is a file or collection of files produced during a workflow run. For example, you can use artifacts to save your build and test output after a workflow run has ended. All actions and workflows called within a run have write access to that run's artifacts.
+
+### Issue ChunkLoadError: Loading chunk src_HomePage_HomePage js failed.
+
+`SOLUTION :`
+
+When you use code splitting with React.lazy, sometimes a 'chunk load error loading chunk 4 failed in react' error will occur. If you refresh the page, the error will go away.You don't need to manual refresh if you follow the following steps.
+
+This error does not occur if you use the following code in app.js to import pages
+
+```js
+const lazyRetry = function (componentImport) {
+  return new Promise((resolve, reject) => {
+    const hasRefreshed = JSON.parse(window.sessionStorage.getItem("retry-lazy-refreshed") || "false");
+
+    componentImport()
+      .then((component) => {
+        window.sessionStorage.setItem("retry-lazy-refreshed", "false");
+        resolve(component);
+      })
+      .catch((error) => {
+        if (!hasRefreshed) {
+          // not been refreshed yet
+          window.sessionStorage.setItem("retry-lazy-refreshed", "true");
+          return window.location.reload(); // refresh the page
+        }
+        reject(error);
+      });
+  });
+};
+
+
+- import pages as
+const YourPage = React.lazy(()=> lazyRetry(() => import('./pages/YourPage')))
+```

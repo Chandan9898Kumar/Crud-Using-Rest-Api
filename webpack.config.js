@@ -67,7 +67,7 @@ module.exports = {
     port: 3000,
     historyApiFallback: true,
     static: {
-      directory: path.join(__dirname, "public"),
+      directory: path.join(__dirname, "./public"),
       publicPath: ["/"],
       serveIndex: true,
     },
@@ -193,6 +193,8 @@ module.exports = {
       deep: true,
     }),
     new HtmlWebpackPlugin({
+      // template: path.join(__dirname, 'public', 'index.html'),
+      // favicon: path.join(__dirname, 'public', 'favicon.jpg'),
       template: path.resolve("./public/index.html"),
       filename: "./index.html",
       favicon: "./public/favicon.ico",
@@ -206,6 +208,7 @@ module.exports = {
       inject: true,
       hash: true,
       title: "development",
+      description: 'Just copy/paste my actual stuff here',
     }),
 
     new CleanWebpackPlugin({

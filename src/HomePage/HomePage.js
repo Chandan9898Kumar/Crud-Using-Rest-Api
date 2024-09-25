@@ -116,6 +116,8 @@ const Home = () => {
         </div>
       </div>
 
+      {isError && <div style={{ color: "red", fontSize: "25px", margin: "20px", textAlign: "center", fontWeight: "500" }}>Something went wrong, Please Check</div>}
+
       <div
         style={{
           display: "flex",
