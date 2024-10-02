@@ -3,15 +3,15 @@ import { useState, useEffect } from "react";
 const useFetch = (api, options = "") => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
-  const [isError, setIsError] = useState('');
+  const [isError, setIsError] = useState("");
 
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
-    
+
     const fetchUser = async () => {
       setIsLoading(true);
-      setIsError('')
+      setIsError("");
       try {
         const jsonData = await fetch(api, { ...options, signal });
         const result = await jsonData.json();
@@ -20,7 +20,7 @@ const useFetch = (api, options = "") => {
         if (error.name === "AbortError") {
           console.log("Fetching data was aborted");
         } else {
-          setIsError('Something Went wrong...');
+          setIsError("Something Went wrong...");
         }
       } finally {
         setIsLoading(false);
@@ -230,4 +230,69 @@ type Action<T> =
   | { type: "loading"; error: undefined }
   | { type: "success"; data: T }
   | { type: "error"; error: AxiosError };
+ */
+
+/**                    Other Example of useFetch with providing refetch function to component so that they can call it when needed.
+import React, { useState, useEffect } from 'react';
+import './style.css';
+
+export default function App() {
+  return (
+    <div>
+      {' '}
+      <h1>Hello StackBlitz!</h1>{' '}
+      <p>Start editing to see some magic happen :)</p> <UsersList />{' '}
+    </div>
+  );
+}
+export const useFetch = (url, options) => {
+  const [data, setData] = useState([]);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
+  const fetchData = async () => {
+    try {
+      const res = await fetch(url, options);
+      const response = await res.json();
+      setData(response.products);
+    } catch (error) {
+      setError(error);
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+  return { data, error, loading, refetch: fetchData };
+};
+
+const UsersList = () => {
+  let URL = 'https://dummyjson.com/products/search?q=phone';
+  const [vals, setVals] = useState('');
+  const { data, error, loading, refetch } = useFetch(URL);
+  if (error) {
+    return <>"Something went wrong..."</>;
+  }
+  if (loading) {
+    return <>loading...</>;
+  }
+  return (
+    <>
+      {' '}
+      <input
+        value={vals}
+        onChange={(event) => setVals(event.target.value)}
+      />{' '}
+      <div>
+        {' '}
+        {data?.map((item, index) => (
+          <li key={item.brand + index}>{item.brand}</li>
+        ))}{' '}
+      </div>{' '}
+      <button onClick={refetch}>Add</button>{' '}
+    </>
+  );
+};
+
  */
