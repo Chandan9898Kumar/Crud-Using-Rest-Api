@@ -88,3 +88,15 @@ export default function App() {
 }
 
  */
+
+/**
+ * 
+ A user is considered to be inactive or idle if he is not performing any sort of action using interaction hardware like a mouse,
+or keyboard for desktops and laptops and touch on mobile and tablets.
+
+For this, there are a set of events that we can listen to like mousemove, mousedown, keypress, DOMMouseScroll, mousewheel, touchmove, MSPointerMove.
+
+Also, we need to handle edge cases where the window or tab is out of focus, for which we will listen to the focus and blur events.
+
+If any of these events are triggered then set the user to be Active else if none of them have happened for a given amount of time then set the user to be Idle or Inactive.
+ */
