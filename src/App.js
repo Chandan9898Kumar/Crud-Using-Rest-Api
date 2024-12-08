@@ -27,11 +27,11 @@ const lazyRetry = function (componentImport) {
 };
 
 const NavLinks = lazy(() => lazyRetry(() => import("./NavLinks/NavLink")));
-const AccountLogin = lazy(() => lazyRetry(() => import("./Login/Login")));
-const AccountRegister = lazy(() => lazyRetry(() => import("./Register/Register")));
-const Home = lazy(() => lazyRetry(() => import("./HomePage/HomePage")));
-const DragDrop = lazy(() => lazyRetry(() => import("./Components/DragAndDrop/DragDrop")));
-const Contact = lazy(() => lazyRetry(() => import("./Components/Contacts/Contact")));
+const AccountLogin = lazy(() => lazyRetry(() => import(/*webpackChunkName: "login-page" */ "./Login/Login")));
+const AccountRegister = lazy(() => lazyRetry(() => import(/*webpackChunkName: "register-page" */ "./Register/Register")));
+const Home = lazy(() => lazyRetry(() => import(/*webpackChunkName: "home-page" */ "./HomePage/HomePage")));
+const DragDrop = lazy(() => lazyRetry(() => import(/*webpackChunkName: "drag-drop" */ "./Components/DragAndDrop/DragDrop")));
+const Contact = lazy(() => lazyRetry(() => import(/*webpackChunkName: "contact-page" */ "./Components/Contacts/Contact")));
 const ProjectList = lazy(() => lazyRetry(() => import("./Components/ToDoApp/ProjectList")));
 const CreateProject = lazy(() => lazyRetry(() => import("./Components/ToDoApp/CreateProject")));
 const ShowProject = lazy(() => lazyRetry(() => import("./Components/ToDoApp/ShowProject")));
