@@ -6,6 +6,7 @@ const CleanObsoleteChunks = require("webpack-clean-obsolete-chunks");
 const TerserPlugin = require("terser-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
 
 const isProd = process.env.NODE_ENV !== "production";
 
@@ -36,6 +37,10 @@ module.exports = {
     fallback: {
       fs: false,
       path: require.resolve("path-browserify"),
+      zlib: require.resolve("browserify-zlib"),
+      // buffer: require.resolve("buffer/"),
+      // stream: require.resolve("stream-browserify"),
+      // process: require.resolve("process/browser"),
     },
   },
 
@@ -208,7 +213,7 @@ module.exports = {
       inject: true,
       hash: true,
       title: "development",
-      description: 'Just copy/paste my actual stuff here',
+      description: "Just copy/paste my actual stuff here",
     }),
 
     new CleanWebpackPlugin({
@@ -232,6 +237,28 @@ module.exports = {
     }),
 
     new webpack.HotModuleReplacementPlugin(),
+
+    // Gzip and Brotli are the most common ways to compress JavaScript and are widely supported by modern browsers.
+    new CompressionPlugin({
+      filename: "[path][base].gz",
+      algorithm: "gzip",
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8,
+    }),
+
+    new CompressionPlugin({
+      filename: "[path][base].br",
+      algorithm: "brotliCompress",
+      test: /\.(js|css|html|svg)$/,
+      // compressionOptions: {
+      //   params: {
+      //     [zlib.constants.BROTLI_PARAM_QUALITY]: 11,
+      //   },
+      // },
+      threshold: 10240,
+      minRatio: 0.8,
+    }),
   ],
 
   optimization: {
