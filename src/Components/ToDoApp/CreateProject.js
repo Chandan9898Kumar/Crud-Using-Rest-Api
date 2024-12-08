@@ -1,6 +1,7 @@
-import React, { useEffect, useState, flushSync } from "react";
+import React, { useEffect, useState } from "react";
 
 import axios from "axios";
+import { flushSync } from 'react-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
