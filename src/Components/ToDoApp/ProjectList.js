@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 
 import Modal from "../../Common/Modal/Modal";
 
@@ -9,8 +9,9 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { ShowIcon, EditIcon, DeleteIcon } from "../../Assets/SvgImage";
 import Button from "../../Common/ButtonComponent/Button";
-import ComponentModal from "../../Common/DialogBox/DialogBox";
 import { ProjectListTitle } from "../../Redux/TodoApplication/ProjectListReducer";
+
+const ComponentModal = lazy(() => import(/*webpackChunkName: "dialog-box" */ "../../Common/DialogBox/DialogBox"));
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 const config = {
@@ -68,14 +69,16 @@ const ProjectList = () => {
   return (
     <div>
       {isDialog && (
-        <ComponentModal
-          titleMessage="Are you sure?"
-          bodyMessage="You won't be able to revert this!"
-          cancelText={"Cancel"}
-          continueText={"Yes, Delete it"}
-          handleCancel={() => setIsDialog(false)}
-          handleProceed={handleDeleteProject}
-        />
+        <Suspense fallback="Loading...">
+          <ComponentModal
+            titleMessage="Are you sure?"
+            bodyMessage="You won't be able to revert this!"
+            cancelText={"Cancel"}
+            continueText={"Yes, Delete it"}
+            handleCancel={() => setIsDialog(false)}
+            handleProceed={handleDeleteProject}
+          />
+        </Suspense>
       )}
 
       <Modal show={showModal} onClose={() => setShowModal(false)} title="Project Manager Application">

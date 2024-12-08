@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, flushSync } from "react";
 
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
@@ -148,7 +148,22 @@ const CreateProject = () => {
   return (
     <div>
       <div style={{ padding: "10px 30px" }}>
-        <Button type="submit" variant="primary" size={"lg"} onClick={() => navigate("/todo")}>
+        <Button
+          type="submit"
+          variant="primary"
+          size={"lg"}
+          onClick={() => {
+            if (document.startViewTransition) {
+              document.startViewTransition(() => {
+                flushSync(() => {
+                  navigate("/todo");
+                });
+              });
+            } else {
+              navigate("/todo");
+            }
+          }}
+        >
           {title.createProjectTitle}
         </Button>
       </div>
