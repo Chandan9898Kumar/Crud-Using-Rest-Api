@@ -201,8 +201,8 @@ module.exports = {
       // template: path.join(__dirname, 'public', 'index.html'),
       // favicon: path.join(__dirname, 'public', 'favicon.jpg'),
       template: path.resolve("./public/index.html"),
-      filename: "./index.html",
-      favicon: "./public/favicon.ico",
+      filename: "index.html",
+      favicon: "./public/favicon-32x32.png",
       manifest: "./public/manifest.json",
       minify: {
         removeComments: true,
