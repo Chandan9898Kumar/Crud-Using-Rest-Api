@@ -1,6 +1,5 @@
 import { useEffect, useCallback, useRef } from "react";
 
-
 const useThrottle = (callback, delay = 300) => {
   // Use refs to persist values between renders
   const conditionRef = useRef(true);
