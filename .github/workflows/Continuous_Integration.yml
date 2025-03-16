@@ -38,7 +38,7 @@ jobs:
         run: ls
 
       - name: Checkout to the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: "${{ github.ref }}"
         #  github.ref tells the github about branch :  the existing branch from which the pr has been raised.
@@ -46,7 +46,7 @@ jobs:
         run: ls
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2-beta
+        uses: actions/setup-node@v3 
         with:
           node-version: ${{ matrix.node-version }}
 
