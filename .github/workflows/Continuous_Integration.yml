@@ -82,7 +82,7 @@ jobs:
         run: npm test -- --coverage
 
       - name: Archive code coverage results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: code-coverage-report
           path: ./coverage
@@ -91,7 +91,7 @@ jobs:
         run: npm run build
 
       - name: Upload artifact to enable deployment
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: production-files
           path: ./build
