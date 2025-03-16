@@ -35,7 +35,19 @@ const useDebounce = (callback, delay = 300, options = {}) => {
 
 
 
-//  It will works only for input fields.
+
+/**
+ * The `UseDebounceInput` function in JavaScript is used to debounce input values with a specified
+ * delay.
+ * @param value - The `value` parameter represents the input value that you want to debounce. This is
+ * the value that will be delayed before being updated in the `debounceValue` state.
+ * @param [delay=500] - The `delay` parameter in the `UseDebounceInput` function represents the time in
+ * milliseconds that the function will wait before updating the `debounceValue` with the latest
+ * `value`. This delay is used to debounce the input value, meaning that the function will only update
+ * the `debounceValue
+ * @returns The `UseDebounceInput` custom hook returns the `debounceValue`, which is the debounced
+ * value of the input passed to the hook.
+ */
 const UseDebounceInput = (value, delay = 500) => {
   const [debounceValue, setDebounceValue] = useState(value);
 
